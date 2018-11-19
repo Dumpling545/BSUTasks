@@ -7,7 +7,7 @@
 **/Debug
 *.exe
 *.ilk
-*/.vs
+**/.vs
 *.pdb
 *.vcxproj
 *.vcxproj.filters
