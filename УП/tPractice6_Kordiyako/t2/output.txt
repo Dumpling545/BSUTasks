@@ -1,6 +1,0 @@
-Substring(1, 3) is not a palindrome
-Substring(4, 7) is a palindrome
-Substring(1, 7) is a palindrome
-Substring(7, 1) is a palindrome
-Substring(0, 0) is a palindrome
-Substring(0, 2) is not a palindrome

@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1540315999 source:d:\смхбеп\со\tpractice4_kordiyako\z3\main.cpp
-	<iostream>
-	<fstream>
-	<iomanip>
-	<ctime>
-	<cstdlib>
-	<cmath>
-
