@@ -1,0 +1,4 @@
+Letters: 12 Digits: 5 Others: 10
+Letters: 0 Digits: 0 Others: 32
+Letters: 0 Digits: 9 Others: 19
+Letters: 7 Digits: 0 Others: 13

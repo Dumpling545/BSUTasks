@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1540199141 source:d:\УНИВЕР\Прога\week_7\z1\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<cctype>
+	<cstdlib>
+	<cstdio>
+

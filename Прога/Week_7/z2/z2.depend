@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1540745711 source:d:\УНИВЕР\Прога\week_7\z2\main.cpp
+	"week7.h"
+
+1540745574 d:\УНИВЕР\Прога\week_7\z2\week7.h
+	<fstream>
+	<cstring>
+	<cctype>
+	<cstdlib>
+	<cstdio>
+	<cmath>
+	<iomanip>
+
+1540745586 source:d:\УНИВЕР\Прога\week_7\z2\week7.cpp
+	"week7.h"
+

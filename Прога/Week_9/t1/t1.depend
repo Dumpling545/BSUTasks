@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1541939358 source:d:\УНИВЕР\Прога\week_9\t1\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"week9.h"
+
+1541937749 d:\УНИВЕР\Прога\week_9\t1\week9.h
+	<fstream>
+	<cstring>
+	<iostream>
+	"stack.h"
+
+1541410264 d:\УНИВЕР\Прога\week_9\t1\stack.h
+	"stackItem.h"
+
+1541410273 d:\УНИВЕР\Прога\week_9\t1\stackitem.h
+
+1541939773 source:d:\УНИВЕР\Прога\week_9\t1\week9.cpp
+	"week9.h"
+

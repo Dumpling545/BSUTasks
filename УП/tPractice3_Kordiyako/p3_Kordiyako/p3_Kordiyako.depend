@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1539099830 source:d:\смхбеп\со\tpractice3_kordiyako\p3_kordiyako\main.cpp
+	<iostream>
+	<ctime>
+	<cstdlib>
+	<iomanip>
+	"getCPUTime.c"
+	"arrays.h"
+
+1538990227 d:\смхбеп\со\tpractice3_kordiyako\p3_kordiyako\arrays.h
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1539100141 source:d:\смхбеп\со\tpractice3_kordiyako\p3_kordiyako\arrays.cpp
+	"arrays.h"
+
+1539096324 source:d:\смхбеп\со\tpractice3_kordiyako\p3_kordiyako\getcputime.c
+	<windows.h>
+
+1538978371 d:\смхбеп\со\tpractice3_kordiyako\p3_kordiyako\getcputime.h
+
+1538978361 source:d:\смхбеп\со\tpractice3_kordiyako\p3_kordiyako\getcputime.cpp
+	<Windows.h>
+	<unistd.h>
+	<sys/resource.h>
+	<sys/times.h>
+	<time.h>
+	"getCPUTime.h"
+
+1539096324 d:\смхбеп\со\tpractice3_kordiyako\p3_kordiyako\getcputime.c
+	<windows.h>
+

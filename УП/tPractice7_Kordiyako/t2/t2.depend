@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1542619590 source:d:\смхбеп\со\tpractice7_kordiyako\t2\main.cpp
+	<iostream>
+	"vector.h"
+
+1542549809 source:d:\смхбеп\со\tpractice7_kordiyako\t2\vector.cpp
+
+1542621733 d:\смхбеп\со\tpractice7_kordiyako\t2\vector.h
+	<iostream>
+

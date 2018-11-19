@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1540122561 source:d:\УНИВЕР\Прога\week_6\z3\arrays.cpp
+	"arrays.h"
+
+1540121946 d:\УНИВЕР\Прога\week_6\z3\arrays.h
+	<iostream>
+	<ctime>
+	<cstdlib>
+	<functional>
+
+1540123681 source:d:\УНИВЕР\Прога\week_6\z3\main.cpp
+	<iomanip>
+	<iostream>
+	<ctime>
+	<cstdlib>
+	"arrays.h"
+

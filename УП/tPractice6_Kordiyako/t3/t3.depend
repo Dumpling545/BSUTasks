@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1541408033 source:d:\смхбеп\со\tpractice6_kordiyako\t3\main.cpp
+	<iostream>
+	<fstream>
+	"practice6.h"
+
+1541406648 d:\смхбеп\со\tpractice6_kordiyako\t3\practice6.h
+	<fstream>
+	<cstring>
+	<iostream>
+
+1541406674 source:d:\смхбеп\со\tpractice6_kordiyako\t3\practice6.cpp
+	"practice6.h"
+
