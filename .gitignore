@@ -3,3 +3,12 @@
 *.cbp
 *.layout
 *.depend
+*.zip
+**/Debug
+*.exe
+*.ilk
+*/.vs
+*.pdb
+*.vcxproj
+*.vcxproj.filters
+*.sln

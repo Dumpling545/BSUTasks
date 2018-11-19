@@ -1,0 +1,8 @@
+Horizontal pairs: 0, Vertical pairs: 0
+
+Horizontal pairs: 0, Vertical pairs: 10
+
+Horizontal pairs: 3, Vertical pairs: 0
+
+Horizontal pairs: 4, Vertical pairs: 4
+
