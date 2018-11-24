@@ -1,12 +1,6 @@
 #pragma once
+#include <typeinfo>
 #include <iostream>
-/**Составить описание класса для определения одномерных массивов целых чисел (векторов).
-Предусмотреть возможность обращения к отдельному элементу массива с контролем выхода за пределы массива,
- возможность задания произвольных границ индексов при создании объекта,
- возможность выполнения операций поэлементного сложения и вычитания массивов с одинаковыми границами индексов,
- умножения и деления всех элементов массива на скаляр, вывода на экран элемента массива по заданному индексу,
- вывода на экран всего массива. Написать программу, демонстрирующую работу с этим классом.
-Программа должна содержать меню, позволяющее осуществить проверку всех методов класса.*/
 using namespace std;
 template <class T>
 class Vector
@@ -15,11 +9,15 @@ class Vector
         Vector(){
             elements = new T[capacity];
         }
-        Vector(const Vector &source){
-            capacity =  2*source.getSize();
-            resize(capacity);
-            for(int i = 0; i < capacity; i++){
-                (*this)[i] = source[i];
+        Vector(const Vector & source){
+            size = source.getSize();
+            if(elements == nullptr){
+                elements = new T[capacity];
+            }
+            resize(2*size);
+            for(int i = 0; i < size; i++){
+                elements[i] = source[i];
+                //cout << typeid(*this).name() <<" type " << typeid((*this)[i]).name() << " - " <<typeid(source).name() << endl;
             }
         }
         Vector(int defSize){
@@ -29,19 +27,20 @@ class Vector
         int getSize() const{
             return size;
         }
-        Vector operator+=(const Vector& v){
+        Vector operator+=(const Vector & v){
+           // cout << &v << endl;
             if(size == v.getSize()){
                 for(int i = 0; i < size; i++){
                     elements[i] += v[i];
                 }
                 return *this;
             } else {
-                cout << "Error: vectors are not matched" <<endl;
+                cout << "Error: vectors are not matched: " <<size <<", " << v.getSize() <<endl;
                 throw "Error: vectors are not matched";
             }
         }
 
-        Vector operator-=(const Vector& v){
+        Vector operator-=(const Vector & v){
             if(size == v.getSize()){
                 for(int i = 0; i < size; i++){
                     elements[i] -= v[i];
@@ -67,19 +66,34 @@ class Vector
             return *this;
         }
 
-        const Vector operator+(const Vector& v) const;
+        const Vector operator+(const Vector & v) const{
+            return Vector(*this)+= v;
+        }
 
-        const Vector operator-(const Vector& v) const;
+        const Vector operator-(const Vector& v) const{
+            return Vector(*this)-= v;
+        }
 
-        const Vector operator*(const int& scalar) const;
+        const Vector operator*(const int scalar) const{
+            return Vector(*this)*= scalar;
+        }
 
-        const Vector operator/(const int& scalar) const;
+        const Vector operator/(const int scalar) const{
+            return Vector(*this)/= scalar;
+        }
 
-        const Vector operator=(const Vector& v);
+        const Vector operator=(const Vector& v){
+            int s = v.getSize();
+            resize(2*s);
+            for(int i = 0; i < s; i++){
+                (*this)[i] = v[i];
+            }
+            return (*this);
+        }
         const bool operator==(const Vector& v) const;
         const bool operator!=(const Vector& v) const;
 
-          T& operator[](const int index){
+          T& operator[](const int index) const{
             if(index < 0 || index >= size){
                 cout << "Error: index is out of the array" <<endl;
                 throw "Error: index is out of the array";
@@ -93,8 +107,7 @@ class Vector
                 elements[size] = element;
                 size++;
             } else {
-                capacity = size*2;
-                resize(capacity);
+                resize(size*2);
                 elements[size] = element;
                 size++;
             }
@@ -114,7 +127,10 @@ class Vector
                         temp[i] = elements[i];
                     }
                 }
-                size = newCapacity;
+                elements = new T[newCapacity];
+                for(int i = 0; i < newCapacity; i++){
+                    elements[i] = temp[i];
+                }
                 capacity = newCapacity;
             } else {
                 cout << "Error: new size for vector should be greater than 0" <<endl;
@@ -123,5 +139,5 @@ class Vector
     private:
         int size = 0;
         int capacity = 1000;
-        T * elements;
+        T * elements = nullptr;
 };
