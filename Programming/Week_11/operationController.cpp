@@ -1,14 +1,12 @@
 #include "operationController.h"
-void OperationController::runOperations(){
 
-}
 string OperationController::getResult(){
     int length = result.size();
     string s;
-   /* for(int i = 0; i < length;i++){
-        s +=
-    }*/
-    return "";
+    for(int i = 0; i < length;i++){
+        s += (parser->deparseRational(result[i]) + "\n");
+    }
+    return s;
 }
 void OperationController::createOperations(vector<string> unparsed){
     operations.clear();
@@ -17,15 +15,18 @@ void OperationController::createOperations(vector<string> unparsed){
         Operation op;
         try{
             op = parser->parseString(unparsed[i]);
+            operations.push_back(op);
         } catch(InvalidOperationException &e){
-            //logger
-            continue;
+            Logger::warning(e.what());
+        }catch(MathException &e){
+            Logger::warning(e.what());
         }
-        operations.push_back(op);
     }
+    Logger::info("Operations are created");
 }
 Rational OperationController::run(Operation op){
     Rational r;
+    r = op.operand1;
     switch(op.type){
         case '+':
             r = op.operand1 + op.operand2;
@@ -48,6 +49,7 @@ void OperationController::runOperations(){
     for(int i = 0; i < length; i++){
         result.push_back(run(operations[i]));
     }
+    Logger::info("Operations are runned");
 }
 OperationController::OperationController(){
     parser = new OperationParser();

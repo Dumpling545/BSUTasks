@@ -1,5 +1,6 @@
 #include "userInterface.h"
 UserInterface::UserInterface(){
+    Logger::start();
     userController = new UserController();
 }
 void UserInterface::printMenu(){
@@ -10,8 +11,17 @@ void UserInterface::printMenu(){
     cout <<"0            -- close program" << endl;
     cout << endl;
 }
-void UserInterface::enterCommand(){
+void UserInterface::commandConsole(){
     string command;
-    cin >> command;
-    userController->executeCommand(command);
+    while(getline(cin, command)){
+        try{
+            userController->executeCommand(command);
+        } catch(FileException &ex){
+            cout << "Invalid file: "<< ex.what() << endl;
+            continue;
+        } catch(InvalidCommandException &ex){
+            cout << "Invalid command"<< endl;
+            continue;
+        }
+    }
 }

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "fileController.h"
 FileController::FileController(){
 
@@ -10,9 +11,12 @@ vector<string> FileController::read(string filename){
         while(getline(fin,str)){
             result.push_back(str);
         }
+        fin.close();
+        Logger::info("file '"+ filename +"' is read");
         return result;
     } catch(FileException &ex){
-        throw ex;
+        Logger::warning(ex.what());
+        throw;
     }
 }
 void FileController::openInputFile(string filename){
@@ -44,7 +48,10 @@ void FileController::write(string filename, string text){
     try{
         openOutputFile(filename);
         fout << text;
+        fout.close();
+        Logger::info("file '" + filename +  "' is written");
     } catch(FileException &ex){
-        throw ex;
+        Logger::warning(ex.what());
+        throw;
     }
 }

@@ -1,0 +1,60 @@
+Mon Dec 03 13:43:42 2018
+: [INFO] Command sent: 1
+Mon Dec 03 13:43:42 2018
+: [INFO] file 'input.txt' is read
+Mon Dec 03 13:43:42 2018
+: [WARNING] Invalid operation: 10 10
+Mon Dec 03 13:43:42 2018
+: [WARNING] Division by zero!
+Mon Dec 03 13:43:42 2018
+: [WARNING] Invalid operation: 12e in 12e * 12
+Mon Dec 03 13:43:42 2018
+: [WARNING] Invalid operation: aba in aba
+Mon Dec 03 13:43:42 2018
+: [WARNING] Invalid operation: invalid operator in 12 a 12
+Mon Dec 03 13:43:42 2018
+: [WARNING] Invalid operation: 34en 12
+Mon Dec 03 13:43:42 2018
+: [WARNING] Division by zero!
+Mon Dec 03 13:43:42 2018
+: [WARNING] Invalid operation: 12/1 1/12
+Mon Dec 03 13:43:42 2018
+: [INFO] Operations are created
+Mon Dec 03 13:43:42 2018
+: [INFO] Command sent: 2
+Mon Dec 03 13:43:42 2018
+: [INFO] Operations are runned
+Mon Dec 03 13:43:46 2018
+: [INFO] Command sent: 3
+Mon Dec 03 13:43:46 2018
+: [INFO] file 'output.txt' is written
+Mon Dec 03 13:47:13 2018
+: [INFO] Command sent: 1
+Mon Dec 03 13:47:13 2018
+: [INFO] file 'input.txt' is read
+Mon Dec 03 13:47:13 2018
+: [WARNING] Invalid operation: 10 10
+Mon Dec 03 13:47:13 2018
+: [WARNING] Division by zero!
+Mon Dec 03 13:47:13 2018
+: [WARNING] Invalid operation: 12e in 12e * 12
+Mon Dec 03 13:47:13 2018
+: [WARNING] Invalid operation: aba in aba
+Mon Dec 03 13:47:13 2018
+: [WARNING] Invalid operation: invalid operator in 12 a 12
+Mon Dec 03 13:47:13 2018
+: [WARNING] Invalid operation: 34en 12
+Mon Dec 03 13:47:13 2018
+: [WARNING] Division by zero!
+Mon Dec 03 13:47:13 2018
+: [WARNING] Invalid operation: 12/1 1/12
+Mon Dec 03 13:47:13 2018
+: [INFO] Operations are created
+Mon Dec 03 13:47:14 2018
+: [INFO] Command sent: 2
+Mon Dec 03 13:47:14 2018
+: [INFO] Operations are runned
+Mon Dec 03 13:47:17 2018
+: [INFO] Command sent: 3
+Mon Dec 03 13:47:17 2018
+: [INFO] file 'output.txt' is written

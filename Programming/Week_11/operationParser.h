@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <cstdlib>
 #include "operationValidator.h"
 #include <cctype>
 #include "invalidOperationException.h"
