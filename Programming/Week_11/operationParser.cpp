@@ -16,7 +16,7 @@ Operation OperationParser::parseString(string unparsed){
         type = unparsed.substr(space1 + 1, space2 - space1 - 1);
         op2 = unparsed.substr(space2 + 1, unparsed.size() - space2 - 1);
     } else {
-        throw InvalidOperationException(unparsed);
+        throw InvalidOperationException("'" + unparsed + "'");
     }
     try{
         r1 = parseOperand(op1);
@@ -25,7 +25,7 @@ Operation OperationParser::parseString(string unparsed){
             r2 = parseOperand(op2);
             if(validator->validateOperationType(type)){
             op_res_type = type[0];
-                if(type[0] == '/' && r2.getNumerator() == 0){
+                if(op_res_type == '/' && r2.getNumerator() == 0){
                     throw MathException();
                 }
             } else {
@@ -37,10 +37,11 @@ Operation OperationParser::parseString(string unparsed){
             res.type  = 0;
         }
     } catch(InvalidOperationException &e){
-        e.operation += (" in " + unparsed);
+        e.operation += (" in '" + unparsed +"'");
         throw e;
     } catch(MathException &e){
-        throw e;
+        InvalidOperationException ioe(string(e.what()) + " in '" + unparsed + "'");
+        throw ioe;
     }
     return res;
 }
@@ -68,7 +69,7 @@ Rational OperationParser::parseOperand(string unparsedOperand){
             findSlash = true;
             variable = &denominator;
         } else {
-            throw InvalidOperationException(unparsedOperand);
+            throw InvalidOperationException("'" + unparsedOperand + "'");
         }
     }
     numerator *= sign;

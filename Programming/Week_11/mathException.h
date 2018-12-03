@@ -5,6 +5,6 @@ class MathException : public exception {
     public:
         const char * what () const throw ()
         {
-            return "Division by zero!";
+            return "Division by zero";
         }
 };
