@@ -1,5 +1,4 @@
 #include "operationController.h"
-
 string OperationController::getResult(){
     int length = result.size();
     string s;

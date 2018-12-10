@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iostream>
 #include "fileException.h"
 #include "emptyFileException.h"
 #include "nonExistFileException.h"
