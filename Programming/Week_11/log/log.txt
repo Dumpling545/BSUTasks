@@ -1,48 +1,46 @@
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [INFO] Command sent: 1
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [INFO] file 'input.txt' is read
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: null operand in ''
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: null operand in ' + '
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: 'i' in '1 + i'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: '0+ 9'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: null operand in '  '
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: null operand in '   '
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: null operand in '  + '
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: '10 10'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: Division by zero in '10 / 0'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: '12e' in '12e * 12'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: 'aba' in 'aba'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: invalid operator in '12 a 12'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: '34en 12'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: Division by zero in '12 * 12/0'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [WARNING] Invalid operation: '12/1 1/12'
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:48 2018
 : [INFO] Operations are created
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:49 2018
 : [INFO] Command sent: 2
-Mon Dec 03 14:10:29 2018
+Mon Dec 10 11:59:49 2018
 : [INFO] Operations are runned
-Mon Dec 03 14:10:33 2018
+Mon Dec 10 11:59:54 2018
 : [INFO] Command sent: 3
-Mon Dec 03 14:10:33 2018
+Mon Dec 10 11:59:54 2018
 : [INFO] file 'output.txt' is written
-Mon Dec 03 14:10:34 2018
-: [WARNING] Command doesn't exist: -48
-Mon Dec 03 14:10:35 2018
+Mon Dec 10 11:59:54 2018
 : [INFO] Command sent: 0

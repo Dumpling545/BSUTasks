@@ -1,7 +1,7 @@
 #include "userController.h"
 UserController::UserController(){
-    fileController = new FileController();
-    operationController = new OperationController();
+    fileManager = new FileManager();
+    operationManager = new OperationManager();
 }
 void UserController::executeCommand(string command){
     int c = command[0] - '0';
@@ -20,8 +20,8 @@ void UserController::executeCommand(string command){
         case UserCommands::OPEN_FILE:
             try{
                 Logger::info("Command sent: " + to_string(c));
-                vector<string> data = fileController->read(param);
-                operationController->createOperations(data);
+                vector<string> data = fileManager->read(param);
+                operationManager->createOperations(data);
             } catch(FileException &e){
                 throw;
             } catch(InvalidOperationException &e){
@@ -31,7 +31,7 @@ void UserController::executeCommand(string command){
         case UserCommands::COMPUTE:
             try{
                 Logger::info("Command sent: " + to_string(c));
-                operationController->runOperations();
+                operationManager->runOperations();
             } catch(MathException &e){
                 cout << e.what() << endl;
             }
@@ -39,7 +39,7 @@ void UserController::executeCommand(string command){
         case UserCommands::WRITE_FILE:
             try{
                 Logger::info("Command sent: " + to_string(c));
-                fileController->write(param, operationController->getResult());
+                fileManager->write(param, operationManager->getResult());
             } catch(FileException &e){
                 throw;
             }

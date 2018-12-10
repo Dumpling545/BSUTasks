@@ -9,8 +9,8 @@
 #include "invalidCommandException.h"
 #include "invalidOperationException.h"
 #include "fileException.h"
-#include "operationController.h"
-#include "fileController.h"
+#include "operationManager.h"
+#include "fileManager.h"
 #include "logger.h"
 using namespace std;
 class UserController{
@@ -18,6 +18,6 @@ class UserController{
         UserController();
         void executeCommand(string command);
     private:
-        FileController * fileController;
-        OperationController * operationController;
+        FileManager * fileManager;
+        OperationManager * operationManager;
 };

@@ -7,9 +7,9 @@
 #include "invalidOperationException.h"
 #include "rational.h"
 using namespace std;
-class OperationController{
+class OperationManager{
     public:
-        OperationController();
+        OperationManager();
         void createOperations(vector<string> unparsed);
         void runOperations();
         string getResult();

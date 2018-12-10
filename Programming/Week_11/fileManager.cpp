@@ -1,8 +1,8 @@
-#include "fileController.h"
-FileController::FileController(){
+#include "fileManager.h"
+FileManager::FileManager(){
 
 }
-vector<string> FileController::read(string filename){
+vector<string> FileManager::read(string filename){
     try{
         openInputFile(filename);
         vector<string> result;
@@ -18,7 +18,7 @@ vector<string> FileController::read(string filename){
         throw;
     }
 }
-void FileController::openInputFile(string filename){
+void FileManager::openInputFile(string filename){
     try{
         if(fin.is_open()){
             fin.close();
@@ -33,7 +33,7 @@ void FileController::openInputFile(string filename){
         throw EmptyFileException(filename);
     }
 }
-void FileController::openOutputFile(string filename){
+void FileManager::openOutputFile(string filename){
     try{
         if(fout.is_open()){
             fout.close();
@@ -43,7 +43,7 @@ void FileController::openOutputFile(string filename){
         throw FileException(filename);
     }
 }
-void FileController::write(string filename, string text){
+void FileManager::write(string filename, string text){
     try{
         openOutputFile(filename);
         fout << text;

@@ -8,9 +8,9 @@
 #include "nonExistFileException.h"
 #include "logger.h"
 using namespace std;
-class FileController{
+class FileManager{
     public:
-        FileController();
+        FileManager();
         vector<string> read(string filename);
         void write(string filename, string text);
     private:

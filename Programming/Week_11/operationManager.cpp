@@ -1,5 +1,5 @@
-#include "operationController.h"
-string OperationController::getResult(){
+#include "operationManager.h"
+string OperationManager::getResult(){
     int length = result.size();
     string s;
     for(int i = 0; i < length;i++){
@@ -7,7 +7,7 @@ string OperationController::getResult(){
     }
     return s;
 }
-void OperationController::createOperations(vector<string> unparsed){
+void OperationManager::createOperations(vector<string> unparsed){
     operations.clear();
     int length = unparsed.size();
     for(int i = 0; i < length; i++){
@@ -23,7 +23,7 @@ void OperationController::createOperations(vector<string> unparsed){
     }
     Logger::info("Operations are created");
 }
-Rational OperationController::run(Operation op){
+Rational OperationManager::run(Operation op){
     Rational r;
     r = op.operand1;
     switch(op.type){
@@ -42,7 +42,7 @@ Rational OperationController::run(Operation op){
     }
     return r;
 }
-void OperationController::runOperations(){
+void OperationManager::runOperations(){
     result.clear();
     int length = operations.size();
     for(int i = 0; i < length; i++){
@@ -50,6 +50,6 @@ void OperationController::runOperations(){
     }
     Logger::info("Operations are runned");
 }
-OperationController::OperationController(){
+OperationManager::OperationManager(){
     parser = new OperationParser();
 }
