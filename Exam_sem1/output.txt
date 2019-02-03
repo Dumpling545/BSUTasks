@@ -1,0 +1,21 @@
+------------------------------------------------------------
+All colors : 
+Amount of multicoloured trucks: 0
+Remainder of this color: 
+Bodies: 1
+Wheels: 2
+------------------------------------------------------------
+------------------------------------------------------------
+Color : 1
+Amount of monocoloured trucks: 0
+Remainder of this color: 
+Bodies: 0
+Wheels: 1
+------------------------------------------------------------
+------------------------------------------------------------
+Color : 123456
+Amount of monocoloured trucks: 0
+Remainder of this color: 
+Bodies: 1
+Wheels: 1
+------------------------------------------------------------
