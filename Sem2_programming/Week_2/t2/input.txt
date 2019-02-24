@@ -1,0 +1,10 @@
+Aaaaa 0 10 8 7 9
+Bbbbb 1 7 6 10 4
+Ccccc 0 10 9 6 9
+Ddddd 4 6 7 3 9
+Eeeee 2 3 6 5 4
+Fffff 1 7 5 10 10
+Ggggg 3 10 10 10 10
+Hhhhh 1 6 10 3 7
+Iiiii 0 9 5 6 5
+Jjjjj 0 10 10 4 4
