@@ -1,0 +1,14 @@
+1 Circle aster chrysanthemum daffodil daisy hyacinth lily pansy phlox snapdragon violet
+2 Square chrysanthemum crocus dahlia daisy hyacinth iris marguerite pansy phlox rose tulip violet
+3 Circle aster carnation chrysanthemum crocus daffodil dahlia gladiolus hyacinth iris lily pansy peony rose violet
+4 Rhombus chrysanthemum daffodil dahlia daisy hyacinth iris lily marguerite pansy peony phlox snapdragon tulip violet
+5 Square crocus dahlia gladiolus hyacinth iris marguerite peony phlox rose tulip violet
+6 Circle carnation crocus dahlia gladiolus iris marguerite peony rose tulip violet
+7 Rhombus crocus dahlia daisy hyacinth iris lily marguerite peony phlox rose snapdragon tulip violet
+8 Square aster chrysanthemum dahlia iris phlox violet
+9 Rhombus chrysanthemum dahlia hyacinth marguerite phlox tulip violet
+10 Circle carnation chrysanthemum dahlia daisy iris lily peony phlox tulip violet
+11 Square aster chrysanthemum crocus daisy gladiolus hyacinth pansy peony phlox rose violet
+12 Circle chrysanthemum crocus daffodil gladiolus hyacinth pansy peony phlox tulip violet
+13 Circle violet
+14 Rhombus chrysanthemum crocus daffodil gladiolus hyacinth pansy peony phlox tulip violet 
