@@ -10,15 +10,26 @@
 using namespace std;
 ofstream fout("output.txt");
 ifstream fin("input.txt");
-int main()
-{
+
+bool isCorrectInputFile(ifstream &_fin){
+    bool res = true;
+    if(!_fin){
+        cout << "Input file doesn't exist" << endl;
+        res =  false;
+    } else if(_fin.peek() == ifstream::traits_type::eof()){
+        cout << "Input file is empty" << endl;
+        res = false;
+    }
+    return res;
+}
+void printUniqueWords(){
     string str;
     multiset<string> words;
     while(fin >> str){
         str.erase(remove_if(str.begin(),
                              str.end(),
                              [](char ch)
-                             { return ch==','||ch=='.'|| ch=='!'; }),
+                             { return ch==','||ch=='.'|| ch=='!' || ch=='?'; }),
                             str.end());
         words.insert(str);
     }
@@ -39,5 +50,12 @@ int main()
         it++;
     }
     fout << " (" << c <<")" << endl;
+}
+
+int main()
+{
+    if(isCorrectInputFile(fin)){
+        printUniqueWords();
+    }
     return 0;
 }
