@@ -1,0 +1,54 @@
+
+                       YEAR 2018
+
+weight leader among under-18:         Gierasimov      Mitrofan|   age: 17     weight: 2054.5
+weight leader among from-18-to-30:         Koshieliov       Jelizar|   age: 22     weight: 2169.5
+weight leader among above-30: <no one participated in this age category>
+
+Name-weight-age list:
+        Koshieliov       Jelizar|   age: 22     weight: 2169.5
+        Gierasimov      Mitrofan|   age: 17     weight: 2054.5
+          Kirillov         Jegor|   age: 5     weight: 530.5
+            Panova      Mielanja|   age: 26     weight: 1333
+        Afanasjeva    Kapitolina|   age: 16     weight: 233
+
+Sorted by age:
+          Kirillov         Jegor|   age: 5     weight: 530.5
+        Afanasjeva    Kapitolina|   age: 16     weight: 233
+        Gierasimov      Mitrofan|   age: 17     weight: 2054.5
+        Koshieliov       Jelizar|   age: 22     weight: 2169.5
+            Panova      Mielanja|   age: 26     weight: 1333
+
+Sorted and balanced by age:
+          Kirillov         Jegor|   age: 5     weight: 583.55
+        Afanasjeva    Kapitolina|   age: 16     weight: 256.3
+        Gierasimov      Mitrofan|   age: 17     weight: 2259.95
+        Koshieliov       Jelizar|   age: 22     weight: 2169.5
+            Panova      Mielanja|   age: 26     weight: 1333
+
+                       YEAR 2017
+
+weight leader among under-18:         Andriejeva    Fievronija|   age: 14     weight: 453
+weight leader among from-18-to-30:         Koshieliov        Filipp|   age: 22     weight: 2169.5
+weight leader among above-30:             Fokina      Ksienija|   age: 48     weight: 2980
+
+Name-weight-age list:
+       Krasilnikov        Andron|   age: 28     weight: 1289.5
+      Shchierbakov       Akindin|   age: 24     weight: 478.5
+        Koshieliov        Filipp|   age: 22     weight: 2169.5
+            Fokina      Ksienija|   age: 48     weight: 2980
+        Andriejeva    Fievronija|   age: 14     weight: 453
+
+Sorted by age:
+        Andriejeva    Fievronija|   age: 14     weight: 453
+        Koshieliov        Filipp|   age: 22     weight: 2169.5
+      Shchierbakov       Akindin|   age: 24     weight: 478.5
+       Krasilnikov        Andron|   age: 28     weight: 1289.5
+            Fokina      Ksienija|   age: 48     weight: 2980
+
+Sorted and balanced by age:
+        Andriejeva    Fievronija|   age: 14     weight: 498.3
+        Koshieliov        Filipp|   age: 22     weight: 2169.5
+      Shchierbakov       Akindin|   age: 24     weight: 478.5
+       Krasilnikov        Andron|   age: 28     weight: 1289.5
+            Fokina      Ksienija|   age: 48     weight: 2682
