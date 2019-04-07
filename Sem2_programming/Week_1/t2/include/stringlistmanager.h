@@ -1,15 +1,14 @@
 #pragma once
 #include <string>
 #include <list>
-using namespace std;
 class StringListManager
 {
     public:
-        StringListManager(list<string> * clist);
+        StringListManager(std::list<std::string> * clist);
         void print();
-        list<string> getElementsStartWith(char c);
+        std::list<std::string> getElementsStartWith(char c);
         void deleteElementsStartWith(char c);
-        void printElementsStartWith(char c);
+        static void printElements(std::list<std::string> elems);
     private:
-        list<string> * clist;
+        std::list<std::string> * clist;
 };

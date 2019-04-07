@@ -55,7 +55,7 @@ void lexicographicalSort(vector<string> & words){
 
 int main(){
     if(isCorrectInputFile(fin)){
-        int max_length = 0;
+        //int max_length = 0;
         vector<string> words;
         string str;
         while(fin >> str){

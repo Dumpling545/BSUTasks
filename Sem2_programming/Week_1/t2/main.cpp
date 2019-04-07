@@ -21,7 +21,7 @@ int main()
     li.sort();
     StringListManager slmanager(&li);
     slmanager.print();
-    slmanager.printElementsStartWith('d');
+    StringListManager::printElements(slmanager.getElementsStartWith('d'));
     slmanager.deleteElementsStartWith('d');
     slmanager.print();
     return 0;
