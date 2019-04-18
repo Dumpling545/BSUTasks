@@ -1,34 +1,18 @@
-#include "task1.h"
+#include "../include/task2.h"
 LPCSTR szClassName = "WinAPI";
-LPCSTR szTitle =     "Word resize";
-int fontWidth = 32;
-int fontHeight = 48;
-const double resizeCoefficient = 1.1;
-std::string  text = "Dorou";
+LPCSTR szTitle =     "Diagrams";
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
 
     switch(message){
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
-        case WM_CHAR:
-            switch(wParam){
-                case '=':
-                    fontWidth*= resizeCoefficient;
-                    fontHeight*=resizeCoefficient;
-                    text+='+';
-                    break;
-                case '-':
-                    fontWidth/=resizeCoefficient;
-                    fontHeight/=resizeCoefficient;
-                    text+='-';
-                    break;
-            }
-            InvalidateRect(hwnd, NULL, TRUE);
-            break;
-        case WM_PAINT:
+        case WM_PAINT:{
             draw(hwnd);
             break;
+        }
+        case WM_ERASEBKGND:
+             break;
         default:
             return DefWindowProc(hwnd, message, wParam, lParam);
     }
@@ -44,7 +28,7 @@ BOOL InitApplication(HINSTANCE hInstance){
     wc.hInstance = hInstance;
     wc.hIcon = LoadIcon(NULL, IDI_ASTERISK);
     wc.hCursor = LoadCursor(NULL, IDC_CROSS);
-    wc.hbrBackground = CreateSolidBrush(RGB(255,255,255));
+    wc.hbrBackground = (HBRUSH)(COLOR_APPWORKSPACE-1);
     wc.lpszMenuName = NULL;
     wc.lpszClassName = szClassName;
     return RegisterClass(&wc);
@@ -70,21 +54,14 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow){
     UpdateWindow(hWnd);
     return (TRUE);
 }
-void drawWord(HDC &hdc, RECT wRect){
-    HFONT font = CreateFont(fontHeight,fontWidth,60,120,100,FALSE,FALSE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
-            CLIP_DEFAULT_PRECIS,PROOF_QUALITY, VARIABLE_PITCH,TEXT("Times New Roman"));
-    SelectObject(hdc, font);
-    SetBkColor(hdc, RGB(255,255,255));
-    SIZE _size;
-    GetTextExtentPoint32(hdc, _T(text.c_str()), text.size(), &_size);
-    TextOut(hdc, (wRect.right - _size.cx)/2, (wRect.bottom - _size.cy)/2, _T(text.c_str()), text.size());
-    DeleteObject(font);
+void drawDiagrams(HDC &hdc, RECT rect){
+
 }
 void draw(HWND &hwnd){
     PAINTSTRUCT ps;
     RECT rect;
     GetClientRect(hwnd, &rect);
     HDC hdc=BeginPaint(hwnd, &ps);
-    drawWord(hdc, rect);
+    drawDiagrams(hdc, rect);
     EndPaint(hwnd, &ps);
 }

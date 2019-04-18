@@ -1,34 +1,27 @@
-#include "task1.h"
+#include "task2.h"
 LPCSTR szClassName = "WinAPI";
-LPCSTR szTitle =     "Word resize";
-int fontWidth = 32;
-int fontHeight = 48;
-const double resizeCoefficient = 1.1;
-std::string  text = "Dorou";
+LPCSTR szTitle =     "EditBox Simulation";
+std::string text;
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
 
     switch(message){
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
-        case WM_CHAR:
-            switch(wParam){
-                case '=':
-                    fontWidth*= resizeCoefficient;
-                    fontHeight*=resizeCoefficient;
-                    text+='+';
-                    break;
-                case '-':
-                    fontWidth/=resizeCoefficient;
-                    fontHeight/=resizeCoefficient;
-                    text+='-';
-                    break;
+        case WM_PAINT:{
+            draw(hwnd);
+            break;
+        }
+        case WM_CHAR:{
+            char c = (char) wParam;
+            if(std::isprint(c) && text.size() < text.max_size()){
+                text+=c;
+            } else if(wParam == '\b'/*0x08*/ && text.size() > 0){
+                text.pop_back();
             }
             InvalidateRect(hwnd, NULL, TRUE);
             break;
-        case WM_PAINT:
-            draw(hwnd);
-            break;
+        }
         default:
             return DefWindowProc(hwnd, message, wParam, lParam);
     }
@@ -70,21 +63,16 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow){
     UpdateWindow(hWnd);
     return (TRUE);
 }
-void drawWord(HDC &hdc, RECT wRect){
-    HFONT font = CreateFont(fontHeight,fontWidth,60,120,100,FALSE,FALSE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
-            CLIP_DEFAULT_PRECIS,PROOF_QUALITY, VARIABLE_PITCH,TEXT("Times New Roman"));
-    SelectObject(hdc, font);
-    SetBkColor(hdc, RGB(255,255,255));
+void drawEditBox(HDC &hdc, RECT wRect){
     SIZE _size;
     GetTextExtentPoint32(hdc, _T(text.c_str()), text.size(), &_size);
     TextOut(hdc, (wRect.right - _size.cx)/2, (wRect.bottom - _size.cy)/2, _T(text.c_str()), text.size());
-    DeleteObject(font);
 }
 void draw(HWND &hwnd){
     PAINTSTRUCT ps;
     RECT rect;
     GetClientRect(hwnd, &rect);
     HDC hdc=BeginPaint(hwnd, &ps);
-    drawWord(hdc, rect);
+    drawEditBox(hdc, rect);
     EndPaint(hwnd, &ps);
 }

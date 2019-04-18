@@ -1,10 +1,13 @@
+#pragma once
+#undef __STRICT_ANSI__
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "task2.h"
 LPCSTR szClassName = "WinAPI";
 LPCSTR szTitle =     "Watches";
 long seconds = 0;
 bool paused = false;
 const int ID_TIMER = 1;
-const double PI = 3.14159265359;
 const int millisInSecond = 100;
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
     switch(message){
@@ -16,6 +19,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
             draw(hwnd);
             break;
         }
+        case WM_ERASEBKGND:
+             break;
         case WM_KEYDOWN:
             switch(wParam){
                 case 189:
@@ -95,15 +100,15 @@ void drawClockHands(HDC &hdc, int radius){
     int cur_seconds = seconds % 60;
     int cur_minutes = (seconds / 60) % 60;
     int cur_hours = (seconds / 3600) % 24;
-    drawClockHand(hdc, radius*0.9, cur_seconds*2*PI/60 - PI/2, RGB(0,0,255));
-    drawClockHand(hdc, radius*0.7, cur_minutes*2*PI/60 - PI/2, RGB(255,0,0));
-    drawClockHand(hdc, radius*0.4, cur_hours*2*PI/24 - PI/2, RGB(0,255,0));
+    drawClockHand(hdc, radius*0.9, cur_seconds*2*M_PI/60 - M_PI/2, RGB(0,0,255));
+    drawClockHand(hdc, radius*0.7, cur_minutes*2*M_PI/60 - M_PI/2, RGB(255,0,0));
+    drawClockHand(hdc, radius*0.4, cur_hours*2*M_PI/24 - M_PI/2, RGB(0,255,0));
 }
 void drawScale(HDC &hdc, int radius){
     int scaleCount = 60;
     double clockhandSize = 0.9;
     for(int i = 0; i < scaleCount; i++){
-        double angle = i*2*PI/scaleCount;
+        double angle = i*2*M_PI/scaleCount;
         int endX = cos(angle)*radius;
         int endY = sin(angle)*radius;
         int startX = endX*clockhandSize;
@@ -121,6 +126,10 @@ void drawWatches(HDC &hdc, RECT wRect){
     int top =  (wHeight - diameter)/2;
     Ellipse(hdc, left, top, left + diameter, top + diameter);
     SetViewportOrgEx(hdc, left +diameter/2,  top + diameter/2, NULL);
+    std::string text = std::to_string(seconds);
+    SIZE _size;
+    GetTextExtentPoint32A(hdc, _T(text.c_str()), text.size(), &_size);
+    TextOut(hdc, -_size.cx/2, -_size.cy/2 , _T(text.c_str()), text.size());
     drawScale(hdc, diameter/2);
     drawClockHands(hdc, diameter/2);
 }

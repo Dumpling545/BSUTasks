@@ -1,34 +1,16 @@
-#include "task1.h"
+#include "task4.h"
 LPCSTR szClassName = "WinAPI";
-LPCSTR szTitle =     "Word resize";
-int fontWidth = 32;
-int fontHeight = 48;
-const double resizeCoefficient = 1.1;
-std::string  text = "Dorou";
+LPCSTR szTitle =     "Grid with circles";
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
 
     switch(message){
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
-        case WM_CHAR:
-            switch(wParam){
-                case '=':
-                    fontWidth*= resizeCoefficient;
-                    fontHeight*=resizeCoefficient;
-                    text+='+';
-                    break;
-                case '-':
-                    fontWidth/=resizeCoefficient;
-                    fontHeight/=resizeCoefficient;
-                    text+='-';
-                    break;
-            }
-            InvalidateRect(hwnd, NULL, TRUE);
-            break;
-        case WM_PAINT:
+        case WM_PAINT:{
             draw(hwnd);
             break;
+        }
         default:
             return DefWindowProc(hwnd, message, wParam, lParam);
     }
@@ -70,21 +52,49 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow){
     UpdateWindow(hWnd);
     return (TRUE);
 }
-void drawWord(HDC &hdc, RECT wRect){
-    HFONT font = CreateFont(fontHeight,fontWidth,60,120,100,FALSE,FALSE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
-            CLIP_DEFAULT_PRECIS,PROOF_QUALITY, VARIABLE_PITCH,TEXT("Times New Roman"));
-    SelectObject(hdc, font);
-    SetBkColor(hdc, RGB(255,255,255));
-    SIZE _size;
-    GetTextExtentPoint32(hdc, _T(text.c_str()), text.size(), &_size);
-    TextOut(hdc, (wRect.right - _size.cx)/2, (wRect.bottom - _size.cy)/2, _T(text.c_str()), text.size());
-    DeleteObject(font);
+void drawCircle(HDC &hdc, int x, int y, int radius, COLORREF color){
+    HBRUSH brush = CreateSolidBrush(color);
+    SelectObject(hdc, brush);
+    Ellipse(hdc, x - radius, y - radius, x + radius, y + radius);
+    DeleteObject(brush);
+}
+void drawCircles(HDC &hdc,int n, int m, RECT rect){
+    int radius = std::min(rect.right/(3*m), rect.bottom/(3*n));
+    for(int i = 1; i < n; i++){
+        for(int j = 1; j < m; j++){
+            drawCircle(hdc, j*rect.right/m, i*rect.bottom/n, radius, RGB(rand()%256, rand()%256, rand()%256));
+        }
+    }
+}
+
+void drawGrid(HDC &hdc,int n, int m, RECT rect){
+    if(n > 0 && m > 0){
+        int wWidth = rect.right;
+        int wHeight = rect.bottom;
+        for(int i = 0; i < n+1; i++){
+            MoveToEx(hdc, 0, i*wHeight/n, NULL);
+            LineTo(hdc, wWidth, i*wHeight/n);
+        }
+        for(int i = 0; i < m+1; i++){
+            MoveToEx(hdc, i*wWidth/m, 0, NULL);
+            LineTo(hdc, i*wWidth/m, wHeight);
+        }
+    }
+}
+void drawAll(HDC &hdc, RECT rect){
+    std::stringstream ss;
+    ss << input_str;
+    int n, m;
+    ss>> n>> m;
+    ss.clear();
+    drawGrid(hdc, n,m,rect);
+    drawCircles(hdc, n,m, rect);
 }
 void draw(HWND &hwnd){
     PAINTSTRUCT ps;
     RECT rect;
     GetClientRect(hwnd, &rect);
     HDC hdc=BeginPaint(hwnd, &ps);
-    drawWord(hdc, rect);
+    drawAll(hdc, rect);
     EndPaint(hwnd, &ps);
 }

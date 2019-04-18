@@ -1,22 +1,38 @@
 #include "task3.h"
 LPCSTR szClassName = "WinAPI";
-LPCSTR szTitle =     "Circles";
-std::vector<Circle> circles;
+LPCSTR szTitle =     "Title";
+std::vector<POINT> points;
+bool isPressed = false;
+int ID_TIMER = 1;
+int delay = 10;
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
-
     switch(message){
         case WM_DESTROY:
+            KillTimer(hwnd, ID_TIMER);
             PostQuitMessage(0);
             break;
-        case WM_ERASEBKGND:
-             break;
         case WM_PAINT:{
             draw(hwnd);
             break;
         }
+        case WM_TIMER:
+            if(!points.empty()){
+                points.erase(points.begin());
+                InvalidateRect(hwnd,NULL, TRUE);
+            }
+            break;
         case WM_LBUTTONDOWN:
-            onLeftClick(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-            InvalidateRect(hwnd,NULL, TRUE);
+            isPressed = true;
+            break;
+        case WM_LBUTTONUP:
+            isPressed = false;
+            endLine();
+            break;
+        case WM_MOUSEMOVE:
+            if(isPressed){
+                onLeftClick(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+                InvalidateRect(hwnd,NULL, TRUE);
+            }
             break;
         default:
             return DefWindowProc(hwnd, message, wParam, lParam);
@@ -54,39 +70,42 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow){
         hInstance,
         NULL
     );
+    SetTimer(hWnd, ID_TIMER, delay, (TIMERPROC) NULL);
     if(!hWnd) return (FALSE);
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
     return (TRUE);
 }
-void onLeftClick(int x, int y){
-    int index = -1;
-    for(int i = circles.size()-1; i >= 0;i--){
-        if(circles[i].isInternal(x,y)){
-            index = i;
-            break;
-        }
+void drawLine(HDC &hdc, POINT point1, POINT point2){
+    if(point1.x * point2.x > 0 &&  point1.y * point2.y > 0){
+        MoveToEx(hdc, point1.x, point1.y, NULL);
+        LineTo(hdc, point2.x, point2.y);
     }
-    Circle temp;
-    if(index == -1){
-        temp = Circle(x,y,RGB(rand()%256, rand()%256, rand()%256));
-    } else {
-        temp = circles[index];
-        circles.erase(circles.begin()+index);
-        temp.extend();
-    }
-    circles.push_back(temp);
+    //SetPixel(hdc, point.x, point.y, RGB(0, 0, 0));
 }
-void drawCircles(HDC &hdc){
-    for(int i = 0; i < circles.size(); i++){
-        circles[i].draw(hdc);
+void drawLines(HDC &hdc){
+    int length = points.size();
+    for(int i = 0;i < length-1; i++){
+        drawLine(hdc, points[i], points[i+1]);
     }
+}
+void onLeftClick(int x, int y){
+    POINT point;
+    point.x = x;
+    point.y = y;
+    points.push_back(point);
+}
+void endLine(){
+    POINT point;
+    point.x = -1;
+    point.y = -1;
+    points.push_back(point);
 }
 void draw(HWND &hwnd){
     PAINTSTRUCT ps;
     RECT rect;
     GetClientRect(hwnd, &rect);
-    HDC hdc=BeginPaint(hwnd, &ps);
-    drawCircles(hdc);
+    HDC hDc=BeginPaint(hwnd, &ps);
+    drawLines(hDc);
     EndPaint(hwnd, &ps);
 }

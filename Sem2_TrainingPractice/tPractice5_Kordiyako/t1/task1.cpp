@@ -1,34 +1,16 @@
 #include "task1.h"
 LPCSTR szClassName = "WinAPI";
-LPCSTR szTitle =     "Word resize";
-int fontWidth = 32;
-int fontHeight = 48;
-const double resizeCoefficient = 1.1;
-std::string  text = "Dorou";
+LPCSTR szTitle =     "Sum of two";
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
 
     switch(message){
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
-        case WM_CHAR:
-            switch(wParam){
-                case '=':
-                    fontWidth*= resizeCoefficient;
-                    fontHeight*=resizeCoefficient;
-                    text+='+';
-                    break;
-                case '-':
-                    fontWidth/=resizeCoefficient;
-                    fontHeight/=resizeCoefficient;
-                    text+='-';
-                    break;
-            }
-            InvalidateRect(hwnd, NULL, TRUE);
-            break;
-        case WM_PAINT:
+        case WM_PAINT:{
             draw(hwnd);
             break;
+        }
         default:
             return DefWindowProc(hwnd, message, wParam, lParam);
     }
@@ -70,21 +52,22 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow){
     UpdateWindow(hWnd);
     return (TRUE);
 }
-void drawWord(HDC &hdc, RECT wRect){
-    HFONT font = CreateFont(fontHeight,fontWidth,60,120,100,FALSE,FALSE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
-            CLIP_DEFAULT_PRECIS,PROOF_QUALITY, VARIABLE_PITCH,TEXT("Times New Roman"));
-    SelectObject(hdc, font);
-    SetBkColor(hdc, RGB(255,255,255));
+void drawSum(HDC &hdc, RECT wRect){
+    std::stringstream ss;
+    ss << input_str;
+    int a, b;
+    ss>> a>> b;
+    ss.clear();
+    std::string text = std::to_string(a) + " + " + std::to_string(b) + " = " +std::to_string(a+b);
     SIZE _size;
     GetTextExtentPoint32(hdc, _T(text.c_str()), text.size(), &_size);
     TextOut(hdc, (wRect.right - _size.cx)/2, (wRect.bottom - _size.cy)/2, _T(text.c_str()), text.size());
-    DeleteObject(font);
 }
 void draw(HWND &hwnd){
     PAINTSTRUCT ps;
     RECT rect;
     GetClientRect(hwnd, &rect);
     HDC hdc=BeginPaint(hwnd, &ps);
-    drawWord(hdc, rect);
+    drawSum(hdc, rect);
     EndPaint(hwnd, &ps);
 }
