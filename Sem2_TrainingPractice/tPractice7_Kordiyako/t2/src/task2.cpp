@@ -1,6 +1,7 @@
-#include "task1.h"
+#include "../include/task2.h"
 LPCSTR szClassName = "WinAPI";
-LPCSTR szTitle =     "Title";
+LPCSTR szTitle =     "Diagrams";
+const int SIGNATURE_PRECISION = 2;
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
 
     switch(message){
@@ -11,8 +12,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
             draw(hwnd);
             break;
         }
-        case WM_ERASEBKGND:
-             break;
         default:
             return DefWindowProc(hwnd, message, wParam, lParam);
     }
@@ -20,7 +19,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
 }
 BOOL InitApplication(HINSTANCE hInstance){
     WNDCLASS  wc;
-    //srand(time(NULL));
+    srand(time(NULL));
     wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.lpfnWndProc = (WNDPROC)WndProc;
     wc.cbClsExtra = 0;
@@ -28,7 +27,7 @@ BOOL InitApplication(HINSTANCE hInstance){
     wc.hInstance = hInstance;
     wc.hIcon = LoadIcon(NULL, IDI_ASTERISK);
     wc.hCursor = LoadCursor(NULL, IDC_CROSS);
-    wc.hbrBackground = (HBRUSH)(COLOR_APPWORKSPACE-1);
+    wc.hbrBackground = CreateSolidBrush(RGB(255,255,255));
     wc.lpszMenuName = NULL;
     wc.lpszClassName = szClassName;
     return RegisterClass(&wc);
@@ -54,11 +53,36 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow){
     UpdateWindow(hWnd);
     return (TRUE);
 }
+void drawDiagrams(HDC &hdc, RECT rect){
+    std::ifstream fin("fishers2018_ANSI.txt");
+    if(FileManager::checkInput(fin)){
+        BarChart bar;
+        PieChart pie;
+        Fisherman f;
+        while(fin >> f) {
+            pie.addData(f);
+            bar.addData(f);
+        }
+        RECT rect0 = rect;
+        rect0.right /= 2;
+        RECT rect1 = rect;
+        rect1.left = rect0.right;
+        pie.draw(hdc, rect1);
+        bar.draw(hdc, rect0);
+    }
+}
 void draw(HWND &hwnd){
     PAINTSTRUCT ps;
     RECT rect;
     GetClientRect(hwnd, &rect);
-    HDC hDc=BeginPaint(hwnd, &ps);
-    //call hdc
+    HDC hdc=BeginPaint(hwnd, &ps);
+    drawDiagrams(hdc, rect);
     EndPaint(hwnd, &ps);
+}
+
+std::string getSignature(std::string lastName, double percentage){
+    std::stringstream ss;
+    ss.precision(SIGNATURE_PRECISION);
+    ss << lastName << ' ' << std::fixed << 100 * percentage << '%';
+    return ss.str();
 }
