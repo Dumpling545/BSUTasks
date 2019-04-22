@@ -6,6 +6,8 @@ DynamicDrawableObject::DynamicDrawableObject()
 }
 
 void DynamicDrawableObject::move(int dx, int dy){
+    x+=dx;
+    y+=dy;
     std::map<int, DrawableItem*>::iterator it;
     for(it = items.begin(); it!= items.end(); it++){
         DrawableItem * item = (*it).second;

@@ -37,7 +37,7 @@ STYLE DS_3DLOOK | DS_CENTER | DS_MODALFRAME | DS_NOFAILCREATE | DS_SHELLFONT | W
 CAPTION "Properties"
 FONT 8, "Ms Shell Dlg"
 {
-    LTEXT           "Body color:", 0, 11, 72, 36, 9, SS_LEFT, WS_EX_LEFT
+    LTEXT           "Top color:", 0, 11, 72, 36, 9, SS_LEFT, WS_EX_LEFT
     PUSHBUTTON      "Choose color...", IDC_COLOR, 64, 71, 51, 11, 0, WS_EX_LEFT
     EDITTEXT        IDC_ACCEL, 106, 52, 20, 12, ES_AUTOHSCROLL | ES_NUMBER, WS_EX_LEFT
     LTEXT           "Start acceleration (px/sec^2):", 0, 11, 52, 94, 9, SS_LEFT, WS_EX_LEFT

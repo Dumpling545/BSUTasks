@@ -1,10 +1,48 @@
 #include "task1.h"
 LPCSTR szClassName = "WinAPI";
 LPCSTR szTitle =     "Exam";
+/*parameters to change*/
+int N = 3;
+double start_angle_rad = 1.1;
+int radius = 40;
+int thread_length = 120;
+int origin_x = 400;
+int origin_y = 0;
+/*end of changeable parameters*/
 PhysicalSystem _system;
 int timeout = 50;
 int t = 0;
 bool paused = false;
+INT_PTR CALLBACK DlgProc(HWND hdlg, UINT message, WPARAM wParam, LPARAM lParam){
+    switch(message){
+        case WM_COMMAND:{
+            switch(LOWORD(wParam)){
+                case IDOK:{
+                    TCHAR text[4];
+                    GetDlgItemText(hdlg, IDACCEL, text, 4);
+                    int a = atoi(text);
+                    if(validAcceleration(a)){
+                        _system.setAcceleration(a);
+                        return EndDialog(hdlg, 0);
+                    } else {
+                        MessageBox(hdlg, _T("Invalid acceleration"),
+                                   "Error", MB_OK);
+                    }
+                    break;
+                }
+                case IDCANCEL:{
+                    return EndDialog(hdlg, 0);
+                    break;
+                }
+            }
+            break;
+        }
+    }
+    return FALSE;
+}
+bool validAcceleration(int a){
+    return (a >= 100) && (a <= 999);
+}
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
     switch(message){
         case WM_CREATE:
@@ -19,15 +57,22 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
         case WM_TIMER:
             if(!paused){
                 t+=timeout;
-                _system.execute(timeout);
+                _system.execute(t);
                 InvalidateRect(hwnd, NULL, TRUE);
             }
             break;
         case WM_KEYDOWN:
-            if(wParam == 80){
-                if(paused)  paused = false;
-                else paused = true;
+            switch(wParam){
+                case 80:{
+                    if(paused)  paused = false;
+                    else paused = true;
+                    break;
+                }
+                case 114:
+                    DialogBox(NULL, MAKEINTRESOURCE(IDD_DIALOG1), hwnd, DlgProc);
+                    break;
             }
+            if(wParam == 80)
             break;
         }
         case WM_LBUTTONDOWN:
@@ -41,7 +86,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
 BOOL InitApplication(HINSTANCE hInstance){
     WNDCLASS  wc;
     srand(time(NULL));
-     _system = PhysicalSystem(300, 0, 220, 40, 1.1, 4);
+     _system = PhysicalSystem(origin_x, origin_y, thread_length,
+                              radius, start_angle_rad, N);
     wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.lpfnWndProc = (WNDPROC)WndProc;
     wc.cbClsExtra = 0;

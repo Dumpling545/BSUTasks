@@ -19,17 +19,20 @@ class PhysicalSystem
         int length;
         int radius;
         int n;
-        double startAngle;
+        double phi_start;
+        double phi_collision;
         void init();
         void draw(HDC &hdc);
         void execute(int delta_t);
         void setColor(int x, int y);
-    private:
+        void setAcceleration(int a);
+    protected:
+        double g = 100;
         int phase = 1;
-        double g =0.007;
-        double speed_current = 0;
+        double w;
+        double offset_t_falsephysics = 0;
+        double delta_angle = 0;
+        double angle_speed_falsephysics = 0;
         int active = 0;
-        double speed_coefficient = 1;
-        bool ballsTouched(int i, int j);
         std::vector<BallOnThread> balls;
 };

@@ -6,9 +6,11 @@ int timeout = 50;
 int t = 0;
 POINT curvePoint1;
 POINT curvePoint2;
-int sign = 1;
+int sign_x = 1, sign_y = 1;
 int x_start = 1;
 int y_start = 1;
+double a = 100;
+double v0 =200;
 bool paused = false;
 COLORREF stdColor = RGB(100,100,100);
 static COLORREF acrCustClr[16];
@@ -21,7 +23,13 @@ INT_PTR CALLBACK DlgProc(HWND hdlg, UINT message, WPARAM wParam, LPARAM lParam){
                     TCHAR text[4];
                     GetDlgItemText(hdlg, IDC_HEIGHT, text, 4);
                     int newHeight = atoi(text);
+                    GetDlgItemText(hdlg, IDC_SPEED, text, 4);
+                    v0 = atoi(text);
+                    GetDlgItemText(hdlg, IDC_ACCEL, text, 4);
+                    a = atoi(text);
+                    std::cout << a << " " <<v0 <<"ac\n";
                     car->setHeight(newHeight);
+                    car->setItemColor(Car::ItemFlag::CarTop, stdColor);
                     return EndDialog(hdlg, 0);
                     break;
                 }
@@ -38,7 +46,6 @@ INT_PTR CALLBACK DlgProc(HWND hdlg, UINT message, WPARAM wParam, LPARAM lParam){
                         ccs.lpCustColors = (LPDWORD)acrCustClr;
                         if(ChooseColor(&ccs)){
                             stdColor = ccs.rgbResult;
-                            car->setItemColor(Car::ItemFlag::CarTop, stdColor);
                         }
                     break;
                     }
@@ -103,20 +110,21 @@ void onTimer(HWND &hwnd){
     GetClientRect(hwnd, &rect);
     t+=timeout;
     curvePoint2 = carCurve(t);
-    int dx = curvePoint2.x - curvePoint1.x;
-    int dy = curvePoint2.y - curvePoint1.y;
-    car->move(sign*dx, dy);
+    int dx = (curvePoint2.x - curvePoint1.x) %abs((rect.bottom -rect.top)/2);
+    int dy = (curvePoint2.y - curvePoint1.y)%abs((rect.bottom -rect.top)/2);
+    car->move(sign_x*dx, sign_y*dy);
     curvePoint1 = curvePoint2;
     RECT carRect = car->border();
     RECT subtraction;
     SubtractRect(&subtraction, &carRect, &rect);
     if(!IsRectEmpty(&subtraction)){
-        sign*=-1;
+        sign_x*=(1 - 2*(subtraction.left!=subtraction.right));
+        sign_y*=(1 - 2*(subtraction.top!=subtraction.bottom));
     }
     COLORREF oldColor = car->getItemColor(Car::ItemFlag::CarBody);
-    int rvalue = 256*(rect.left - carRect.left)/(1.0*(rect.right - rect.left));
+    int rvalue = 256*(rect.left - carRect.left + 1)/(1.0*(rect.right - rect.left)) - 1;
     int gvalue = GetGValue(oldColor);
-    int bvalue = 256*(rect.left - carRect.left)/(1.0*(rect.right - rect.left));
+    int bvalue = 256*(rect.left - carRect.left + 1)/(1.0*(rect.right - rect.left)) - 1;
     COLORREF newColor = RGB(rvalue, gvalue, bvalue);
     car->setItemColor(Car::ItemFlag::CarBody, newColor);
     InvalidateRect(hwnd, NULL, TRUE);
@@ -188,7 +196,7 @@ void draw(HWND &hwnd){
 
 POINT carCurve(int t){
     POINT point;
-    point.x = x_start + t/10.0;
-    point.y = y_start + 100*sin(t/500.0);
+    point.x = x_start + v0 * ((double)t /1000.0) + a*t*t/1000000.0;
+    point.y = y_start + 100*sin(t/1000.0);
     return point;
 }
