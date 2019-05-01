@@ -12,5 +12,5 @@ class BarChart : public Diagram
         BarChart();
         void draw(HDC &hdc, RECT drawingArea);
     private:
-        int getFontWidth(int freeSpace);
+        int getBarDrawingHeight(HDC &hdc, RECT drawingArea);
 };

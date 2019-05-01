@@ -1,11 +1,7 @@
 #include "../include/piechart.h"
 PieChart::PieChart(){}
 RECT PieChart::getPieDrawingArea(HDC &hdc, RECT drawingArea){
-    int m_i = getMaxLastNameLengthIndex();
-    std::string mLastName = info[m_i].lastName;
-    SIZE s;
-    GetTextExtentPoint32(hdc, _T(mLastName.c_str()), mLastName.size() +
-                         SIGNATURE_PRECISION + 6, &s);
+    SIZE s = getMaxLastNameSize(hdc);
     RECT result;
     result.top = drawingArea.top + s.cy + 2 * margin;
     result.bottom = drawingArea.bottom - s.cy - 2 * margin;
@@ -20,7 +16,15 @@ void PieChart::draw(HDC &hdc, RECT drawingArea){
     double percentage = 0;
     COLORREF color;
     HBRUSH brush;
-
+    /*init font*/
+    HFONT font;
+    font = CreateFont(text_size,
+                        text_size/1.5,
+                        0,0,10,FALSE,FALSE,FALSE,
+                        DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
+                        CLIP_DEFAULT_PRECIS,PROOF_QUALITY,
+                        VARIABLE_PITCH,TEXT("Times New Roman"));
+    SelectObject(hdc, font);
     /*init variables: other variables*/
     double weightSum = getWeightSum();
     RECT pieDrawingArea = getPieDrawingArea(hdc, drawingArea);
@@ -32,9 +36,9 @@ void PieChart::draw(HDC &hdc, RECT drawingArea){
     /*draw piechart pie by pie*/
     for(int i = 0; i < info.size(); i++){
         /*init pie-and-signature color*/
-        color = RGB(rand()%256,
-                            rand()%256,
-                            rand()%256);
+        color = RGB(red_coef*rand()%256,
+                    green_coef*rand()%256,
+                    blue_coef*rand()%256);
         /*draw pie*/
         brush = CreateSolidBrush(color);
         percentage = info[i].totalWeight / weightSum;
@@ -67,5 +71,6 @@ void PieChart::draw(HDC &hdc, RECT drawingArea){
         SetTextColor(hdc, color);
         TextOut(hdc, x_text, y_text, _T(text.c_str()), text.size());
         angle0 = angle1;
+        DeleteObject(font);
     }
 }

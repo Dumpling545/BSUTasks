@@ -27,7 +27,6 @@ INT_PTR CALLBACK DlgProc(HWND hdlg, UINT message, WPARAM wParam, LPARAM lParam){
                     v0 = atoi(text);
                     GetDlgItemText(hdlg, IDC_ACCEL, text, 4);
                     a = atoi(text);
-                    std::cout << a << " " <<v0 <<"ac\n";
                     car->setHeight(newHeight);
                     car->setItemColor(Car::ItemFlag::CarTop, stdColor);
                     return EndDialog(hdlg, 0);
@@ -92,6 +91,12 @@ void onCommand(HWND &hwnd, WPARAM wParam){
             break;
         case IDM_EXIT:
             PostQuitMessage(0);
+            break;
+        case IDM_ABOUT:
+            char  * text;
+            text = "Task 1\nTraining practice 7\nAuthor: Yan Kardziyaka ";
+            MessageBox(hwnd, _T(text),
+                                   "About", MB_OK);
             break;
         case IDM_PROP:
             DialogBox(NULL, MAKEINTRESOURCE(IDD_DIALOG1), hwnd, DlgProc);

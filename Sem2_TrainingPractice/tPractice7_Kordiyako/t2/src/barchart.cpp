@@ -1,22 +1,17 @@
 #include "barchart.h"
 BarChart::BarChart(){
 }
-int BarChart::getFontWidth(int freeSpace){
-    int m_i = getMaxLastNameLengthIndex();
-    int length = info[m_i].lastName.size();
-    return  freeSpace/(SIGNATURE_PRECISION + 6 + length + 2 * margin);
+int BarChart::getBarDrawingHeight(HDC &hdc, RECT drawingArea){
+    return  (drawingArea.bottom - drawingArea.top) - getMaxLastNameSize(hdc).cx;
 }
 void BarChart::draw(HDC &hdc, RECT drawingArea){
     /*init variables*/
     int barWidth = (drawingArea.right - drawingArea.left) / info.size();
     int barHeight;
-    int maxHeight = 0.66*(drawingArea.bottom - drawingArea.top);
     double maxWeight = getMaxWeight();
     double weightSum = getWeightSum();
-    double coefficient = maxHeight / maxWeight;
-    int freeHeight = (drawingArea.bottom - drawingArea.top) - maxHeight;
-    int fontWidth = getFontWidth(freeHeight);
-    int fontHeight = fontWidth*1.5;
+    int fontWidth = text_size / 1.5;
+    int fontHeight = fontWidth * 1.5;
     HFONT font = CreateFont(fontHeight,
                             fontWidth,
                             900,0,10,FALSE,FALSE,FALSE,
@@ -24,11 +19,12 @@ void BarChart::draw(HDC &hdc, RECT drawingArea){
                             CLIP_DEFAULT_PRECIS,PROOF_QUALITY,
                             VARIABLE_PITCH,TEXT("Times New Roman"));
     SelectObject(hdc, font);
+    int maxHeight = getBarDrawingHeight(hdc, drawingArea);
     for(int i = 0; i < info.size(); i++){
         /*draw bar*/
-        COLORREF color = RGB(rand()%256,
-                            rand()%256,
-                            rand()%256);
+        COLORREF color = RGB(red_coef*rand()%256,
+                        green_coef*rand()%256,
+                        blue_coef*rand()%256);
         HBRUSH brush = CreateSolidBrush(color);
         SelectObject(hdc, brush);
         barHeight = maxHeight * (info[i].totalWeight/maxWeight);

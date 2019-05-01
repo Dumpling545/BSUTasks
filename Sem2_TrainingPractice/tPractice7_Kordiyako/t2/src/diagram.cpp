@@ -15,7 +15,8 @@ double Diagram::getMaxWeight(){
                     );
     return (*maxWeightIt).totalWeight;
 }
-int Diagram::getMaxLastNameLengthIndex(){
+SIZE Diagram::getMaxLastNameSize(HDC &hdc){
+    SIZE result;
     std::vector<FishermanInfo>::iterator  maxNameLengthIt =  (
         std::max_element(
             info.begin(),
@@ -24,7 +25,10 @@ int Diagram::getMaxLastNameLengthIndex(){
                     return f1.lastName.size() < f2.lastName.size();
             })
         );
-    return (int)(maxNameLengthIt - info.begin());
+    std::string mLastName = (*maxNameLengthIt).lastName;
+    GetTextExtentPoint32(hdc, _T(mLastName.c_str()), mLastName.size() +
+                         SIGNATURE_PRECISION + 6, &result);
+    return result;
 }
 double Diagram::getWeightSum(){
     double sum = 0;
