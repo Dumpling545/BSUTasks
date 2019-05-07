@@ -11,6 +11,10 @@ POINT startSelection, endSelection;
 POINT mousePosition;
 /*(G_START_x, G_START_Y),(G_END_X, G_END_Y) -
         graph points that define rect of function graph that will be drawn */
+int DEF_G_START_X = -5;
+int DEF_G_START_Y = -10;
+int DEF_G_END_X = 5;
+int DEF_G_END_Y = 10;
 double G_START_X = -5;
 double G_START_Y = -10;
 double G_END_X = 5;
@@ -73,6 +77,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam){
         case WM_LBUTTONUP:
                 onLButtonUp(hwnd, lParam);
             break;
+        case WM_KEYDOWN:
+                onKeyDown(hwnd, wParam);
+            break;
         default:
             return DefWindowProc(hwnd, message, wParam, lParam);
     }
@@ -94,7 +101,9 @@ BOOL InitApplication(HINSTANCE hInstance){
 
     std::stringstream ss;
     ss << input_str;
-    ss>> G_START_X >> G_END_X>>_a>> _b >> _c;
+    ss>> DEF_G_START_X >> DEF_G_END_X>>_a>> _b >> _c;
+    G_START_X = DEF_G_START_X;
+    G_END_X = DEF_G_END_X;
     ss.clear();
 
     return RegisterClass(&wc);
@@ -127,6 +136,13 @@ void fillWithCoordinate(std::string &s, double coor){
     s.erase(s.find('.') + graphDecimalPrecision + 1,
     std::string::npos);
 }
+void resizeAxesToDefault(){
+    G_START_X = DEF_G_START_X;
+    G_START_Y = DEF_G_START_Y;
+    G_END_X = DEF_G_END_X;
+    G_END_Y = DEF_G_END_Y;
+}
+
 
 void resizeAxes(RECT rect){
     if(endSelection.x < startSelection.x) {
@@ -173,6 +189,13 @@ void onMouseMove(HWND &hwnd, LPARAM lParam){
     mousePosition.x = GET_X_LPARAM(lParam);
     mousePosition.y = GET_Y_LPARAM(lParam);
     InvalidateRect(hwnd, NULL, TRUE);
+}
+
+void onKeyDown(HWND &hwnd, WPARAM wParam){
+    if(((char) LOWORD(wParam)) == 'D'){
+        resizeAxesToDefault();
+        InvalidateRect(hwnd, NULL, TRUE);
+    }
 }
 
 POINT getOriginAtWindow(RECT rect){

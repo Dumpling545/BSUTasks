@@ -6,7 +6,6 @@ int timeout = 50;
 int t = 0;
 POINT curvePoint1;
 POINT curvePoint2;
-int sign = 1;
 int x_start = 1;
 int y_start = 1;
 bool paused = false;
@@ -41,25 +40,31 @@ void onRButttonDown(){
         paused = false;
     }
 }
+bool temp1 = false;
 void onTimer(HWND &hwnd){
-    RECT rect;
-    GetClientRect(hwnd, &rect);
+    RECT widenedRect;
+    GetClientRect(hwnd, &widenedRect);
     t+=timeout;
     curvePoint2 = carCurve(t);
     int dx = curvePoint2.x - curvePoint1.x;
     int dy = curvePoint2.y - curvePoint1.y;
-    car->move(sign*dx, dy);
+    car->move(((int)car->direction)*dx, dy);
     curvePoint1 = curvePoint2;
     RECT carRect = car->border();
+    int carWidth = carRect.right - carRect.left;
+    widenedRect.left -=  carWidth;
+     widenedRect.right +=  carWidth;
     RECT subtraction;
-    SubtractRect(&subtraction, &carRect, &rect);
+    SubtractRect(&subtraction, &carRect, &widenedRect);
     if(!IsRectEmpty(&subtraction)){
-        sign*=-1;
+        car->reverse();
     }
     COLORREF oldColor = car->getItemColor(Car::ItemFlag::CarBody);
-    int rvalue = 256*(rect.left - carRect.left)/(1.0*(rect.right - rect.left));
+    int rvalue = 256*(widenedRect.left - carRect.left)
+                    / (1.0*(widenedRect.right - widenedRect.left));
     int gvalue = GetGValue(oldColor);
-    int bvalue = 256*(rect.left - carRect.left)/(1.0*(rect.right - rect.left));
+    int bvalue = 256*(widenedRect.left - carRect.left)
+                    / (1.0*(widenedRect.right - widenedRect.left));
     COLORREF newColor = RGB(rvalue, gvalue, bvalue);
     car->setItemColor(Car::ItemFlag::CarBody, newColor);
     InvalidateRect(hwnd, NULL, TRUE);

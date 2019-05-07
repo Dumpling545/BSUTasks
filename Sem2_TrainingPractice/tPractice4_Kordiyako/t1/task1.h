@@ -26,8 +26,10 @@ void drawPointAtGraph(HDC &hdc, RECT rect, POINT origin);
 void onLButtonDown(HWND &hwnd, LPARAM lParam);
 void onLButtonUp(HWND &hwnd, LPARAM lParam);
 void onMouseMove(HWND &hwnd, LPARAM lParam);
+void onKeyDown(HWND &hwnd, WPARAM wParam);
 
 void resizeAxes(RECT rect);
+void resizeAxesToDefault();
 
 POINT getOriginAtWindow(RECT rect);
 

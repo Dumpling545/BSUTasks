@@ -1,0 +1,8 @@
+Poll header: Standard poll header
+
+Question #1: Are you ...?
+Answer:  Yes.
+
+Question #2: What countries do you ...?
+Answer:  United Kingdom  Brazil  South Korea
+

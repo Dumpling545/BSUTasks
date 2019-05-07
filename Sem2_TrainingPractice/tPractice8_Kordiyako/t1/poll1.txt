@@ -1,0 +1,57 @@
+<header>
+	Standard poll header
+</header>
+<question>
+	<text>
+		Are you ...?
+	</text>
+	<answer>
+		<statement>
+			Yes.
+		</statement>
+		<correct/>
+	</answer>
+	<answer>
+		<statement>
+			No.
+		</statement>
+	</answer>
+	<answer>
+		<statement>
+			I don't know.
+		</statement>
+	</answer>
+</question>
+<question>
+	<text>
+		What countries do you ...?
+	</text>
+	<answer>
+		<statement>
+			Ukraine
+		</statement>
+		<correct/>
+	</answer>
+	<answer>
+		<statement>
+			United Kingdom
+		</statement>
+		<correct/>
+	</answer>
+	<answer>
+		<statement>
+			Brazil
+		</statement>
+	</answer>
+	<answer>
+		<statement>
+			South Korea
+		</statement>
+	</answer>
+	<answer>
+		<statement>
+			Vietnam
+		</statement>
+		<correct/>
+	</answer>
+</question>

@@ -3,9 +3,11 @@
 #include "drawable.h"
 #include "wheel.h"
 #include "rectangleitem.h"
+#include "reversable.h"
+#include "polygonalitem.h"
 #include "dynamicdrawableobject.h"
 #include <iostream>
-class Car : public DynamicDrawableObject{
+class Car : public DynamicDrawableObject, public Reversable{
     public:
         Car(int x, int y, int carHeight, COLORREF bodyColor, COLORREF topColor,
             COLORREF windowColor, COLORREF lightColor, COLORREF wheelColor);
@@ -21,6 +23,7 @@ class Car : public DynamicDrawableObject{
         };
         COLORREF getItemColor(ItemFlag flag);
         void setItemColor(ItemFlag flag, COLORREF newColor);
+        void onReverse();
     private:
         void initItems(COLORREF bodyColor, COLORREF topColor,
                 COLORREF windowColor, COLORREF lightColor, COLORREF wheelColor);
