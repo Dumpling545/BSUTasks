@@ -1,0 +1,9 @@
+Poll header: Standard poll header
+Poll result: 62%
+
+Question #1: Are you ...?
+Answer:   Yes.
+
+Question #2: What countries do you ...?
+Answer:   Ukraine   Brazil   Vietnam
+

@@ -1,0 +1,67 @@
+Microsoft (R) Macro Assembler Version 14.12.25831.0	    05/16/19 00:04:54
+AsmSource.asm						     Page 1 - 1
+
+
+				.386
+				.MODEL FLAT
+ 00000000			.DATA?
+ 00000000 00000000		factor		dd		?
+ 00000000			.CODE
+				;-----------Function definitions--------------------
+ 00000000			@maxNotOversized@4 PROC
+ 00000000  B8 00000001			mov eax, 1
+ 00000005  89 0D 00000000 R		mov factor, ecx
+ 0000000B  B9 00000000			mov ecx, 0
+ 00000010				loop_start:
+ 00000010  F7 25 00000000 R			mul factor
+ 00000016  70 05				jo loop_end
+ 00000018  83 C1 01				add ecx, 1
+ 0000001B  EB F3				jmp loop_start
+ 0000001D				loop_end:
+ 0000001D  8B C1			mov eax, ecx
+ 0000001F  C3				ret 
+ 00000020			@maxNotOversized@4 ENDP
+				END
+ 
+Microsoft (R) Macro Assembler Version 14.12.25831.0	    05/16/19 00:04:54
+AsmSource.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+_BSS . . . . . . . . . . . . . .	32 Bit	 00000004 DWord	  Public  'BSS'  
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000020 DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+@maxNotOversized@4 . . . . . . .	P Near	 00000000 _TEXT	Length= 00000020 Public
+  loop_start . . . . . . . . . .	L Near	 00000010 _TEXT	
+  loop_end . . . . . . . . . . .	L Near	 0000001D _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000000h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+factor . . . . . . . . . . . . .	DWord	 00000000 _BSS	
+
+	   0 Warnings
+	   0 Errors

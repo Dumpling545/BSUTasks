@@ -11,14 +11,25 @@ int main()
     if(isCorrectInputFile(fin)){
         vector<int> vect;
         fillVector(fin, vect);
-        printMax(vect);
+        std::cout << "Max element: " << getMax(vect) <<'\n';
+
         int elem;
-        enterInteger(elem);
-        printAmountOfElementsEqualTo(vect, elem);
-        printAmountOfElementsBiggerThan(vect, 15);
-        printAmountOfElements(vect);
-        printSum(vect);
-        printAverage(vect);
+        enterElement<int>(elem);
+
+        std::cout << "Amount of elements, equal to "<< elem << ": ";
+        std::cout << getAmountOfElementsEqualTo(vect, elem) <<'\n';
+
+        std::cout << "Amount of elements, bigger than "<< elem <<": ";
+        std::cout << getAmountOfElementsBiggerThan(vect, elem) <<'\n';
+
+        std::cout << "Amount of numbers: ";
+        std::cout << getAmountOfElements(vect) << '\n';
+
+        std::cout << "Sum: ";
+        std::cout << getSum(vect) <<'\n';
+
+        std::cout << "Average: ";
+        std::cout << getAverage(vect) << '\n';
     }
     return 0;
 }

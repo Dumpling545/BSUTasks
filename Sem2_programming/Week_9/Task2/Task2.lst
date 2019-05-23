@@ -1,0 +1,65 @@
+Microsoft (R) Macro Assembler Version 14.12.25831.0	    05/16/19 00:04:42
+AsmSource.asm						     Page 1 - 1
+
+
+				.386
+				.MODEL FLAT
+ 00000000			.DATA?
+ 00000000 00000000		a_1		dd		?
+ 00000004 00000000		a_2		dd		?
+ 00000000			.CODE
+				;-----------Function definitions--------------------
+ 00000000			@Compute@4 PROC
+ 00000000  8B C1			mov eax, ecx
+ 00000002  A3 00000000 R		mov a_1, eax
+ 00000007  F7 2D 00000000 R		imul a_1
+ 0000000D  A3 00000004 R		mov a_2, eax
+ 00000012  F7 2D 00000004 R		imul a_2
+ 00000018  03 05 00000004 R		add eax, a_2
+ 0000001E  83 C0 01			add eax, 1
+ 00000021  F7 2D 00000000 R		imul a_1
+ 00000027  C3				ret 
+ 00000028			@Compute@4 ENDP
+				END
+ 
+Microsoft (R) Macro Assembler Version 14.12.25831.0	    05/16/19 00:04:42
+AsmSource.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+_BSS . . . . . . . . . . . . . .	32 Bit	 00000008 DWord	  Public  'BSS'  
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000028 DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+@Compute@4 . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000028 Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000000h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+a_1  . . . . . . . . . . . . . .	DWord	 00000000 _BSS	
+a_2  . . . . . . . . . . . . . .	DWord	 00000004 _BSS	
+
+	   0 Warnings
+	   0 Errors

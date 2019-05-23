@@ -1,0 +1,77 @@
+Microsoft (R) Macro Assembler Version 14.12.25831.0	    05/16/19 00:04:49
+AsmSource.asm						     Page 1 - 1
+
+
+				.386
+				.MODEL FLAT
+ 00000000			.DATA?
+ 00000000 00000000		res		dd		?
+ 00000004 00000000		factor	dd		?
+ 00000000			.CODE
+				;-----------Function definitions--------------------
+ 00000000			@isSolution@8 PROC
+ 00000000  8B C1			mov eax, ecx
+ 00000002  8B CA			mov ecx, edx
+ 00000004  C7 05 00000004 R		mov factor, 2
+	   00000002
+ 0000000E  F7 2D 00000004 R		imul factor
+ 00000014  A3 00000000 R		mov res, eax
+ 00000019  8B C1			mov eax, ecx
+ 0000001B  C7 05 00000004 R		mov factor, 3
+	   00000003
+ 00000025  F7 2D 00000004 R		imul factor
+ 0000002B  03 05 00000000 R		add eax, res
+ 00000031  83 F8 32			cmp eax, 50
+ 00000034  75 07			jne _else
+ 00000036  B8 00000001			mov eax, 1
+ 0000003B  EB 05			jmp _end
+ 0000003D				_else:
+ 0000003D  B8 00000000			mov eax, 0
+ 00000042				_end:
+ 00000042  C3				ret 
+ 00000043			@isSolution@8 ENDP
+				END
+ 
+Microsoft (R) Macro Assembler Version 14.12.25831.0	    05/16/19 00:04:49
+AsmSource.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+_BSS . . . . . . . . . . . . . .	32 Bit	 00000008 DWord	  Public  'BSS'  
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000043 DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+@isSolution@8  . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000043 Public
+  _else  . . . . . . . . . . . .	L Near	 0000003D _TEXT	
+  _end . . . . . . . . . . . . .	L Near	 00000042 _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000000h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+factor . . . . . . . . . . . . .	DWord	 00000004 _BSS	
+res  . . . . . . . . . . . . . .	DWord	 00000000 _BSS	
+
+	   0 Warnings
+	   0 Errors

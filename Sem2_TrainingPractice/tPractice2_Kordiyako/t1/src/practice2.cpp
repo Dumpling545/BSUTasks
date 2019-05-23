@@ -1,4 +1,4 @@
-#include "practice2.h"
+#include "../include/practice2.h"
 bool isCorrectInputFile(std::ifstream &_fin){
     bool res = true;
     if(!_fin){
@@ -10,32 +10,47 @@ bool isCorrectInputFile(std::ifstream &_fin){
     }
     return res;
 }
-void fillVector(std::istream &_fin, std::vector<int> &vect){
-    int elem;
-    while(_fin >> elem){
-        vect.push_back(elem);
-    }
+
+int getMax(std::vector<int> &vect){
+    return *std::max_element(vect.begin(), vect.end());
 }
 
-void printMax(std::vector<int> &vect){
-    std::cout << "Max element: "<< *std::max_element(vect.begin(), vect.end()) << '\n';
+int getAmountOfElementsEqualTo(std::vector<int> &vect, int i){
+    return std::count(vect.begin(), vect.end(), i);
 }
-void enterInteger(int &i){
-    std::cout << "Enter element: " << '\n';
-        std::cin >> i;
+
+int getAmountOfElementsBiggerThan(std::vector<int> &vect, int k){
+    return count_if(vect.begin(), vect.end(), [k](int i){return i > k;});
 }
-void printAmountOfElementsEqualTo(std::vector<int> &vect, int i){
-    std::cout << "Amount of elements, equal to "<< i << ": " << std::count(vect.begin(), vect.end(), i) << '\n';
+
+int getAmountOfElements(std::vector<int> &vect){
+    return vect.size();
 }
-void printAmountOfElementsBiggerThan(std::vector<int> &vect, int k){
-    std::cout << "Amount of elements, bigger than "<<k<<": " << count_if(vect.begin(), vect.end(), [k](int i){return i > k;}) <<'\n';
+
+int getSum(std::vector<int> &vect){
+    return accumulate(vect.begin(), vect.end(), 0);
 }
-void printAmountOfElements(std::vector<int> &vect){
-    std::cout << "Amount of numbers: " << vect.size() <<'\n';
+
+double getAverage(std::vector<int> &vect){
+    return ((double) (accumulate(vect.begin(), vect.end(), 0) / vect.size()));
 }
-void printSum(std::vector<int> &vect){
-    std::cout << "Sum: " << accumulate(vect.begin(), vect.end(), 0) << '\n';
+
+
+void getWordsStartWith(std::vector<std::string> &dest,
+                       const std::vector<std::string> &src, char c){
+    std::copy_if(src.begin(), src.end(), inserter(dest, dest.begin()),
+                  [c] (std::string str){return str[0] == c;});
 }
-void printAverage(std::vector<int> &vect){
-    std::cout << "Average: " <<(double) accumulate(vect.begin(), vect.end(), 0) / vect.size() <<'\n';
+void deleteWordsStartWith(std::vector<std::string> &vect, char c){
+    std::vector<std::string>::iterator p1=std::find_if(vect.begin(), vect.end(),
+                                [c](const std::string & s) {return s[0] == c;});
+    std::vector<std::string>::iterator p2=std::find_if(p1, vect.end(),
+                                [c](const std::string & s) {return s[0] != c;});
+    vect.erase(p1, p2);
 }
+void countWordRepeats(std::map<std::string, int> &dest,
+                      const std::vector<std::string> &src){
+    std::for_each(src.begin(), src.end(),
+                  [&dest](std::string str){ dest[str]++;});
+}
+
