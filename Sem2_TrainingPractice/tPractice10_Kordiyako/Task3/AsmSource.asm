@@ -64,7 +64,6 @@ index	dd		?
 	mov ecx, i_min
 	mov edx, i_max
 	mov eax, array
-	mov ebx, n
 	ret
 @getColumnExtrema@8 ENDP
 
@@ -74,7 +73,7 @@ index	dd		?
 	mov max, edx 
 	mov esi, 0
 	begin_loop:
-		cmp esi, ebx
+		cmp esi, n
 		jnl end_loop
 
 		mov ecx, [eax + esi*4]
@@ -105,8 +104,7 @@ _swap PROC
 	mov index, ebx
 	mov esi, 0
 	begin_loop:
-		mov edi, n
-		cmp esi, edi
+		cmp esi, n
 		jnl end_loop
 
 		mov edi, index

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 extern "C" int __cdecl  multiplyMatrices(int** mleft, int** mright, int ** result, int n, int m, int k);
 
 void main()
@@ -30,5 +31,12 @@ void main()
 		}
 	}
 	multiplyMatrices(matrixleft, matrixright, matrix_result, n, m, k);
+	std::cout << "Result[n x k]: \n";
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < k; j++) {
+			std::cout << std::setw(6)<< matrix_result[i][j] << " ";
+		}
+		std::cout << '\n';
+	}
 	system("pause");
 }
