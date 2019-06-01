@@ -58,4 +58,6 @@ void sortByName(std::vector<Student> source, std::vector<Student> &dest);
 
 void sortByGroup(std::vector<Student> source, std::vector<Student> &dest);
 
+void sortByGroupAndName(std::vector<Student> source, std::vector<Student> &dest);
+
 void sortByMark(std::vector<Student> source, std::vector<Student> &dest);

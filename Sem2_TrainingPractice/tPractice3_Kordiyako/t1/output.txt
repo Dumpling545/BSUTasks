@@ -1,121 +1,18 @@
 A. Flowerbeds sorted by shape: 
-   Flowerbed #14
-      Shape: Rhombus
-      Flowers:
-         •chrysanthemum
-         •crocus
-         •daffodil
-         •gladiolus
-         •hyacinth
-         •pansy
-         •peony
-         •phlox
-         •tulip
-         •violet
-
-   Flowerbed #10
+   Flowerbed #1
       Shape: Circle
-      Flowers:
-         •carnation
-         •chrysanthemum
-         •dahlia
-         •daisy
-         •iris
-         •lily
-         •peony
-         •phlox
-         •tulip
-         •violet
-
-   Flowerbed #12
-      Shape: Circle
-      Flowers:
-         •chrysanthemum
-         •crocus
-         •daffodil
-         •gladiolus
-         •hyacinth
-         •pansy
-         •peony
-         •phlox
-         •tulip
-         •violet
-
-   Flowerbed #13
-      Shape: Circle
-      Flowers:
-         •violet
-
-   Flowerbed #8
-      Shape: Square
       Flowers:
          •aster
          •chrysanthemum
-         •dahlia
-         •iris
-         •phlox
-         •violet
-
-   Flowerbed #11
-      Shape: Square
-      Flowers:
-         •aster
-         •chrysanthemum
-         •crocus
-         •daisy
-         •gladiolus
-         •hyacinth
-         •pansy
-         •peony
-         •phlox
-         •rose
-         •violet
-
-   Flowerbed #4
-      Shape: Rhombus
-      Flowers:
-         •chrysanthemum
          •daffodil
-         •dahlia
          •daisy
          •hyacinth
-         •iris
          •lily
-         •marguerite
          •pansy
-         •peony
          •phlox
          •snapdragon
-         •tulip
          •violet
 
-   Flowerbed #7
-      Shape: Rhombus
-      Flowers:
-         •crocus
-         •dahlia
-         •daisy
-         •hyacinth
-         •iris
-         •lily
-         •marguerite
-         •peony
-         •phlox
-         •rose
-         •snapdragon
-         •tulip
-         •violet
-
-   Flowerbed #9
-      Shape: Rhombus
-      Flowers:
-         •chrysanthemum
-         •dahlia
-         •hyacinth
-         •marguerite
-         •phlox
-         •tulip
-         •violet
 
    Flowerbed #3
       Shape: Circle
@@ -135,6 +32,7 @@ A. Flowerbeds sorted by shape:
          •rose
          •violet
 
+
    Flowerbed #6
       Shape: Circle
       Flowers:
@@ -148,6 +46,107 @@ A. Flowerbeds sorted by shape:
          •rose
          •tulip
          •violet
+
+
+   Flowerbed #10
+      Shape: Circle
+      Flowers:
+         •carnation
+         •chrysanthemum
+         •dahlia
+         •daisy
+         •iris
+         •lily
+         •peony
+         •phlox
+         •tulip
+         •violet
+
+
+   Flowerbed #12
+      Shape: Circle
+      Flowers:
+         •chrysanthemum
+         •crocus
+         •daffodil
+         •gladiolus
+         •hyacinth
+         •pansy
+         •peony
+         •phlox
+         •tulip
+         •violet
+
+
+   Flowerbed #13
+      Shape: Circle
+      Flowers:
+         •violet
+
+
+   Flowerbed #4
+      Shape: Rhombus
+      Flowers:
+         •chrysanthemum
+         •daffodil
+         •dahlia
+         •daisy
+         •hyacinth
+         •iris
+         •lily
+         •marguerite
+         •pansy
+         •peony
+         •phlox
+         •snapdragon
+         •tulip
+         •violet
+
+
+   Flowerbed #7
+      Shape: Rhombus
+      Flowers:
+         •crocus
+         •dahlia
+         •daisy
+         •hyacinth
+         •iris
+         •lily
+         •marguerite
+         •peony
+         •phlox
+         •rose
+         •snapdragon
+         •tulip
+         •violet
+
+
+   Flowerbed #9
+      Shape: Rhombus
+      Flowers:
+         •chrysanthemum
+         •dahlia
+         •hyacinth
+         •marguerite
+         •phlox
+         •tulip
+         •violet
+
+
+   Flowerbed #14
+      Shape: Rhombus
+      Flowers:
+         •chrysanthemum
+         •crocus
+         •daffodil
+         •gladiolus
+         •hyacinth
+         •pansy
+         •peony
+         •phlox
+         •tulip
+         •violet
+
 
    Flowerbed #2
       Shape: Square
@@ -165,6 +164,7 @@ A. Flowerbeds sorted by shape:
          •tulip
          •violet
 
+
    Flowerbed #5
       Shape: Square
       Flowers:
@@ -180,24 +180,38 @@ A. Flowerbeds sorted by shape:
          •tulip
          •violet
 
-   Flowerbed #1
-      Shape: Circle
+
+   Flowerbed #8
+      Shape: Square
       Flowers:
          •aster
          •chrysanthemum
-         •daffodil
-         •daisy
-         •hyacinth
-         •lily
-         •pansy
+         •dahlia
+         •iris
          •phlox
-         •snapdragon
          •violet
 
+
+   Flowerbed #11
+      Shape: Square
+      Flowers:
+         •aster
+         •chrysanthemum
+         •crocus
+         •daisy
+         •gladiolus
+         •hyacinth
+         •pansy
+         •peony
+         •phlox
+         •rose
+         •violet
+
+
 B. Unique shapes of flowerbeds: 
-   •Circle
-   •Rhombus
-   •Square
+Circle
+Rhombus
+Square
 
 C. Flowers of the Flowerbed #1: 
    •aster
@@ -377,11 +391,3 @@ E. Group flowerbeds by sets of flower:
       •violet
 
 F. Flowerbed with max amount of flowers: #3
-
-G. Flowerbeds with 10 types of flowers: #1 #6 #10 #12 #14 
-H. Flowerbed with 1 type of flowers: #13
-
-I. Flower(s) on each flowerbed: 
-   •violet
-
-J. Flowerbeds that don't have rose: #1 #4 #8 #9 #10 #12 #13 #14 

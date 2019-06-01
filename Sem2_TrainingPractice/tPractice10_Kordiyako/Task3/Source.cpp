@@ -20,7 +20,7 @@ void main()
 	std::cin >> index;
 	index--;
 
-	swap(matrix, n, index);
+	/*swap(matrix, n, index);
 
 	std::cout << "Matrix after swap: \n";
 	for (int i = 0; i < n; i++) {
@@ -28,7 +28,7 @@ void main()
 			std::cout << std::setw(3) << matrix[i][j] << " ";
 		}
 		std::cout << '\n';
-	}
+	}*/
 	switchColumnExtrema(matrix, n);
 	std::cout << "Matrix after switching column extrema: \n";
 	for (int i = 0; i < n; i++) {

@@ -3,9 +3,15 @@ extern "C" bool __fastcall  isPalindrome(int*, int);
 
 void main()
 {
-	int n = 9;
-	int * ar = new int[n] { 1, 2, 3, 4, 5, 4, 3, 2, 0};
+	int n;
+	std::cout << "Enter n:\n";
+	std::cin >> n;
+	int * ar = new int[n];
+	std::cout << "Enter array:\n";
+	for (int i = 0; i < n; i++) {
+		std::cin >> ar[i];
+	}
 	bool p = isPalindrome(ar, n);
-	std::cout << "Array 'ar' is " << (p ? " " : "not ")<< "a palindrome"<< std::endl;
+	std::cout << "Array is " << (p ? " " : "not ")<< "a palindrome"<< std::endl;
 	system("pause");
 }

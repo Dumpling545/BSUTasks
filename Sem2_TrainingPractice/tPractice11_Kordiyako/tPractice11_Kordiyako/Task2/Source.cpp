@@ -1,14 +1,15 @@
 #include <iostream>
 #include <cstring>
-extern "C" void __fastcall  deleteTextBetweenSpaces(char* str, int length);
+extern "C" void __fastcall  deleteTextBetweenBrackets(char* str, int length);
 void main()
 {
 
-	char src[100] = "  I love (can't stand)   this (awful) amazing    language...     halp!    ";
+	char src[200] = "123(345 (566) 2345) 8569869  (876878)";
+		//"()  I love (can't (stand)(t)hat)  this (awful) amazing    langu()age...     help!    ()";
 	char *str = src;
 	std::cout << "Before:\n";
 	std::cout << "<str>" << str << "</str>\n";
-	deleteTextBetweenSpaces(str, strlen(src));
+	deleteTextBetweenBrackets(str, strlen(src));
 	std::cout << "After:\n";
 	std::cout << "<str>" << str << "</str>\n";
 	system("pause");

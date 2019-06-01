@@ -82,6 +82,18 @@ void sortByGroup(std::vector<Student> source, std::vector<Student> &dest){
               [](Student a, Student b){return a.group < b.group;});
 }
 
+void sortByGroupAndName(std::vector<Student> source, std::vector<Student> &dest){
+    std::copy(source.begin(), source.end(), inserter(dest, dest.begin()));
+    std::sort(dest.begin(), dest.end(),
+              [](Student a, Student b){
+              if(a.group < b.group){
+                return true;
+              } else if(a.group > b.group){
+                return false;
+              } else {
+                return strcmp(a.name, b.name) < 0;
+              });
+}
 void sortByMark(std::vector<Student> source, std::vector<Student> &dest){
     std::copy(source.begin(), source.end(), inserter(dest, dest.begin()));
     std::sort(dest.begin(), dest.end(),

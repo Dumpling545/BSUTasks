@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "flowerbed.h"
+#include "week3.h"
 #include <list>
 #include <algorithm>
 #include <iterator>
@@ -18,53 +19,26 @@
 using namespace std;
 ofstream fout("output.txt");
 ifstream fin("input.txt");
-struct setStringComparator{
-    bool operator()(const set<string> &a, const set<string> &b)const {
-        int a_length = a.size();
-        int b_length = b.size();
-        set<string>::iterator a_it  = a.begin();
-        set<string>::iterator b_it = b.begin();
-        bool result = a_length < b_length;
-        for(int i = 0; i < min(a_length, b_length); i++){
-            string a_str = *a_it;
-            string b_str = *b_it;
-            if(a_str == b_str){
-                a_it++;
-                b_it++;
-            } else {
-                result = a_str < b_str;
-                break;
-            }
-        }
-        return result;
-    }
-};
 int main()
 {
-    list<Flowerbed> flowerbeds;
-    Flowerbed flowerbed;
-    while(fin >> flowerbed){
-        flowerbeds.push_back(flowerbed);
-    }
+    std::list<Flowerbed> flowerbeds;
+    fillList(fin, flowerbeds);
     fout << "A. Flowerbeds sorted by shape: " << endl;
-    flowerbeds.sort([](Flowerbed f1, Flowerbed f2){return f1.shape.compare(f2.shape);});
-    for(list<Flowerbed>::iterator it = begin(flowerbeds); it != end(flowerbeds); it++){
-        fout << *it;
-    }
+    sortByShape(flowerbeds);
+    printInterval<Flowerbed>(fout, flowerbeds.begin(), flowerbeds.end());
+
     map<int, Flowerbed> m_flowerbeds;
-    for(list<Flowerbed>::iterator it = begin(flowerbeds); it != end(flowerbeds); it++){
-        m_flowerbeds[(*it).id] = *it;
-    }
+    convertListToMap(flowerbeds, m_flowerbeds);
     fout << "B. Unique shapes of flowerbeds: " << endl;
     set<string> shapes;
-    transform(m_flowerbeds.begin(), m_flowerbeds.end(), inserter(shapes, shapes.begin()),[](pair<int, Flowerbed> p) { return p.second.shape;});
-    for(set<string>::iterator it = shapes.begin(); it != shapes.end(); it++){
-        fout << "   •"<<*it << endl;
-    }
-    cout << "Enter flowerbed id:" <<endl;
+    getUniqueShapes(m_flowerbeds, shapes);
+    printInterval<string>(fout, shapes.begin(), shapes.end());
+
     int id;
-    cin >> id;
+    enterElement<int>(id, "flowerbed id");
+
     fout << endl <<"C. Flowers of the Flowerbed #"<<id <<": "<<endl;
+
     map<int, Flowerbed>::iterator it = m_flowerbeds.find(id);
     if(it == m_flowerbeds.end()){
         fout << "   Flowerbed #" << id << " doesn't exist" << endl;
