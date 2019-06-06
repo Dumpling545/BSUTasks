@@ -4,7 +4,7 @@ extern "C" void __fastcall  deleteTextBetweenBrackets(char* str, int length);
 void main()
 {
 
-	char src[200] = "123(345 (566) 2345) 8569869  (876878)";
+	char src[200] = "123(345 (566) 2345) 8569)869  (876878)";
 		//"()  I love (can't (stand)(t)hat)  this (awful) amazing    langu()age...     help!    ()";
 	char *str = src;
 	std::cout << "Before:\n";
