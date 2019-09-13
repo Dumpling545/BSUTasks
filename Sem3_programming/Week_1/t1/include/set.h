@@ -92,7 +92,12 @@ class Set
             for(int i = 0; i < s - 1; i++){
                 stream << set.elements[i] <<",  ";
             }
-            stream << set.elements[s-1] <<'}';
+            if(s == 0){
+                stream<<"empty";
+            } else {
+                stream << set.elements[s-1];
+            }
+            stream<<'}';
             return stream;
         }
         friend std::istream& operator>>(std::istream& stream, Set& set){
