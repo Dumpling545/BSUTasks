@@ -3,8 +3,8 @@
 #include <tchar.h>
 #include <string>
 #include <iostream>
+#include "resources/resource.h"
 #include "set.h"
-LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-BOOL InitApplication(HINSTANCE hInstance);
+INT_PTR CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow);
 void draw(HWND &hwnd);
