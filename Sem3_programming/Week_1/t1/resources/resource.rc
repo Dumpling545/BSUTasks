@@ -23,7 +23,7 @@ FONT 8, "Ms Shell Dlg"
     LTEXT           "<Yes/No>", ID_EQUAL_STATE_VIEW, 91, 161, 34, 9, SS_LEFT, WS_EX_LEFT
     LTEXT           "Is Set #1 equal to Set#2 ?:", 0, 3, 161, 86, 9, SS_LEFT, WS_EX_LEFT
     LTEXT           "Union of Set #1 and Set #2:", 0, 3, 110, 90, 9, SS_LEFT, WS_EX_LEFT
-    PUSHBUTTON      "Refresh", ID_REFRESH, 135, 87, 30, 14, BS_CENTER | BS_VCENTER, WS_EX_LEFT
+    PUSHBUTTON      "Refresh", ID_REFRESH, 155, 87, 30, 14, BS_CENTER | BS_VCENTER, WS_EX_LEFT
     EDITTEXT        ID_FIRST_SET_EDIT, 103, 20, 193, 14, ES_AUTOHSCROLL, WS_EX_LEFT
     LTEXT           "Enter elements of set#1:", 0, 12, 22, 78, 9, SS_LEFT, WS_EX_LEFT
     LTEXT           "{elements of set #1}", ID_FIRST_SET_VIEW, 28, 4, 268, 9, SS_LEFT, WS_EX_LEFT
