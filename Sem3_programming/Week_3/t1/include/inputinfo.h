@@ -3,7 +3,6 @@
 class InputInfo
 {
     public:
-        Element* elems[2] = {nullptr, nullptr};
+        int firstIndex, secondIndex;
         InputInfo() {}
-        ~InputInfo() {delete [] elems;}
 };

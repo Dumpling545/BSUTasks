@@ -5,49 +5,25 @@
 #include <cmath>
 #include <sstream>
 #include <string>
+#include <fstream>
 using namespace std;
-
 int m = 12;
 int n = 18;
-
-void printElement(float element, int a = 9){
-    stringstream ss;
-    int d = a /2;
-    ss.precision(d);
-    ss << element;
-    string s = ss.str();
-    for (int i = 0; i < a - s.length(); i++){
-        cout << ' ';
-    }
-    cout << s;
-}
-void printMatrix(float ** matrix, int a = 0){
-    cout << std::fixed;
+const int DEF_WIDTH = 10;
+void printMatrix(float ** matrix, int a = DEF_WIDTH){
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
-            printElement(matrix[i][j], a);
+            cout << std::setw(a)  << matrix[i][j];
+            cout << " ";
         }
-        cout <<'\n';
+        cout <<"\n\n";
     }
 }
-void printVector(float * vector, int a = 0){
-    cout << std::fixed;
+void printVector(float * vector, int a = DEF_WIDTH){
     for(int i = 0; i < n; i++){
-        printElement(vector[i], a);
+        cout << std::setw(a) << vector[i];
         cout << '\n';
     }
-}
-
-float** createMatrix(){
-    srand (time(NULL));
-    float ** matrix = new float*[n];
-    for(int i = 0; i < n; i++){
-        matrix[i] = new float[n];
-        for(int j = 0; j < n; j++){
-            matrix[i][j] = rand()%201 - 100;
-        }
-    }
-    return matrix;
 }
 float* createVector(float ** matrix){
     float * vector = new float[n];
@@ -59,50 +35,6 @@ float* createVector(float ** matrix){
     }
     return vector;
 }
-int chooseLeadingElement(float ** matrix, float * vector, int index){
-    int maxrow = index;
-    float temp;
-    for(int i = index + 1; i < n; i++){
-        temp = matrix[i][index];
-        if(temp > matrix[maxrow][index]) maxrow = i;
-    }
-    return maxrow;
-}
-void swapLines(float ** matrix, float * vector, int fi, int si){
-    if(fi != si){
-        float temp = vector[fi];
-        vector[fi] = vector[si];
-        vector[si] = temp;
-        for(int i = 0; i < n; i++){
-            temp = matrix[fi][i];
-            matrix[fi][i] = matrix[si][i];
-            matrix[si][i] = temp;
-        }
-    }
-}
-void forwardElimantion(float ** matrix, float * vector,
-                       bool with_choosing_leading_element = false){
-    float l;
-    for(int a = 0; a < n - 1; a++){
-        if(with_choosing_leading_element){
-            int le_index = chooseLeadingElement(matrix, vector, a);
-            swapLines(matrix, vector, a, le_index);
-        }
-        for(int b = a + 1; b < n; b++){
-            l = matrix[b][a] / matrix[a][a];
-            vector[b] -= l*vector[a];
-            matrix[b][a] = 0;
-            for(int c = a + 1; c < n; c++){
-                matrix[b][c] -= l*matrix[a][c];
-            }
-        }
-        if(a == 0){
-            cout << "\n\n Matrix after first step of forward elimination:\n";
-            printMatrix(matrix, 10);
-        }
-    }
-}
-
 float* backSubstitution(float ** matrix, float * vector){
     float * result = new float[n];
     float temp_sum = 0;
@@ -135,6 +67,77 @@ float ** copyMatrix(float ** matrix){
     }
     return copy;
 }
+///создание матрицы, создание вектора происходит аналогично задаче 1(a,b)
+float** createMatrix(){
+    srand (time(NULL));
+    float ** matrix = new float*[n];
+    for(int i = 0; i < n; i++){
+        matrix[i] = new float[n];
+        for(int j = 0; j < n; j++){
+            matrix[i][j] = rand()%201 - 100;
+        }
+    }
+    return matrix;
+}
+///выбор ведущего элемента по столбцу
+///помимо матрицы и вектора передаётся индекс столбца, в котором нужно
+///выбрать ведущий элемент
+int chooseLeadingElement(float ** matrix, float * vector, int index){
+    int maxrow = index;
+    float temp;
+    ///идем по столбцу и ищем индекс максимального элемента
+    for(int i = index + 1; i < n; i++){
+        temp = matrix[i][index];
+        if(temp > matrix[maxrow][index]) maxrow = i;
+    }
+    return maxrow;
+}
+///перемена местами fi-й i si-й строк расширенной матрицы
+void swapLines(float ** matrix, float * vector, int fi, int si){
+    if(fi != si){
+        float temp = vector[fi];
+        vector[fi] = vector[si];
+        vector[si] = temp;
+        for(int i = 0; i < n; i++){
+            temp = matrix[fi][i];
+            matrix[fi][i] = matrix[si][i];
+            matrix[si][i] = temp;
+        }
+    }
+}
+///прямой ход метода Гаусса
+/// булевый параметр определяет, как модфикацию метода использовать
+/// true - c выбором ведущего
+/// false (по умолчанию) - без
+void forwardElimantion(float ** matrix, float * vector,
+                       bool with_choosing_leading_element = false){
+    float l;
+    ///идём по строкам матрицы
+    for(int a = 0; a < n - 1; a++){
+        ///эта часть выполнится, если вызывается метод Гаусса с выбором ведущего
+        if(with_choosing_leading_element){
+            ///ищем индекс ведущего элемента в a-м столбце
+            int le_index = chooseLeadingElement(matrix, vector, a);
+            ///меняем местами a-ю строку и строку, содержащую ведущию элемент
+            swapLines(matrix, vector, a, le_index);
+        }
+        ///далее в методе аналогично задаче 1(a,b)
+        for(int b = a + 1; b < n; b++){
+            l = matrix[b][a] / matrix[a][a];
+            vector[b] -= l*vector[a];
+            matrix[b][a] = 0;
+            for(int c = a + 1; c < n; c++){
+                matrix[b][c] -= l*matrix[a][c];
+            }
+        }
+        if(a == 0){
+            cout << "\n\n Matrix after first step of forward elimination:\n";
+            printMatrix(matrix, 12);
+        }
+    }
+}
+
+///копирование вектора
 float * copyVector(float * vector){
     float * copy = new float[n];
     for(int i = 0; i < n; i++){
@@ -144,27 +147,35 @@ float * copyVector(float * vector){
 }
 int main()
 {
+    ///МЕТОД ГАУССА БЕЗ ВЫБОРА ВЕДУЩЕГО
+    ///создание матрицы и столбца свободных членов
+    ///копирование данных для решения методом с выбором ведущего
+    ///вывод входных данных
     cout << "Input:\n\n Matrix:\n";
     float ** matrix = createMatrix();
     float ** matrix_le = copyMatrix(matrix);
-    printMatrix(matrix, 8);
+    printMatrix(matrix, 4);
     cout << "\n\n Vector:\n";
     float * vector = createVector(matrix);
     float * vector_le = copyVector(vector);
-    printVector(vector, 12);
-
+    printVector(vector, 6);
+    ///метод Гаусса: прямой ход
     forwardElimantion(matrix, vector);
+    ///метод Гаусса:обратный ход
     float * result = backSubstitution(matrix, vector);
-
-    cout << "\n\nResult:\n";
-    printVector(result, 32);
-    cout << "\n\nRelative Error: "<<setprecision(16) << relativeError(result);
-    cout << "\n...................................................................................................\n";
+    ///вывод результата
+    cout << "\n\n\nResult:\n";
+    printVector(result);
+    ///вывод относительной погрешности
+    cout << "\n\n\nRelative Error: "<<setprecision(DEF_WIDTH) << relativeError(result);
+    ///МЕТОД ГАУССА БЕЗ ВЫБОРА ВЕДУЩЕГО
+    ///аналогично предыдущему, в функции forwardElimantion последним параметром добавляем true
+    cout << "\n\n...................................................................................................\n";
     cout << "WITH CHOOSING LEADING ELEMENT:\n\n";
     forwardElimantion(matrix_le, vector_le, true);
     float * result_le = backSubstitution(matrix_le, vector_le);
-    cout << "\n\nResult:\n";
-    printVector(result_le, 32);
-    cout << "\n\nRelative Error: "<<setprecision(16) << relativeError(result_le);
+    cout << "\n\n\nResult:\n";
+    printVector(result_le);
+    cout << "\n\n\nRelative Error: "<<setprecision(DEF_WIDTH) << relativeError(result_le);
     return 0;
 }

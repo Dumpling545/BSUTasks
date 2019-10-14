@@ -13,46 +13,55 @@ void IOService::sendOutput(HWND hDlg, OutputInfo output){
                        _T(output.elementInfo[i].sum.c_str()));
     }
 }
-InputInfo IOService::unpackInput(HWND hDlg){
+InputInfo IOService::unpackRefreshInfo(HWND hDlg){
     InputInfo info;
-    Element* elems[2] = {nullptr, nullptr};
+    info.firstIndex = GetDlgItemInt(hDlg,
+                             ID_FIRST_EL_INDEX,
+                             NULL,
+                             TRUE);
+    info.secondIndex = GetDlgItemInt(hDlg,
+                             ID_SECOND_EL_INDEX,
+                             NULL,
+                             TRUE);
+    return info;
+}
+Element* IOService::unpackAddElementInfo(HWND hDlg){
+    Element* elem = nullptr;
     int rows, cols;
     TCHAR str[IOService::DEFAULT_TCHAR_ARRAY_LENGTH];
     std::stringstream ss;
-    for(int index = 0; index < 2; index++){
-        GetDlgItemText(hDlg,
-                       index + ID_FIRST_EL_EDIT,
-                       str,
-                       IOService::DEFAULT_TCHAR_ARRAY_LENGTH);
-        ss << str;
-        rows = GetDlgItemInt(hDlg,
-                             index + ID_FIRST_EL_ROWS,
-                             NULL,
-                             TRUE);
-        cols = GetDlgItemInt(hDlg,
-                             index + ID_FIRST_EL_COLS,
-                             NULL,
-                             TRUE);
-        rows = ((rows > 0) ? rows : 1);
-        cols = ((cols > 0) ? cols : 1);
-        if(rows == 1 || cols == 1){
-            rows*=cols;
-            double * ar = new double[rows];
-            for(int i = 0; i < rows; i++){
-                ss >> ar[i];
-            }
-            info.elems[index] = new Vector(rows, ar);
-        } else {
-            double ** td_ar = new double*[rows];
-            for(int i = 0; i < rows; i++){
-                td_ar[i] = new double[cols];
-                for(int j = 0; j < cols; j++){
-                    ss >>td_ar[i][j];
-                }
-            }
-            info.elems[index] = new Matrix(rows, cols, td_ar);
+    GetDlgItemText(hDlg,
+                   ID_FIRST_EL_EDIT,
+                   str,
+                   IOService::DEFAULT_TCHAR_ARRAY_LENGTH);
+    ss << str;
+    rows = GetDlgItemInt(hDlg,
+                         ID_FIRST_EL_ROWS,
+                         NULL,
+                         TRUE);
+    cols = GetDlgItemInt(hDlg,
+                         ID_FIRST_EL_COLS,
+                         NULL,
+                         TRUE);
+    rows = ((rows > 0) ? rows : 1);
+    cols = ((cols > 0) ? cols : 1);
+    if(rows == 1 || cols == 1){
+        rows*=cols;
+        double * ar = new double[rows];
+        for(int i = 0; i < rows; i++){
+            ss >> ar[i];
         }
-        ss.clear();
+        elem = new Vector(rows, ar);
+    } else {
+        double ** td_ar = new double*[rows];
+        for(int i = 0; i < rows; i++){
+            td_ar[i] = new double[cols];
+            for(int j = 0; j < cols; j++){
+                ss >>td_ar[i][j];
+            }
+        }
+        elem = new Matrix(rows, cols, td_ar);
     }
-    return info;
+    ss.clear();
+    return elem;
 }

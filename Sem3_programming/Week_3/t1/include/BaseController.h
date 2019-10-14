@@ -7,20 +7,17 @@ class BaseController
         virtual INT_PTR CALLBACK handle(HWND hDlg,
                                         UINT message,
                                         WPARAM wParam,
-                                        LPARAM lParam) = 0;
+                                        LPARAM lParam) final;
         virtual ~BaseController() = default;
     protected:
-
+        virtual void onRefresh(HWND hDlg) = 0;
+        virtual void onAddElement(HWND hDlg) = 0;
         Model * model;
 };
 class Controller : public BaseController {
     public:
         Controller();
-        virtual INT_PTR CALLBACK handle(HWND hDlg,
-                                        UINT message,
-                                        WPARAM wParam,
-                                        LPARAM lParam);
-    private:
-    void onRefresh(HWND hDlg);
-
+    protected:
+    virtual void onRefresh(HWND hDlg);
+    virtual void onAddElement(HWND hDlg);
 };
