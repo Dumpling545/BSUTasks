@@ -3,10 +3,7 @@ package w6t1;
 import java.util.StringTokenizer;
 
 public class Source {
-	public static int compute(String expr) {
-		if(contai(expr.charAt(expr.length()-1))) {
-			
-		}
+	public static int compute(String expr) throws NotEnoughOperandsException, InvalidExpressionException{
 		StringTokenizer tokenizer = new StringTokenizer(expr, "+-", true);
 		int result = 0;
 		int sign = 1;
@@ -24,22 +21,35 @@ public class Source {
 					break;
 				default:
 					signCounter = 0;
-					result += sign*Integer.parseInt(s);
+					try {
+						result += sign*Integer.parseInt(s);
+					}catch(NumberFormatException ex) {
+						throw new InvalidExpressionException(expr);
+					}
 					break;
 			}
 			if(signCounter > 1) {
-				throw new RuntimeException("Two or more signs in a row are not allowed!");
+				throw new NotEnoughOperandsException(expr);
 			}
+		} 
+		if(signCounter != 0) {
+			throw new NotEnoughOperandsException(expr);
 		}
 		return result;
 	}
 	public static void main(String[] args) {
-		for(int i = 0; i < args.length; i++) {
-			System.out.print(args[i]);
-			System.out.print(" = ");
-			System.out.println(compute(args[i]));
+		try {
+			for(int i = 0; i < args.length; i++) {
+				int res = compute(args[i]);
+				System.out.print(args[i]);
+				System.out.print(" = ");
+				System.out.println(res);
+			}
+		} catch(NotEnoughOperandsException ex) {
+			System.out.println(ex.getMessage());
+		} catch(InvalidExpressionException ex) {
+			System.out.println(ex.getMessage());
 		}
-
 	}
 
 }
