@@ -1,7 +1,5 @@
 #include <iostream>
 #include <iomanip>
-#include <cstdlib>
-#include <ctime>
 #include <cmath>
 #include <sstream>
 #include <string>
@@ -51,7 +49,6 @@ void printVector(std::vector<float> v, int a = DEF_WIDTH){
 }
 /// создание матрицы
 std::vector<std::vector<float>> createMatrix(){
-    srand (time(NULL));
     std::vector<float> nullvector(N+1, 0);
     std::vector<std::vector<float>> matrix(N+1, nullvector);
     /// задаём первую строку
@@ -145,16 +142,17 @@ int main()
     printVector(f, 4);
     /**создаём вектора alpha и beta, которыек будут
        заполнены методом прямой прогонки*/
-    std::vector<float> alpha(N+1, 0), beta(N+1, 0);
+    std::vector<float> alpha(N, 0), beta(N+1, 0);
     /// прямая прогонка
     forwardSweep(matrix, f, alpha, beta);
     /// вывод матрицы после прямой прогонки
-    printForwardSweepedMtrx(alpha, beta, 10);
+    cout<<setprecision(DEF_WIDTH/4);
+    printForwardSweepedMtrx(alpha, beta, 12);
     /// обратная прогонка
     std::vector<float> y = backSubstitution(alpha, beta);
     /// вывод результата
     cout << "\n\nResult:\n";
-    printVector(y);
+    printVector(y, 12);
     /// вывод ошибки
     cout << "\n\nRelative Error: "<<setprecision(DEF_WIDTH) << relativeError(y);
     return 0;

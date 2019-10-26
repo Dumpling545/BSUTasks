@@ -39,6 +39,9 @@ public class Source {
 	}
 	public static void main(String[] args) {
 		try {
+			if(args.length == 0) {
+				throw new EmptyInputException();
+			}
 			for(int i = 0; i < args.length; i++) {
 				int res = compute(args[i]);
 				System.out.print(args[i]);
@@ -49,7 +52,8 @@ public class Source {
 			System.out.println(ex.getMessage());
 		} catch(InvalidExpressionException ex) {
 			System.out.println(ex.getMessage());
+		} catch(EmptyInputException ex) {
+			System.out.println(ex.getMessage());
 		}
 	}
-
 }
