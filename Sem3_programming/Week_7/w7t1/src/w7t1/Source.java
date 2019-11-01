@@ -34,15 +34,24 @@ public class Source{
 	    }
 		System.out.print("\n\n");
 	}
-	public static double[][] loadMatrix(String filename) throws  InputMismatchException, NoSuchElementException, FileNotFoundException{
-		Scanner scanner = new Scanner(new File(filename));
-		int n = scanner.nextInt();
-		double[][] matrix = new double[n][n];
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < n; j++) {
-				matrix[i][j] = scanner.nextInt();
+	public static double[][] loadMatrix(String filename) throws  NonNumberInputException, NotEnoughInputException, FileNotFoundException, TooManyInputException{
+		double[][] matrix;
+		Scanner scanner;
+		try {
+			scanner = new Scanner(new File(filename));
+			int n = scanner.nextInt();
+			matrix = new double[n][n];
+			for(int i = 0; i < n; i++) {
+				for(int j = 0; j < n; j++) {
+					matrix[i][j] = scanner.nextInt();
+				}
 			}
+		}catch(InputMismatchException e) {
+			throw new NonNumberInputException();
+		}catch(NoSuchElementException e) {
+			throw new NotEnoughInputException();
 		}
+		if(scanner.hasNext()) throw new TooManyInputException();
 		return matrix;
 	}
 	public static double[][] createAugmentedMatrix(double[][] matrix){
@@ -65,14 +74,9 @@ public class Source{
 	public static double[][] swapLines(double [][] augmentedMatrix, int fi, int si){
 		int n = augmentedMatrix.length;
 		double[][] result = augmentedMatrix;
-	    if(fi != si){
-	    	double temp;
-	        for(int i = 0; i < 2*n; i++){
-	            temp = augmentedMatrix[fi][i];
-	            augmentedMatrix[fi][i] = augmentedMatrix[si][i];
-	            augmentedMatrix[si][i] = temp;
-	        }
-	    }
+		double[] temp = augmentedMatrix[fi];
+		augmentedMatrix[fi] = augmentedMatrix[si];
+		augmentedMatrix[si] = temp;
 	    return result;
 	}
 	public static int maxElementInColumnIndex(double[][] augmentedMatrix, int colIndex){
@@ -85,11 +89,14 @@ public class Source{
 		}
 		return max;
 	}
-	public  static double[][]  forwardElimination(double[][] augmentedMatrix){
+	public  static double[][]  forwardElimination(double[][] augmentedMatrix, double precision) throws IllegalArgumentException{
 		int n = augmentedMatrix.length;
 		for(int i = 0; i < n; i++) {
 			int max = maxElementInColumnIndex(augmentedMatrix, i);
 			augmentedMatrix = swapLines(augmentedMatrix, i, max);
+			if(Math.abs(augmentedMatrix[i][i]) < precision) {
+				throw new IllegalArgumentException("Matrix is not invertible");
+			}
 			for(int t = i + 1; t < 2*n; t++) {
 				augmentedMatrix[i][t] /= augmentedMatrix[i][i];
 			}
@@ -117,10 +124,10 @@ public class Source{
 		}
 		return augmentedMatrix;
 	}
-	public static double[][] inverse(double[][] matrix){
+	public static double[][] inverse(double[][] matrix, double precision){
 		int n = matrix.length;
 		double[][] augmentedMatrix = createAugmentedMatrix(matrix);
-		augmentedMatrix = forwardElimination(augmentedMatrix);
+		augmentedMatrix = forwardElimination(augmentedMatrix, precision);
 		augmentedMatrix = backSubstitution(augmentedMatrix);
 		for(int i = 0; i < n; i++) {
 			for(int j = n; j < 2*n; j++) {
@@ -129,19 +136,16 @@ public class Source{
 		}
 		return matrix;
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		try {
+			double epsilon = 0.00000001;
 			String filename = "input.txt";
 			double[][] matrix = loadMatrix(filename);
-			double[][] result = inverse(matrix);
+			double[][] result = inverse(matrix, epsilon);
 			printMatrix(result);
-		} catch (FileNotFoundException e) {
+		} catch (NonNumberInputException|NotEnoughInputException|IllegalArgumentException|FileNotFoundException|TooManyInputException e) {
 			System.out.println(e.getMessage());
-		} catch (InputMismatchException e) {
-			System.out.println(e.getMessage());
-		} catch (NoSuchElementException e) {
-			System.out.println(e.getMessage());
-		}
+		} 
 
 	}
 
