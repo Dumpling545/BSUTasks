@@ -83,7 +83,10 @@ public class Source {
 							} else if("CONTAINS".equals(command)) {
 								i = Integer.parseInt(tokenizer.nextToken());
 								System.out.println(tree.contains(i));
-							} else {
+							} else if("REMOVE".equals(command)) {
+								i = Integer.parseInt(tokenizer.nextToken());
+								tree.remove(i);
+							}else {
 								throw new RuntimeException();
 							}
 						}

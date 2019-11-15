@@ -20,6 +20,42 @@ public class BinaryTree<T extends Comparable<T>>
 		}
 	}
 	
+	public void remove(T value){
+		if(root != null) {
+			root = remove(value, root);
+		}
+	}
+	
+	private Node remove(T value, Node parent){
+		if(parent!= null) {
+			if(value.compareTo(parent.value) < 0) {
+				parent.left = remove(value, parent.left);
+			} else if(value.compareTo(parent.value) == 0) {
+				if(parent.left == null && parent.right == null) {
+					parent = null;
+				} else if(parent.left == null) {
+					parent = parent.right;
+				} else if(parent.right == null) {
+					parent = parent.left;
+				} else {
+					if(parent.right.left == null) {
+						parent = parent.right;
+					} else {
+						Node temp = parent.right;
+						while(temp.left != null) {
+							temp = temp.left;
+						}
+						parent.value = temp.value;
+						parent.right = remove(temp.value, parent.right);					
+					}
+				}
+			} else {
+				parent.right = remove(value, parent.right);
+			}
+		}
+		return parent;
+	}
+	
 	private Node add(T value, Node parent){
 		if(value.compareTo(parent.value) < 0) {
 			if(parent.left == null) {
