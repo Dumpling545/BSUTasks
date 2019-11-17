@@ -6,14 +6,11 @@ public class ComplexNumber implements Comparable<ComplexNumber> {
 		int result;
 		double sqrabs1 = this.squaredAbs();
 		double sqrabs2 = o.squaredAbs();
-		if(sqrabs1 < sqrabs2) {
-			result = -1;
-		} else if(sqrabs1 == sqrabs2) {
-			result = 0;
-		} else {
-			result = 1;
-		}
-		return result;
+		/*
+		 * if(sqrabs1 < sqrabs2) { result = -1; } else if(sqrabs1 == sqrabs2) { result =
+		 * 0; } else { result = 1; } return result;
+		 */
+		return Double.compare(sqrabs1, sqrabs2);
 	}
 	public double squaredAbs() {
 		return real*real + imaginary*imaginary;

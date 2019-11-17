@@ -47,16 +47,8 @@ public class QuestionFrame extends JFrame {
 													 buttonHeight);
 	private Point entryPoint = new Point(0, 0);
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					QuestionFrame frame = new QuestionFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		JFrame frame = new QuestionFrame();
+		frame.setVisible(true);
 	}
 
 	public QuestionFrame() {

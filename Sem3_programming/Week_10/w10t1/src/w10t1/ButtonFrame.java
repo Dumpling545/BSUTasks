@@ -26,7 +26,6 @@ public class ButtonFrame extends JFrame {
 	private Rectangle statusbarBounds = new Rectangle(0, 247, 200, 14);
 	private int button_pressed_inner_x = 0;
 	private int button_pressed_inner_y = 0;
-	private boolean ctrlPressed = false;
 	public ButtonFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(bounds);
@@ -55,12 +54,9 @@ public class ButtonFrame extends JFrame {
 				} else if(Character.isDefined(e.getKeyChar())) {
 					button.setText(button.getText() + e.getKeyChar());
 				}
-				ctrlPressed = e.isControlDown();
 			}
 			@Override
-			public void keyPressed(KeyEvent e) {
-				ctrlPressed = e.isControlDown();
-			}
+			public void keyPressed(KeyEvent e) {}
 		};
 		addKeyListener(kl);
 		contentPane.addComponentListener(new ComponentListener() {
@@ -133,7 +129,7 @@ public class ButtonFrame extends JFrame {
 			public void mouseDragged(MouseEvent e) {
 				onMouseMoved(e.getX() + button.getX(), 
 						 e.getY() + button.getY());
-				if(ctrlPressed) {
+				if(e.isControlDown()) {
 					button.setBounds(e.getXOnScreen() - button_pressed_inner_x, 
 									 e.getYOnScreen() - button_pressed_inner_y, 
 									 button.getWidth(), 

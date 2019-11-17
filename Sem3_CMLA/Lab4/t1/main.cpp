@@ -10,10 +10,10 @@
 using namespace std;
 
 const int m = 12;
-const int n = 12;
+const int n = 11;
 const int DEF_WIDTH = 32;
 const float epsilon = 0.0001;
-const int k_max = 10000;
+const int k_max = 1000;
 /// вывод матрицы в консоль
 void printMatrix(std::vector<std::vector<float>> matrix, int a = DEF_WIDTH){
     for(int i = 0; i < n; i++){
@@ -74,7 +74,7 @@ std::vector<float> createVector(std::vector<std::vector<float>> matrix){
 struct IterativeResult{
     ///приближенное решение итеративным методом
     std::vector<float> result;
-    /** номер итерации, на котором была достигнута заданная точность.\
+    /** номер итерации, на котором была достигнута заданная точность.
         -1, если превышено максимальное количество итераций*/
     int k;
 };
@@ -156,16 +156,17 @@ int main()
     ///создаем матрицу системы
     std::vector<std::vector<float>> matrix = createMatrix();
     /**создаём вектор f свободных членов по матрице
-        и вектору решения y =(1,...,N+1)*/
+        и вектору решения x =(m,...,m+n-1)*/
     std::vector<float> f = createVector(matrix);
     ///выводим матрицу и вектор
     cout << "Input:\n\n Matrix:\n";
     printMatrix(matrix, 4);
     cout << "\n\n Vector:\n";
     printVector(f, 4);
+    ///решаем СЛАУ методом Якоби
     cout << "\n\nJAKOBI METHOD: \n";
     IterativeResult jakobi = jakobiMethod(matrix, f);
-    /// вывод результата
+    ///выводим результат и итерацию, на которой достигнута необходимая точность
     cout << "\n\nResult:\n";
     cout << "\n       Iteration: ";
     if(jakobi.k == -1){
@@ -175,11 +176,13 @@ int main()
     }
     cout << "\n       Vector: \n";
     printVector(jakobi.result, 12);
+    ///решаем СЛАУ методом релаксации для различных значений omega
     cout << "\nSOR METHOD: \n";
     for(float omega = 0.5; omega <= 1.5; omega+=0.5){
         cout << "\n\nWITH OMEGA="<<omega<<" \n\n";
         IterativeResult sor = sorMethod(matrix, f, omega);
-        /// вывод результата
+        /** выводим результат и итерацию, на которой достигнута
+        необходимая точность*/
         cout << "\n\nResult:\n";
         cout << "\n       Iteration: ";
         if(sor.k == -1){
