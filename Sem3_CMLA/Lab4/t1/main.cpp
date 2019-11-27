@@ -82,14 +82,14 @@ struct IterativeResult{
 IterativeResult jakobiMethod(const std::vector<std::vector<float>> &matrix,
                                 const std::vector<float> &f){
     /**задаём начальное значение x (до итераций),
-       в данном случае заполняем нулями*/
+       в данном случае нулями*/
     std::vector<float> result(n, 0);
     /**инициализируем вектор решения предыдущей итерации,
        первоначально заполняем так, чтобы разность с вектором result
        была больше заданной точности (иначе цикл не выполнится ни разу)*/
-    std::vector<float> previous(n, epsilon*2);
+    std::vector<float> previous(n, 2*epsilon);
     int iteration;
-    for(iteration = 1;
+    for(iteration = 0;
         iteration <= k_max && !isPrecisionReached(result, previous);
         iteration++){
             /** вычисляем результат result для итерации iteration,
@@ -118,14 +118,14 @@ IterativeResult jakobiMethod(const std::vector<std::vector<float>> &matrix,
 IterativeResult sorMethod(const std::vector<std::vector<float>> &matrix,
                                 const std::vector<float> &f, float omega){
     /**задаём начальное значение x (до итераций),
-       в данном случае заполняем нулями*/
+       в данном случае нулями*/
     std::vector<float> result(n, 0);
     /**инициализируем вектор решения предыдущей итерации,
        первоначально заполняем так, чтобы разность с вектором result
        была больше заданной точности (иначе цикл не выполнится ни разу)*/
-    std::vector<float> previous(n, epsilon*2);
+    std::vector<float> previous(n, 2*epsilon);
     int iteration;
-    for(iteration = 1;
+    for(iteration = 0;
         iteration <= k_max && !isPrecisionReached(result, previous);
         iteration++){
             /** вычисляем результат result для итерации iteration,
