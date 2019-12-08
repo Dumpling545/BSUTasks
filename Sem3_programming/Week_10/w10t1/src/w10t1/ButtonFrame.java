@@ -24,8 +24,8 @@ public class ButtonFrame extends JFrame {
 	private Rectangle buttonBounds = new Rectangle(0, 0, 89, 23);
 	private JLabel statusbar;
 	private Rectangle statusbarBounds = new Rectangle(0, 247, 200, 14);
-	private int button_pressed_inner_x = 0;
-	private int button_pressed_inner_y = 0;
+	private int buttonPressedInnerX = 0;
+	private int buttonPressedInnerY = 0;
 	public ButtonFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(bounds);
@@ -108,8 +108,8 @@ public class ButtonFrame extends JFrame {
 			public void mouseReleased(MouseEvent e) {}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				button_pressed_inner_x = e.getXOnScreen() - button.getX();
-				button_pressed_inner_y = e.getYOnScreen() - button.getY();
+				buttonPressedInnerX = e.getXOnScreen() - button.getX();
+				buttonPressedInnerY = e.getYOnScreen() - button.getY();
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {}
@@ -130,8 +130,8 @@ public class ButtonFrame extends JFrame {
 				onMouseMoved(e.getX() + button.getX(), 
 						 e.getY() + button.getY());
 				if(e.isControlDown()) {
-					button.setBounds(e.getXOnScreen() - button_pressed_inner_x, 
-									 e.getYOnScreen() - button_pressed_inner_y, 
+					button.setBounds(e.getXOnScreen() - buttonPressedInnerX, 
+									 e.getYOnScreen() - buttonPressedInnerY, 
 									 button.getWidth(), 
 									 button.getHeight());
 				}

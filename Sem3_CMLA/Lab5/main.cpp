@@ -9,7 +9,7 @@
 #include <algorithm>
 using namespace std;
 
-const int n = 4;
+const int n = 3;
 const int DEF_WIDTH = 32;
 const float epsilon = 1e-8;
 /// вывод матрицы в консоль
@@ -149,17 +149,16 @@ int main()
         Данилевского.
     */
     std::vector<std::vector<float>> matrix;
-    do{
         /// создаём и выводим матрицу
-        matrix.clear();
-        matrix = createMatrix();
+        matrix = {{ -0.6666666666, 2, -0.6666666666},
+                  { 2, -0.3333333333, 1.3333333333},
+                  { -0.6666666666, 1.3333333333, 1}};
         /// cчитаем след исходной матрицы
         tr = trace(matrix);
         std::cout << "\n----------------------------------------\n";
         std::cout << "Original matrix:\n";
-        printMatrix(matrix, 8);
+        printMatrix(matrix);
         success = danilevskijMethod(matrix);
-    }while(!success);
     /** Этот код выполнится, только если метод Данилевского
         даст регулярный случай для текущей матрицы.*/
     /// Выведем каноническую форму Фробениуса, след исх. матрицы и коэфф. p_1
