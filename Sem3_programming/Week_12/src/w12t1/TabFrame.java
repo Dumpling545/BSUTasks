@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -40,7 +41,7 @@ public class TabFrame extends JFrame implements ActionListener, MouseListener {
 	private final int secondTaskGridLayoutCols = 10;
 	private JButton[][]  secondTaskButtons;
 	private final Color secondTaskDefaultButtonColor = Color.YELLOW;
-	private final String secondTaskDefaultButtonText = "";
+	private  String currentSecondTaskButtonText = "";
 	private final Color secondTaskEnteredButtonColor = Color.BLUE;
 	private final String secondTaskPressedButtonText = "Clicked!";
 
@@ -52,6 +53,7 @@ public class TabFrame extends JFrame implements ActionListener, MouseListener {
 	private final String thirdTaskPressedIconFileName = "D:/”Õ»¬≈–/Sem3_programming/Week_12/src/pressedIcon.png";
 	private final int thirdTaskButtonGroupSize = 5;
 	private JRadioButton[] thirdTaskRadioButtons;
+	private JPanel[] thirdTaskRadioButtonPanels;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -120,7 +122,8 @@ public class TabFrame extends JFrame implements ActionListener, MouseListener {
 		secondTaskButtons = new JButton[secondTaskGridLayoutRows][secondTaskGridLayoutCols];
 		for(int i = 0; i < secondTaskGridLayoutRows; i++) {
 			for(int j = 0; j < secondTaskGridLayoutCols; j++) {
-				secondTaskButtons[i][j] = new JButton(secondTaskDefaultButtonText);
+				secondTaskButtons[i][j] = new JButton();
+				secondTaskButtons[i][j].setText(Integer.toString(i*secondTaskGridLayoutRows + j));
 				secondTaskButtons[i][j].setBackground(secondTaskDefaultButtonColor);
 				secondTaskButtons[i][j].addMouseListener(this);
 				secondTaskPanel.add(secondTaskButtons[i][j]);
@@ -133,18 +136,21 @@ public class TabFrame extends JFrame implements ActionListener, MouseListener {
 		thirdTaskPanel.setLayout(new GridLayout(thirdTaskButtonGroupSize, 1));
 		thirdTaskButtonGroup = new ButtonGroup();
 		thirdTaskRadioButtons = new JRadioButton[thirdTaskButtonGroupSize];
+		thirdTaskRadioButtonPanels = new JPanel[thirdTaskButtonGroupSize];
 		ImageIcon icon = new ImageIcon(thirdTaskIconFileName);
 		ImageIcon pressedIcon = new ImageIcon(thirdTaskPressedIconFileName);
 		ImageIcon rolloverIcon = new ImageIcon(thirdTaskRolloverIconFileName);
 		ImageIcon selectedIcon = new ImageIcon(thirdTaskSelectedIconFileName);
 		for(int i = 0; i < thirdTaskButtonGroupSize; i++) {
+			thirdTaskRadioButtonPanels[i] = new JPanel();
 			thirdTaskRadioButtons[i] = new JRadioButton(Integer.toString(i));
 			thirdTaskButtonGroup.add(thirdTaskRadioButtons[i]);
+			thirdTaskRadioButtonPanels[i].add(thirdTaskRadioButtons[i]);
 			thirdTaskRadioButtons[i].setIcon(icon);
 			thirdTaskRadioButtons[i].setPressedIcon(pressedIcon);
 			thirdTaskRadioButtons[i].setRolloverIcon(rolloverIcon);
 			thirdTaskRadioButtons[i].setSelectedIcon(selectedIcon);
-			thirdTaskPanel.add(thirdTaskRadioButtons[i]);
+			thirdTaskPanel.add(thirdTaskRadioButtonPanels[i]);
 		}
 	}
 	public TabFrame() {
@@ -187,14 +193,14 @@ public class TabFrame extends JFrame implements ActionListener, MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		JButton button = (JButton) e.getSource();
+		currentSecondTaskButtonText = button.getText();
 		button.setText(secondTaskPressedButtonText);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		JButton button = (JButton) e.getSource();
-		button.setText(secondTaskDefaultButtonText);
-		
+		button.setText(currentSecondTaskButtonText);
 	}
 
 	@Override
