@@ -10,7 +10,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-
 public class FirstTaskPanel extends JPanel  implements ActionListener{
 	private JPanel firstTaskInnerPanel;
 	private JButton firstTaskLeftButton, firstTaskRightButton;

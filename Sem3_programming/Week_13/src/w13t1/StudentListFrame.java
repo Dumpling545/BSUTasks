@@ -30,6 +30,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 public class StudentListFrame extends JFrame implements ActionListener, ChangeListener {
 
@@ -58,8 +61,11 @@ public class StudentListFrame extends JFrame implements ActionListener, ChangeLi
 	private JMenu fileMenu;
 	private JMenuItem openFileMenuItem;
 	private JMenuItem openXmlMenuItem;
+	private JMenuItem saveXmlMenuItem;
 	
 	private JButton addStudentButton;
+	
+	private XmlManager xmlManager;
 	
 	private final String CURRENT_DIRECTORY = "D:/”Õ»¬≈–/Sem3_programming/Week_13";
 	
@@ -75,6 +81,8 @@ public class StudentListFrame extends JFrame implements ActionListener, ChangeLi
 	}
 
 	public StudentListFrame() {
+		xmlManager = new XmlManager();
+		
 		studentComparator = new StudentComparator();
 		studentTreeSet = new TreeSet<Student>(studentComparator);
 		
@@ -107,10 +115,13 @@ public class StudentListFrame extends JFrame implements ActionListener, ChangeLi
 		fileMenu = new JMenu("File");
 		openFileMenuItem = new JMenuItem("Open...");
 		openXmlMenuItem = new JMenuItem("Open XML...");
+		saveXmlMenuItem = new JMenuItem("Save as XML...");
 		openFileMenuItem.addActionListener(this);
 		openXmlMenuItem.addActionListener(this);
+		saveXmlMenuItem.addActionListener(this);
 		fileMenu.add(openFileMenuItem);
 		fileMenu.add(openXmlMenuItem);
+		fileMenu.add(saveXmlMenuItem);
 		menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
 		
@@ -177,12 +188,26 @@ public class StudentListFrame extends JFrame implements ActionListener, ChangeLi
 	                    null,
 	                    null,
 	                    null);
-				Student s = new Student(src);
-				studentTreeSet.add(s);
-				refreshListModels(REFRESH_BOTH_LISTS);
+				if(src != null) {
+					Student s = new Student(src);
+					studentTreeSet.add(s);
+					refreshListModels(REFRESH_BOTH_LISTS);
+				}
 			}else if(e.getSource() == openXmlMenuItem) {
-				
-				refreshListModels(REFRESH_BOTH_LISTS);
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new File(CURRENT_DIRECTORY));
+				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File file = chooser.getSelectedFile();
+					studentTreeSet = xmlManager.read(file);
+					refreshListModels(REFRESH_BOTH_LISTS);
+				}
+			} else if(e.getSource() == saveXmlMenuItem) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new File(CURRENT_DIRECTORY));
+				if(chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File file = chooser.getSelectedFile();
+					xmlManager.write(file, studentTreeSet.iterator());
+				}
 			}
 		} catch(IOException ex) {
 			JOptionPane.showMessageDialog(null, "File issue: " + ex.getMessage());
@@ -192,6 +217,12 @@ public class StudentListFrame extends JFrame implements ActionListener, ChangeLi
 			JOptionPane.showMessageDialog(null, ex.getMessage());
 		} catch(NumberFormatException ex) {
 			JOptionPane.showMessageDialog(null, "Wrong data format");
+		} catch (ParserConfigurationException | SAXException ex) {
+			JOptionPane.showMessageDialog(null, "XML File issue: " + ex.getMessage());
+		} catch(AlreadyInCollectionException ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage());
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, "Unsupported exception: " + ex.getMessage());
 		}
 	}
 

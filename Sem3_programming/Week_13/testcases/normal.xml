@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Students>
+	<Student id='12345678' surname='Кордияко' year='2' group='1'/>
+	<Student id='78787878' surname='Коршакевич' year='2' group='4'/>
+	<Student id='71265425' surname='Быченок' year='3' group='1'/>
+	<Student id='12312312' surname='Басанец' year='4' group='2'/>
+	<Student id='65565656' surname='Климович' year='2' group='1'/>
+	<Student id='11111111' surname='Курносов' year='3' group='5'/>
+	<Student id='22222222' surname='Комар' year='3' group='3'/>
+	<Student id='21212121' surname='Дамм' year='6' group='1'/>
+	<Student id='91919192' surname='Мартиневский' year='1' group='3'/>
+	<Student id='45678910' surname='Сверчков' year='2' group='1'/>
+	<Student id='10000001' surname='Самоховец' year='4' group='1'/>
+	<Student id='90090009' surname='Ротько' year='2' group='5'/>
+	<Student id='10000000' surname='Басанец' year='1' group='1'/>
+	<Student id='77777777' surname='Басанец' year='4' group='2'/>
+</Students>

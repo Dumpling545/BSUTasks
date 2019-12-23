@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 public class SecondTaskPanel extends JPanel implements MouseListener {
 	private final int secondTaskGridLayoutRows = 10;
 	private final int secondTaskGridLayoutCols = 10;
-	private JButton[][]  secondTaskButtons;
 	private final Color secondTaskDefaultButtonColor = Color.YELLOW;
 	private  String currentSecondTaskButtonText = "";
 	private final Color secondTaskEnteredButtonColor = Color.BLUE;
@@ -19,14 +18,14 @@ public class SecondTaskPanel extends JPanel implements MouseListener {
 	public SecondTaskPanel() {
 		setLayout(new GridLayout(secondTaskGridLayoutRows, 
 		secondTaskGridLayoutCols));
-		secondTaskButtons = new JButton[secondTaskGridLayoutRows][secondTaskGridLayoutCols];
+		JButton secondTaskButton;
 		for(int i = 0; i < secondTaskGridLayoutRows; i++) {
 			for(int j = 0; j < secondTaskGridLayoutCols; j++) {
-				secondTaskButtons[i][j] = new JButton();
-				secondTaskButtons[i][j].setText(Integer.toString(i*secondTaskGridLayoutRows + j));
-				secondTaskButtons[i][j].setBackground(secondTaskDefaultButtonColor);
-				secondTaskButtons[i][j].addMouseListener(this);
-				add(secondTaskButtons[i][j]);
+				secondTaskButton = new JButton();
+				secondTaskButton.setText(Integer.toString(i*secondTaskGridLayoutRows + j));
+				secondTaskButton.setBackground(secondTaskDefaultButtonColor);
+				secondTaskButton.addMouseListener(this);
+				add(secondTaskButton);
 			}
 		}
 	}

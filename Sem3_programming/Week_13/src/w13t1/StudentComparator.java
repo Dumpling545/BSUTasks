@@ -15,7 +15,7 @@ public class StudentComparator implements Comparator<Student> {
 			return s1.getSurname().compareTo(s2.getSurname());
 		}
 		//Люди из одной группы с одинаковыми фамилиями не обязательно один и тот же человек?
-		return 1;
+		return s1.getId() - s2.getId();
 	}
 
 }
