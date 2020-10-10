@@ -1,0 +1,66 @@
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+  	font-family: Arial, Helvetica, sans-serif;
+  	background-color: #DDDDDD;
+  	color: #000000;
+}
+
+.header {
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.back {
+	margin-top: 20px;
+	width: 100px;
+}
+
+.back a {
+	margin-top: 10px;
+	background: #DDDDDD;
+	border: 2px solid #00A2FF;
+	border-radius: 7px;
+	cursor: pointer;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	color: #297691;
+}
+
+.back a:hover {
+  box-shadow: 0 0 5px #00A2FF;
+}
+
+.back a:active {
+  background: #CCCCCC;
+  color: #000000;
+}
+
+#schedule {
+	text-align: center;
+	border: 2px solid #000000;
+	background-color: #96e8fa;
+	width: 90%;
+	margin-left: 5%;
+}
+
+#schedule td, #schedule th {
+    border: 1px solid black;
+}
+
+#schedule caption { 
+  text-align: center;
+  font-size: 35px;
+}
+
+

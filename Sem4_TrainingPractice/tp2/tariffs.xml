@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<Tariffs>
+	<Internet name='tariff#0' payment='62' subscribers='3671' mbs='3915'/>
+	<Internet name='tariff#1' payment='61' subscribers='446' mbs='4330'/>
+	<SMS name='tariff#2' payment='50' subscribers='3330' messages='322'/>
+	<Internet name='tariff#3' payment='78' subscribers='4100' mbs='2454'/>
+	<SMS name='tariff#4' payment='17' subscribers='2896' messages='398'/>
+	<SMS name='tariff#5' payment='11' subscribers='1636' messages='196'/>
+	<Internet name='tariff#6' payment='12' subscribers='2544' mbs='8664'/>
+	<PhoneCall name='tariff#7' payment='90' subscribers='4385' wminutes='211' aminutes='164'/>
+	<Internet name='tariff#8' payment='81' subscribers='861' mbs='6767'/>
+	<Internet name='tariff#9' payment='92' subscribers='1342' mbs='9797'/>
+	<SMS name='tariff#10' payment='88' subscribers='588' messages='463'/>
+	<PhoneCall name='tariff#11' payment='95' subscribers='1618' wminutes='420' aminutes='311'/>
+	<PhoneCall name='tariff#12' payment='54' subscribers='4384' wminutes='275' aminutes='227'/>
+	<SMS name='tariff#13' payment='84' subscribers='1833' messages='412'/>
+	<PhoneCall name='tariff#14' payment='50' subscribers='2396' wminutes='117' aminutes='387'/>
+	<PhoneCall name='tariff#15' payment='55' subscribers='3476' wminutes='826' aminutes='328'/>
+	<Internet name='tariff#16' payment='59' subscribers='1581' mbs='4642'/>
+	<PhoneCall name='tariff#17' payment='54' subscribers='4556' wminutes='796' aminutes='482'/>
+	<Internet name='tariff#18' payment='41' subscribers='1955' mbs='2416'/>
+	<PhoneCall name='tariff#19' payment='59' subscribers='1397' wminutes='138' aminutes='317'/>
+	<Internet name='tariff#20' payment='55' subscribers='3518' mbs='9670'/>
+	<Internet name='tariff#21' payment='71' subscribers='2227' mbs='7319'/>
+	<SMS name='tariff#22' payment='20' subscribers='3443' messages='261'/>
+	<SMS name='tariff#23' payment='87' subscribers='3250' messages='129'/>
+	<SMS name='tariff#24' payment='44' subscribers='3759' messages='128'/>
+	<Internet name='tariff#25' payment='84' subscribers='187' mbs='1670'/>
+	<Internet name='tariff#26' payment='72' subscribers='2864' mbs='4029'/>
+	<Internet name='tariff#27' payment='14' subscribers='392' mbs='9945'/>
+	<PhoneCall name='tariff#28' payment='64' subscribers='1812' wminutes='469' aminutes='97'/>
+	<Internet name='tariff#29' payment='37' subscribers='2869' mbs='5799'/>
+	<SMS name='tariff#30' payment='10' subscribers='1748' messages='453'/>
+	<SMS name='tariff#31' payment='51' subscribers='4932' messages='240'/>
+	<SMS name='tariff#32' payment='85' subscribers='4705' messages='343'/>
+	<SMS name='tariff#33' payment='92' subscribers='1261' messages='478'/>
+	<Internet name='tariff#34' payment='85' subscribers='2268' mbs='8358'/>
+	<Internet name='tariff#35' payment='54' subscribers='188' mbs='7521'/>
+	<PhoneCall name='tariff#36' payment='65' subscribers='2176' wminutes='496' aminutes='204'/>
+	<PhoneCall name='tariff#37' payment='10' subscribers='3155' wminutes='326' aminutes='240'/>
+	<PhoneCall name='tariff#38' payment='23' subscribers='780' wminutes='426' aminutes='225'/>
+	<Internet name='tariff#39' payment='36' subscribers='252' mbs='3357'/>
+	<SMS name='tariff#40' payment='69' subscribers='771' messages='456'/>
+	<SMS name='tariff#41' payment='11' subscribers='1631' messages='123'/>
+	<SMS name='tariff#42' payment='99' subscribers='694' messages='244'/>
+	<Internet name='tariff#43' payment='72' subscribers='846' mbs='4010'/>
+	<Internet name='tariff#44' payment='10' subscribers='215' mbs='3096'/>
+	<Internet name='tariff#45' payment='32' subscribers='2115' mbs='3419'/>
+	<PhoneCall name='tariff#46' payment='90' subscribers='865' wminutes='289' aminutes='53'/>
+	<PhoneCall name='tariff#47' payment='12' subscribers='4212' wminutes='716' aminutes='116'/>
+	<SMS name='tariff#48' payment='99' subscribers='2482' messages='424'/>
+	<SMS name='tariff#49' payment='83' subscribers='4046' messages='144'/>
+	<Internet name='tariff#50' payment='67' subscribers='3374' mbs='964'/>
+	<Internet name='tariff#51' payment='90' subscribers='464' mbs='5259'/>
+	<PhoneCall name='tariff#52' payment='41' subscribers='2558' wminutes='281' aminutes='477'/>
+	<SMS name='tariff#53' payment='31' subscribers='3216' messages='169'/>
+	<PhoneCall name='tariff#54' payment='10' subscribers='3881' wminutes='433' aminutes='481'/>
+	<SMS name='tariff#55' payment='32' subscribers='4455' messages='289'/>
+	<PhoneCall name='tariff#56' payment='64' subscribers='295' wminutes='456' aminutes='174'/>
+	<Internet name='tariff#57' payment='31' subscribers='2678' mbs='6776'/>
+	<Internet name='tariff#58' payment='45' subscribers='1510' mbs='6498'/>
+	<SMS name='tariff#59' payment='66' subscribers='3954' messages='480'/>
+	<PhoneCall name='tariff#60' payment='10' subscribers='974' wminutes='483' aminutes='57'/>
+	<PhoneCall name='tariff#61' payment='15' subscribers='2375' wminutes='110' aminutes='507'/>
+	<PhoneCall name='tariff#62' payment='53' subscribers='2423' wminutes='259' aminutes='216'/>
+	<Internet name='tariff#63' payment='21' subscribers='1645' mbs='9622'/>
+	<Internet name='tariff#64' payment='79' subscribers='2401' mbs='8473'/>
+	<Internet name='tariff#65' payment='37' subscribers='2311' mbs='7816'/>
+	<Internet name='tariff#66' payment='28' subscribers='2740' mbs='4997'/>
+	<PhoneCall name='tariff#67' payment='26' subscribers='549' wminutes='588' aminutes='96'/>
+	<PhoneCall name='tariff#68' payment='94' subscribers='3425' wminutes='283' aminutes='482'/>
+	<Internet name='tariff#69' payment='91' subscribers='1031' mbs='6900'/>
+	<Internet name='tariff#70' payment='66' subscribers='2633' mbs='2684'/>
+	<PhoneCall name='tariff#71' payment='38' subscribers='2945' wminutes='211' aminutes='397'/>
+	<Internet name='tariff#72' payment='62' subscribers='1707' mbs='2601'/>
+	<Internet name='tariff#73' payment='15' subscribers='4230' mbs='794'/>
+	<Internet name='tariff#74' payment='61' subscribers='1015' mbs='4122'/>
+	<SMS name='tariff#75' payment='81' subscribers='925' messages='155'/>
+	<Internet name='tariff#76' payment='29' subscribers='3411' mbs='4188'/>
+	<SMS name='tariff#77' payment='40' subscribers='4544' messages='324'/>
+	<PhoneCall name='tariff#78' payment='82' subscribers='4525' wminutes='117' aminutes='73'/>
+	<SMS name='tariff#79' payment='43' subscribers='3453' messages='494'/>
+	<PhoneCall name='tariff#80' payment='23' subscribers='1294' wminutes='535' aminutes='90'/>
+	<PhoneCall name='tariff#81' payment='46' subscribers='4780' wminutes='907' aminutes='218'/>
+	<SMS name='tariff#82' payment='89' subscribers='2294' messages='494'/>
+	<SMS name='tariff#83' payment='95' subscribers='1946' messages='354'/>
+	<SMS name='tariff#84' payment='82' subscribers='326' messages='318'/>
+	<SMS name='tariff#85' payment='32' subscribers='1061' messages='71'/>
+	<SMS name='tariff#86' payment='71' subscribers='186' messages='250'/>
+	<PhoneCall name='tariff#87' payment='97' subscribers='4599' wminutes='494' aminutes='72'/>
+	<Internet name='tariff#88' payment='46' subscribers='2039' mbs='9646'/>
+	<PhoneCall name='tariff#89' payment='27' subscribers='1895' wminutes='430' aminutes='449'/>
+	<Internet name='tariff#90' payment='54' subscribers='1470' mbs='1858'/>
+	<SMS name='tariff#91' payment='62' subscribers='2602' messages='316'/>
+	<Internet name='tariff#92' payment='22' subscribers='3149' mbs='9096'/>
+	<PhoneCall name='tariff#93' payment='67' subscribers='637' wminutes='348' aminutes='267'/>
+	<SMS name='tariff#94' payment='17' subscribers='1838' messages='186'/>
+	<PhoneCall name='tariff#95' payment='32' subscribers='3905' wminutes='992' aminutes='214'/>
+	<Internet name='tariff#96' payment='64' subscribers='4929' mbs='2139'/>
+	<PhoneCall name='tariff#97' payment='86' subscribers='1210' wminutes='148' aminutes='356'/>
+	<Internet name='tariff#98' payment='28' subscribers='4145' mbs='881'/>
+	<SMS name='tariff#99' payment='41' subscribers='4164' messages='291'/>
+</Tariffs>

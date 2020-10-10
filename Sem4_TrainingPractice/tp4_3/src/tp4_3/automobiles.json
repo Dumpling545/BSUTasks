@@ -1,0 +1,17 @@
+{
+  "title": "Automobiles",
+  "names": [
+    "Audi",
+    "Ford",
+    "Volkswagen",
+    "Toyota",
+    "Peugeot"
+  ],
+  "values": [
+    1200,
+    780,
+    950,
+    1300,
+    500
+  ]
+}

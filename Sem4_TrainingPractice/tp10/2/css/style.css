@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&family=Ruslan+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Seymour+One&display=swap');
+:root {
+  --h3-default-color: red;
+}
+@keyframes h3Spin {
+  0%   {color:var(--h3-default-color); }
+  25%  {color:yellow; transform: translate(200px, 0) rotate(90deg);} 
+  50%  {color:blue; transform: translate(0px, 0)rotate(180deg);}
+  75%  {color:green; transform:  translate(-200px, 0) rotate(270deg);}
+  100% {color:var(--h3-default-color); transform: rotate(360deg);}
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	background-image: url("../images/background.jpg");
+}
+nav {
+	display: block;
+	margin: 0;
+	width: 100%;
+	height: 100px;
+}
+#logo img {
+	width:auto;
+	height: 100px;
+}
+#logo {
+float: left;
+margin: 0;
+width:100px;
+height: 100px;
+display: inline-block;
+}
+nav ul{
+	margin: 0;
+	padding: 0;
+	font-family: Amatic SC;
+	font-size: 300%;
+}
+footer, #navList {
+	background-color: #ccffff;
+}
+#forkImage{
+	width: 50%;
+	border-radius: 5%;
+	border: 3px solid #ddd;
+}
+#wheelImage{
+	width: 100%;
+	border: 3px inset cyan;
+}
+#wheelParts dt, dd{
+	font-size: 130%;
+}
+#wheelParts dd{
+	font-family: Marck Script;
+}
+#wheelParts dt{
+	background-color: #800000;
+	color: white;
+	padding: 3px;
+	border-radius: 5px;
+}
+#navList {
+display: inline-block;
+padding-top: 0;
+margin: 0;
+width: calc(100% - 100px);
+float: left;
+text-align: center;
+height: 100px;
+}
+
+#navList li {
+display: inline;
+text-align: center;
+margin: 0;
+padding-top: 0;
+float: right;
+list-style-type: none;
+padding: 0 5px;
+}
+#navList a {
+padding-top: 0;
+display: table-cell;
+vertical-align: middle;
+margin: 0;
+width:100px;
+text-align: center;
+text-decoration: none;
+height: 100px;
+color: #8c8c8c;
+}
+p{
+	text-indent: 40px;
+}
+section{
+	padding: 10px;
+	border-width: 4px;
+	border-style: dotted dashed solid double;
+	border-color: #663300;
+	background-image: linear-gradient(to right, #ffcccc,#ffd1b3,#ffff99,#99ff99,#99ebff,#d499ff,#f6bcf6); 
+	margin: auto;
+	width: 50%;
+	margin-bottom: 0;
+}
+footer{
+	margin: 0;
+	text-align: center;
+}
+footer a{
+	text-decoration: none;
+	color: green;
+}
+h3{
+	font-size: 300%;
+	color: var(--h3-default-color);
+	font-family: 'Jura';
+	animation-delay: 3s;
+	animation-name: h3Spin;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+h4{
+	font-size: 200%;
+	color: yellow;
+	text-shadow: -2px 0 darkblue, 0 2px darkblue, 2px 0 darkblue, 0 -2px darkblue;
+	font-family: 'Seymour One';
+	font-weight: bold;
+}
+.pacifico {
+	font-family: Pacifico;
+	text-shadow: 2px 2px 5px red;
+}
+.montserrat-alternates {
+	text-decoration: line-through;
+	font-family: Montserrat Alternates;
+}
+.ruslan-display{
+	font-family: Ruslan Display;
+	color: #006600;
+}
+.spaced-text{
+	letter-spacing: 6px;
+}
+.emphasize{
+	font-size: 120%;
+	font-family: Kelly Slab;
+}
+.press-start{
+	font-family: 'Press Start 2P', cursive;
+}
+#forkTypes{
+	list-style-type: square;
+	background: #3399ff;
+	padding: 20px;
+}
+#forkTypes li {
+  background: #cce5ff;
+  margin: 5px;
+}
+dfn{
+	font-size: 140%;
+	font-family: Impact, Charcoal, sans-serif;
+	font-style: italic;
+	color: #cc0000;
+}
+#forkTable{
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 3px solid red;
+  border-style: ridge;
+}
+#frameMaterials {
+  list-style-type: upper-roman;
+  background: #ff9999;
+  padding: 20px;
+}
+#frameMaterials li {
+  background: #ffe5e5;
+  padding: 5px;
+  margin-left: 35px;
+}
+th {
+  background-color: #3366ff;
+}
+tr {
+  height: 50px;
+  vertical-align: bottom;
+  background-color: #ccd9ff;
+}
+tr:nth-child(even){background-color: #f2f2f2}

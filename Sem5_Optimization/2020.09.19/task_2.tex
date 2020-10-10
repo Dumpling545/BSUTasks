@@ -1,0 +1,203 @@
+\documentclass[11pt]{article} 
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtext}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,bulgarian,ukrainian,russian]{babel}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{xcolor}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+\pgfplotsset{height=14cm,compat=1.9}
+\begin{document}
+\textbf{Задание 2}. Решить графически следующую задачу ЛП как на максимум, так и на минимум:
+
+Целевая функция:\quad  \textbf{13.}\  $\phi = 5x_1 + x_2 - 4x_3 - 2x_4$
+
+Ограничения:\quad \textbf{14(6в).}\  $
+\begin{array}{l}
+\systeme*{  
+2x_1 + x_2 - x_3  -x_4 = 6, 
+x_1 - x_2 + 2x_3 + 9x_4 = 10, 
+3x_1 + x_2 - 2x_3  - 9x_4 \leq 6,
+18x_1 + 3x_2 +x_3  - x_4 \geq 30}\\
+x_1 \geq 0,\ x_2 \geq 0, \ x_3 \geq 0, x_4 \geq 0
+\end{array}
+$
+
+
+ \hfill
+
+\textbf{Решение: } Используя ограничения задачи,
+выразим $x_3, x_4$ через $x_1, x_2$:
+
+\begin{equation*}
+\systeme*{  
+2x_1 + x_2 - x_3  -x_4 = 6, 
+x_1 - x_2 + 2x_3 + 9x_4 = 10} \implies \begin{amatrix}{4}
+   2 & 1 & -1 & -1 & 6\\  1 & -1 & 2 & 9 & 10
+ \end{amatrix}  \implies
+\end{equation*}
+\begin{equation*}
+\implies
+\begin{amatrix}{4}
+   -2 & -1 & 1 & 1 & -6\\  5 & 1 & 0 & 7 & 22
+ \end{amatrix}  
+\implies
+\begin{amatrix}{4}
+   -2 & -1 & 1 & 1 & -6\\  \frac57 & \frac17 & 0 & 1 & \frac{22}7
+ \end{amatrix}  \implies
+\end{equation*}
+\begin{equation*}
+\implies
+\begin{amatrix}{4}
+   -\frac{19}7 & -\frac87 & 1 & 0 & -\frac{64}7\\  \frac57 & \frac17 & 0 & 1 & \frac{22}7
+ \end{amatrix}  
+ \implies
+ \begin{cases}
+x_3 =  \frac{19}7x_1  + \frac87x_2  -\frac{64}7  \geq 0,\\ 
+x_4 = -\frac57x_1 - \frac17x_2 +  \frac{22}7 \geq 0
+\end{cases}.
+\end{equation*}
+
+Подставим в оставшиеся ограничения полученные выражения:
+\begin{equation*}
+\systeme*{  
+3x_1 + x_2 - 2x_3  - 9x_4 \leq 6,
+18x_1 + 3x_2 +x_3  - x_4 \geq 30}\\ \implies
+\begin{cases} 
+3x_1 + x_2 - 2\left(\frac{19}7x_1  + \frac87x_2  -\frac{64}7\right)  - 9\left(-\frac57x_1 - \frac17x_2 +  \frac{22}7\right) \leq 6\\
+18x_1 + 3x_2 +\left(\frac{19}7x_1  + \frac87x_2  -\frac{64}7\right) - \left(-\frac57x_1 - \frac17x_2 +  \frac{22}7\right) \geq 30
+\end{cases}
+\end{equation*}
+\begin{equation*}
+ \implies
+\begin{cases} 
+x_1  \leq 4\\
+75x_1 + 15x_2  \geq 148
+\end{cases}
+\end{equation*}
+Также подставим выражения для $x_3, x_4$ в целевую функцию: 
+
+\begin{equation*}
+\phi = 5x_1 + x_2 - 4x_3 - 2x_4 = \frac17(-31x_1 - 23x_2 + 212)
+\end{equation*}
+
+Таким образом наша задача ЛП сводится к задаче ЛП меньшей размерности:
+
+Целевая функция:\quad  $\phi_0 = -31x_1 - 23x_2$
+
+\hfill
+
+Ограничения:\quad $
+\begin{array}{l}
+\systeme*{  
+\mathcolor{red}{75x_1 + 15x_2  \geq 148}, 
+\mathcolor{green}{19x_1  +8x_2  \geq 64}, 
+\mathcolor{blue}{5x_1 + x_2 \leq 22}}\\
+0\leq \mathcolor{brown}{x_1 \leq 4},\ 0 \leq x_2 
+\end{array}$
+
+\hfill
+
+Изобразив на графике множество планов и 
+вектор нормали целевой функций, мы видим, что решением
+задачи ЛП на минимум будет точка пересечения оси $Ox_2$ и
+прямой $ \mathcolor{blue}{5x_1 + x_2 = 22}$, а решением задачи
+ЛП на максимум -- точка пересечения оси $Ox_1$ и прямой \  $\mathcolor{green}{19x_1  +8x_2  = 64}$.
+
+\hfill
+
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=-1, xmax=25,
+        ymin=-1, ymax=25,
+        axis lines = center,
+        axis equal,
+        xlabel = $x_1$,
+        ylabel = {$x_2$},
+      ]  
+      \addplot[red, samples=200,  domain=-1:25,  name path=A] {(148 - 75*x)/15}; 
+      \addplot[green, samples=200,  domain=-1:25, name path=B] {(64 - 19*x)/8}; 
+      \addplot[blue, samples=200, domain=-1:25, name path=C] {22 - 5*x}; 
+      \addplot[black, samples=200,  domain=-1:25,  name path=xAxis] {0}; 
+      \addplot +[brown, samples=200, mark=none] coordinates {(4, -1) (4, 25)};
+     \addplot[gray, pattern=north west lines] fill between[of=C and xAxis, soft clip={domain=3.368421052:4}];
+    \addplot[gray, pattern=north west lines] fill between[of=C and B, soft clip={domain=0.71111111:3.368421052}];
+     \addplot[gray, pattern=north west lines] fill between[of=A and C, soft clip={domain=0:0.71111111}];
+     \addplot[violet, samples=100, domain=-1:25, name path=E] {23/31*x}; 
+     \addplot[violet,<-] coordinates
+           {(3,23/31*3) (4,23/31*4)};
+      \addplot[violet,<-] coordinates
+           {(7,23/31*7) (8,23/31*8)};
+      \addplot[violet,<-] coordinates
+           {(11,23/31*11) (12,23/31*12)};
+     \addplot[violet,<-] coordinates
+           {(15,23/31*15) (16,23/31*16)};
+         \addplot[violet,<-] coordinates
+           {(19,23/31*19) (20,23/31*20)};
+     \addplot[violet,<-] coordinates
+           {(23,23/31*23) (24,23/31*24)};
+     \addplot[violet, dashed,  samples=100, domain=-1:25, name path=F] {-31/23*x + 22}; 
+     \addplot[violet, dashed,  samples=100, domain=-1:25, name path=G] {-31/23*x + 4.54004576659}; 
+     \node[label={0:\textcolor{violet}{min}}, circle,fill,inner sep=1.5pt, violet] at (axis cs:0, 22) {};
+     \node[label={135:\textcolor{violet}{max}}, circle,fill,inner sep=1.5pt, violet] at (axis cs:64/19, 0) {};
+    \end{axis}
+\end{tikzpicture}
+
+Найдём точку минимума: 
+\begin{equation*}
+\systeme*{x_1 = 0, 5x_1 + x_2 = 22} \implies \begin{cases}
+x_1 = 0,\\ x_2 = 22\end{cases}
+\end{equation*}
+
+и максимума:
+\begin{equation*}
+\systeme*{x_2 = 0, 19x_1  +8x_2  = 64} \implies \begin{cases}
+x_1 = \frac{64}{19},\\ x_2 = 0\end{cases}
+\end{equation*}
+
+\hfill
+
+Теперь вычислим $x_3, x_4$ в точке минимума, используя ранее полученные выражения:
+
+\begin{equation*}
+\begin{cases}
+x_3 =  \frac{19}7\cdot{}0 + \frac87\cdot{}22  -\frac{64}7  =  16,\\ 
+x_4 = -\frac57\cdot{}0 - \frac17\cdot{}22 +  \frac{22}7 = 0
+\end{cases}.
+\end{equation*}
+Аналогично для максимума:
+
+\begin{equation*}
+\begin{cases}
+x_3 =  \frac{19}7\cdot{}\frac{64}{19} + \frac87\cdot{}0  - \frac{64}7  =  0,\\ 
+x_4 = -\frac57\cdot{}\frac{64}{19} - \frac17\cdot{}0 +  \frac{22}7 = \frac{14}{19}
+\end{cases}.
+\end{equation*}
+
+\hfill
+
+\textbf{Ответ: } $min = (0; 22; 16; 0),\  max = (\frac{64}{19}; 0; 0;  \frac{14}{19})$
+\end{document}

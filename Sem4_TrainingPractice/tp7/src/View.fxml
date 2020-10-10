@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <Label fx:id="label" layoutX="14.0" layoutY="136.0" prefHeight="128.0" prefWidth="346.0">
+         <font>
+            <Font name="System Bold" size="60.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="logArea" editable="false" layoutX="372.0" layoutY="40.0" prefHeight="321.0" prefWidth="200.0" />
+   </children>
+</Pane>

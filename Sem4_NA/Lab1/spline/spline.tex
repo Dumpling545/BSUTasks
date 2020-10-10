@@ -1,0 +1,76 @@
+\documentclass[fleqn]{article}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm,bindingoffset=0cm]{geometry}
+\usepackage{subfiles}
+\usepackage[bookmarks]{hyperref}
+
+
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{cmap}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{titling}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{esint}
+\usepackage{etoolbox}
+\usepackage{soul}
+\usepackage{cancel}
+\usepackage{centernot}
+\DeclareMathOperator\Ln{Ln}
+\DeclareMathOperator\Imaginary{Im}
+\DeclareMathOperator\Real{Re}
+\begin{document}
+
+Кордияко Ян, 2 курс, 1 группа
+
+\textbf {Задание 3}. Построить квадратуру Гаусса с тремя узлами для вычисления интеграла
+$I(f) = \int_{-1}^1 f(x) dx$.
+
+Квадратура Гаусса по трём узлам имеет вид:
+
+\begin{equation*}
+	S_3(f) = D_1\cdot{}f(x_1) + D_2\cdot{}f(x_2) + D_3\cdot{}f(x_3)
+\end{equation*}
+
+По определению, квадратура точна для всех многочленов степени $2n - 1$. Иначе
+говоря, для определения $D_1, D_2, D_3, x_1, x_2, x_3$ необходимо решить систему
+\begin{equation*}
+	\begin{cases}
+	D_1 + D_2 + D_3 =   \int_{-1}^1 1 dx= 2\\
+	D_1\cdot{}x_1 + D_2\cdot{}x_2 + D_3\cdot{}x_3 =   \int_{-1}^1 x dx = 0\\
+	D_1\cdot{}x_1^2 + D_2\cdot{}x_2^2 + D_3\cdot{}x_3^2 =   \int_{-1}^1 x^2 dx = \frac23\\
+	D_1\cdot{}x_1^3 + D_2\cdot{}x_2^3 + D_3\cdot{}x_3^3 =   \int_{-1}^1 x^3  dx = 0\\
+	D_1\cdot{}x_1^4 + D_2\cdot{}x_2^4 + D_3\cdot{}x_3^4 =   \int_{-1}^1 x^4 dx = \frac25\\
+	D_1\cdot{}x_1^5 + D_2\cdot{}x_2^5 + D_3\cdot{}x_3^5 =   \int_{-1}^1 x^5 dx = 0\\
+	\end{cases}
+\end{equation*}
+
+В силу того, что функцией веса является $p(x) \equiv 1$,  искомые $D_1, D_2, D_3$, а
+также числа $d_1, d_2, d_3$, вычисляемые по формуле $d_j = \frac{2x_j - (a+b)}{b - a}$
+не зависят от отрезка интегрирования $[a, b]$. Более того, для отрезка
+$[-1, 1]$ получаем, что $d_j = x_j$. Поэтому мы можем воспользоваться 
+предвычисленными значениями из \textbf {Таблицы 1} 
+(\emph{Бахвалов, Жидков, Кобельков. Численные методы}, стр. 110):
+\begin{equation*}
+	\begin{cases}
+	D_1  = D_3 \approx 0.5555555556 \\
+	D_2 \approx 0.8888888888 \\
+	x_1 \approx - 0.7745966692 \\
+	x_2 = 0 \\
+	x_3 \approx  0.7745966692
+	\end{cases}
+\end{equation*}
+Таким образом, искомая квадратура Гаусса примет вид: 
+\begin{equation*}
+	S_3(f) = 0.5555555556\cdot{}f(- 0.7745966692) +
+	0.8888888888\cdot{}f(0) + 
+	0.5555555556\cdot{}f(0.7745966692).
+\end{equation*}
+\end{document}

@@ -1,0 +1,249 @@
+\documentclass[fleqn]{article}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm,bindingoffset=0cm]{geometry}
+\usepackage{subfiles}
+\usepackage[bookmarks]{hyperref}
+
+
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{cmap}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{titling}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{esint}
+\usepackage{etoolbox}
+\usepackage{soul}
+\usepackage{cancel}
+\usepackage{centernot}
+\DeclareMathOperator\Ln{Ln}
+\DeclareMathOperator\Imaginary{Im}
+\DeclareMathOperator\Real{Re}
+\begin{document}
+
+Кордияко Ян, 2 курс, 1 группа
+
+Вариант 12
+
+\textbf {Задание 1}. Доказать, что оператор $A: C[1, 5] \xrightarrow{} C[1, 5]$, является линейным
+ограниченным и найти его норму:
+\begin{equation*} 
+	Ax(t) = (t^3 - 3t)x(t).
+\end{equation*}
+
+Очевидно, что оператор $A$ линеен:
+\begin{equation*} 
+	A(\alpha{}x(t) + \beta{}y(t)) = (t^3 - 3t)(\alpha{}x(t) + \beta{}y(t)) = 
+	\alpha{}(t^3 - 3t)x(t) + \beta{}(t^3 - 3t)y(t) = \alpha{}Ax(t) + \beta{}Ay(t)
+\end{equation*}
+
+Покажем, что оператор $A$ ограничен:
+\begin{equation*} 
+	||Ax(t)||_{ C[1, 5]} = \max_{1 \leq t \leq 5}{|Ax(t)|}  = \max_{1 \leq t \leq 5}{|(t^3 - 3t)x(t)|} \leq
+	\max_{1 \leq t \leq 5}{|(t^3 - 3t)|}\max_{1 \leq t \leq 5}{|x(t)|} = 110||x(t)||_{ C[1, 5]}
+\end{equation*}
+
+Так как взяв функцию $x_0(t) = 1$, мы получим выше равенство,  норма оператора $||A|| = 110$, более того, она достижима.
+
+\textbf {Задание 2}. Доказать, что оператор $A: L_5[-1, 1] \xrightarrow{} L_5[-1, 1]$, является линейным
+ограниченным и найти его норму:
+\begin{equation*} 
+	Ax(t) = (t^2 - t)x(t^5).
+\end{equation*}
+
+Очевидно, что оператор $A$ линеен:
+\begin{equation*} 
+	A(\alpha{}x(t) + \beta{}y(t)) = (t^2 - t)(\alpha{}x(t^5) + \beta{}y(t^5)) = 
+	\alpha{} (t^2 - t)x(t^5) + \beta{} (t^2 - t)y(t^5) = \alpha{}Ax(t) + \beta{}Ay(t)
+\end{equation*}
+
+Покажем, что оператор $A$ ограничен:
+\begin{equation*} 
+	||Ax(t)||_{ L_5[-1, 1]} = \left(\int_{-1}^1 |Ax(t)|^5 dt\right)^{1/5} = 
+	\left(\int_{-1}^1 |t - 1|^5 |t|^5 |x(t^5)|^5 dt\right)^{1/5} =
+\end{equation*}
+\begin{equation*} 
+	= 5^{-1/5}\left(\int_{-1}^1 |s^{1/5} - 1|^5 |s|^{1/5} |x(s)|^5 ds\right)^{1/5}
+	 \leq
+	 5^{-1/5}\left(\int_{-1}^1 \max_{-1 \leq r \leq 1}{(|r^{1/5} - 1|^5 |r|^{1/5})} |x(s)|^5 ds\right)^{1/5} = 
+\end{equation*}
+\begin{equation*} 
+	= 
+	\frac{5^{4/5}}{6^{6/5}}\cdot{}\left(\int_{-1}^1 |x(s)|^5 ds\right)^{1/5} = 
+	\frac{5^{4/5}}{6^{6/5}}\cdot{}||x(t)||_{ L_5[-1, 1]}
+\end{equation*}
+	
+	Следовательно, $||A|| \leq \frac{5^{4/5}}{6^{6/5}}$. 
+	С другой стороны, $||A|| \geq \frac{||Ax||}{||x||}$ для всех $x(t) \in  L_5[-1, 1]$. 
+	Выберем подпоследовательность
+	\begin{equation*} 
+		x_n(t) = 	\begin{cases}
+					0, t \in [-1, \frac1{7776} - \frac1n), \\
+					1, t \in [\frac1{7776} - \frac1n, \frac1{7776}), \\
+					0, t \in [\frac1{7776}, 1]
+				\end{cases}
+	\end{equation*}
+	
+	норма которой:
+	\begin{equation*} 
+		||x_n(t)||_{ L_5[-1, 1]} = \left(\int_{\frac1{7776} - \frac1n}^\frac1{7776} dt\right)^{1/5} = n^{-1/5}
+	\end{equation*}
+	Имеем:
+	\begin{equation*} 
+	||Ax_n(t)||_{ L_5[-1, 1]} = \left(\int_{\frac1{7776} - \frac1n}^\frac1{7776}  |t - 1|^5 |t|^5 dt\right)^{1/5} = 
+	 \left(\int_{\frac1{7776} - \frac1n}^\frac1{7776}  (1 - t)^5 t^5 dt\right)^{1/5}
+	\end{equation*}
+\textbf {Задание 3}. Доказать, что оператор $A: C[-1, 2] \xrightarrow{} C[0, 3]$, является линейным
+ограниченным и найти его норму:
+\begin{equation*} 
+	Ax(t) = \int_{-1}^1 s^3(t^3 - t)x(s)ds.
+\end{equation*}
+	Очевидно, что оператор $A$ линеен:
+\begin{equation*} 
+	A(\alpha{}x(t) + \beta{}y(t)) = \int_{-1}^1 s^3(t^3 - t)(\alpha{}x(s) + \beta{}y(s))ds = 
+	\alpha\int_{-1}^1 s^3(t^3 - t)x(s)ds + \beta\int_{-1}^1 s^3(t^3 - t)y(s)ds = \alpha{}Ax(t) + \beta{}Ay(t)
+\end{equation*}
+Покажем, что оператор $A$ ограничен:
+
+\begin{equation*} 
+	||Ax||_ {C[0, 3]} = \max_{0 \leq t \leq 3}{|Ax(t)|} =  
+	\max_{0 \leq t \leq 3}{\left|\int_{-1}^1 s^3(t^3 - t)x(s)ds\right|} \leq
+	\max_{0 \leq t \leq 3}{|t^3 - t|}\cdot{}\int_{-1}^1 |s^3||x(s)|ds \leq
+	24\cdot{}\int_{-1}^1 |s^3|\max_{-1 \leq u \leq 1}{|x(u)|}ds = 
+\end{equation*}	
+\begin{equation*} 
+	= 24\cdot{}\max_{-1 \leq u \leq 1}{|x(u)|}\cdot{}2\cdot\int_{0}^1 s^3 ds \leq
+	12\cdot{}\max_{-1 \leq u \leq 2}{|x(u)|} = 12||x||_{C[-1, 2]}
+\end{equation*}
+
+	Следовательно, $||A|| \leq 12$. Покажем, что $||A|| \geq 12$. Заметим, что
+	при любом фиксированном $t \in [-1, 2]$ ядро $K(t, s) = (t^3 - t)*s^3$ интегрального оператора по 	переменнной $s \in [-1, 1]$ меняет знак, поэтому построим последовательность $x_n(t)$ вида:
+	\begin{equation*} 
+	x_n(t) = 	\begin{cases}
+					-1, t \in [-1,-\frac1n), \\
+					nt, t \in [-\frac1n, \frac1n], \\
+					1, t \in (\frac1n, 2]
+				\end{cases}
+\end{equation*}
+	с нормой $||x_n||_{C[-1, 2]} = 1$. Тогда:
+	\begin{equation*} 
+	||A|| \geq ||Ax_n||_{C[0, 3]} =  \max_{0 \leq t \leq 3}{|Ax_n(t)|} =
+	\max_{0 \leq t \leq 3}{|t^3 - t|}\left|\int_{-1}^{-\frac1n} -s^3 ds + 
+	\int_{-\frac1n}^{\frac1n} s^3ns ds + \int_{\frac1n}^{1} s^3 ds\right| =
+	\end{equation*}
+	\begin{equation*} 
+	 =\max_{0 \leq t \leq 3}{\left|(t^3 - t)\left(\frac12 - \frac1{2n^4} + \frac2{5n^4}\right)\right|} =
+	 12 - O(\frac1{n^4}).
+	\end{equation*}
+	Следовательно, $||A|| = 12$.
+	
+\textbf {Задание 4}. Вычислить норму оператора $A: L_2[-1, 1] \xrightarrow{} L_1[0, 3]$:
+\begin{equation*} 
+	Ax(t) = \int_{-1}^1 s^3(1 - t)x(s)ds.
+\end{equation*}
+
+\begin{equation*} 
+	||Ax||_{ L_1[0, 3]} = \int_0^3 \left| \int_{-1}^1 s^3(1 - t)x(s)ds\right| dt =
+	 \left| \int_{-1}^1 s^3x(s)ds\right|  \int_0^3 |1 - t| dt = \frac52 \cdot  \left| \int_{-1}^1 s^3x(s)ds\right| \leq
+	 \frac52 \cdot \int_{-1}^1 |s^3x(s)|ds \leq
+\end{equation*}
+\begin{equation*} 
+	\leq \left[\text{Неравенство Гёльдера, } p = q = 2\right]
+	 \leq  \frac52 \cdot \left(\int_{-1}^1 s^6 ds \right)^{1/2} \cdot
+	  \left(\int_{-1}^1 |x(s)|^2 ds \right)^{1/2} =
+	  \frac5{\sqrt{14}}\cdot{}||x||_{L_2[-1, 1]}
+\end{equation*}
+
+То есть $||A|| \leq  \frac5{\sqrt{14}}$.Покажем, 
+что $||A|| \geq  \frac5{\sqrt{14}}$. 
+Выберем в качестве функции $x(t)$ функцию $x_0(t) = t^3, t\in [-1, 1]$, поскольку именно
+для такой функции неравенство Гёльдера, которое было использовано выше при проведении оценок,
+обратится в равенство. Тогда:
+\begin{equation*} 
+	||Ax_0||_{ L_1[0, 3]} = \int_0^3 \left| \int_{-1}^1 s^3(1 - t)s^3ds\right| dt =
+	   \frac52 \cdot  \left| \int_{-1}^1 s^6 ds\right| = \frac57
+\end{equation*}
+\begin{equation*} 
+	||x_0||_{L_2[-1, 1]} =  \left(\int_{-1}^1 s^6 ds \right)^{1/2} = \sqrt{\frac27}
+\end{equation*}
+\begin{equation*} 
+	||A|| \geq \frac{||Ax_0||_{ L_1[0, 3]}}{||x_0||_{L_2[-1, 1]}} = \frac{\frac57}{\sqrt{\frac27}} =  \frac5{\sqrt{14}}
+\end{equation*}
+Следовательно, $||A|| = \frac5{\sqrt{14}}$.
+
+\textbf {Задание 5}. Вычислить норму оператора $A: C[-1, 1] \xrightarrow{} L_{3/2}[0, 1]$:
+\begin{equation*} 
+	Ax(t) = \int_{-1}^1 s^3(1 - t)x(s)ds + tx(0).
+\end{equation*}
+
+\begin{equation*} 
+	||Ax||_{ L_2[0, 1]} =\left(\int_0^1 |Ax(t)|^{3/2} dt\right)^{2/3} = 
+	\left(\int_0^1 \left|(1 - t)\int_{-1}^1 s^3x(s)ds + tx(0)\right|^{3/2} dt\right)^{2/3}
+\end{equation*}
+
+Оценим выражение, стоящее под знаком модуля:
+
+\begin{equation*} 
+	\left|(1 - t)\int_{-1}^1 s^3x(s)ds + tx(0)\right| \leq 
+	|1 - t|\int_{-1}^1 |s^3||x(s)|ds + |t||x(0)|\leq 
+	|1 - t|\int_{-1}^1 |s^3|\max_{-1 \leq u \leq 1}{|x(u)|}ds + |t|\max_{-1 \leq u \leq 1}{|x(u)|}\leq 
+\end{equation*}
+\begin{equation*} 
+	\leq \max_{-1 \leq u \leq 1}{|x(u)|}\left(\frac{|1 - t|}2 + |t|\right)=
+	\left[\quad t\in [0,1] \quad\right] =\frac{1 + t}2\cdot{||x||_{C[-1,1]}},\quad \text{для }\quad t \in [0, 1]
+\end{equation*}
+
+Полученную оценку подставим в выражение для нормы $||Ax||_{ L_2[0, 1]}$:
+\begin{equation*} 
+	||Ax||_{ L_2[0, 1]} \leq \left(\int_0^1 \left(\frac{1 + t}2\right)^{3/2} dt\right)^{2/3}\cdot{||x||_{C[-1,1]}}
+\end{equation*}
+
+Откуда следует, что $||A|| \leq \left(\int_0^1 \left(\frac{1 + t}2\right)^{3/2} dt\right)^{2/3}$. 
+Для доказательства неравеснства в обратную сторону потроим
+последовательность
+\begin{equation*} 
+	x_n(t) = 	\begin{cases}
+			-1, t \in [-1,-\frac1n], \\
+			-2nt + 1, t \in (-\frac1n, 0), \\
+			1, t \in [0, 1]
+		\end{cases}
+\end{equation*}
+с нормой $||x_n||_{C[-1,1]} = 1$. Тогда:
+\begin{equation*} 
+	||A|| \geq ||Ax_n(t)|| = 
+	\left(\int_0^1 \left|(1 - t)\left(\int_{-1}^{-1/n} -s^3ds + \int_{-1/n}^{0} s^3(-2ns + 1)ds + \int_{0}^1 s^3ds\right) + t\right|^{3/2} dt\right)^{2/3} =
+\end{equation*}
+\begin{equation*} 
+	 = \left(\int_0^1 \left|(1 - t)\left(\frac14 - \frac1{4n^4} - \frac{13}{20 n^4} + \frac14\right) + t\right|^{3/2} dt\right)^{2/3} = \left(\int_0^1 \left(\frac{1 + t}2\right)^{3/2} dt\right)^{2/3} - O\left(\frac1n\right)
+\end{equation*}
+	Это означает, что $||A|| = \left(\int_0^1 \left(\frac{1 + t}2\right)^{3/2} dt\right)^{2/3} = \left(\frac1{10}\cdot{}(8 - \sqrt{2})\right)^{2/3}$
+	
+	\textbf {Задание 6}. Вычислить норму оператора $A: l_2\xrightarrow{}l_2$:
+\begin{equation*} 
+	Ax = \left(\frac{x_1\sin1}{3},\frac{x_2\sin2}{3^2}, ..., \frac{x_k\sin{k}}{3^k}, ... \right).
+\end{equation*}
+
+	Так как последовательность $\frac{\sin{k}}{3^k}$ ограничена, то  $\exists\sup_k{\left|\frac{\sin{k}}{3^k}\right|} = \frac{sin 1}{3}$. Тогда:
+	\begin{equation*} 
+	||Ax||_{l_2} = \left(\sum_{k=1}^{\infty}\left(\frac{x_k\sin{k}}{3^k}\right)^2\right)^{1/2} =
+	\left(\sum_{k=1}^{\infty}\left(\frac{\sin{k}}{3^k}\right)^2x_k^2\right)^{1/2} \leq
+	\left(\sum_{k=1}^{\infty}\left(\sup_n{\left|\frac{\sin{n}}{3^n}\right|}\right)^2x_k^2\right)^{1/2} = 
+\end{equation*}
+\begin{equation*} 
+	= \frac{sin 1}{3} \cdot{\left(\sum_{k=1}^{\infty}x_k^2\right)^{1/2} } = \frac{sin 1}{3} \cdot{||x||_{l_2}}.
+\end{equation*}
+	Возьмём последовательность $x_0 = (1, 0, 0, ..., 0, ...)$. Очевидно, что для неё 
+	$||x_0||_{l_2} = 1$. Посчитаем $||Ax_0||_{l_2}$:
+	\begin{equation*} 
+	||Ax_0||_{l_2} = \frac{\sin{1}}{3}
+\end{equation*}
+
+Тогда $||A|| = \frac{\sin{1}}{3}$. Более того, норма достижима.
+\end{document}

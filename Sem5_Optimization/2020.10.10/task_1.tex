@@ -1,0 +1,172 @@
+\documentclass[11pt]{article} 
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtext}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,bulgarian,ukrainian,russian]{babel}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{xcolor}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+\begin{document}
+\textbf{Задание 1}. Решить графически следующую задачу ЛП как на максимум, так и на минимум:
+
+Целевая функция:\quad  \textbf{11.}\  $\phi = 4x_1 + 3x_2$
+
+Ограничения:\quad \textbf{12.}\  $
+\begin{array}{l}
+\systeme{  x_2 \leq 4, -4x_1 + 7x_2 \geq - 28, 3x_1 + x_2 \geq 3}\\
+x_1 \geq 0,\ x_2 \geq 0
+\end{array}
+$
+
+ \hfill
+
+Ответ: $min = (1; 0),\  max = (14; 4)$
+
+Построим  \textbf{двойственную задачу}, используя
+мнемоническое правило:
+\begin{enumerate}
+	\item Вводим новые переменные, соответствующие основным ограничениям задачи:
+
+	$$y = (y_1, y_2, y_3)^T$$
+	\item \begin{enumerate}
+		\item $min \rightarrow{} max$
+		\item $max \rightarrow{} min$
+	\end{enumerate}
+	\item $$A_{\text{двойственная}} = A^T = 
+	\begin{bmatrix}
+	0 & -4 & 3\\
+	1 & 7 & 1
+	\end{bmatrix}$$
+	$$b_{\text{двойственная}} = c =\begin{bmatrix}
+	4\\
+	3
+	\end{bmatrix}$$
+	$$c_{\text{двойственная}} = b =\begin{bmatrix}
+	4\\
+	-28\\
+	3
+	\end{bmatrix}$$
+	\item  \begin{enumerate}
+		\item В случае  $min \rightarrow{} max$ 
+		основные ограничения двойственной задачи будут иметь следующие знаки:
+		\begin{enumerate}
+			\item $\leq$ 
+			\item $\leq$,
+		\end{enumerate}
+		а прямые ограничения:
+		\begin{enumerate}
+			\item $\leq$
+			\item $\geq$
+			\item $\geq$
+		\end{enumerate}
+		\item В случае   $max \rightarrow{} min$ 
+		основные ограничения двойственной задачи будут иметь следующие знаки:
+		\begin{enumerate}
+			\item $\geq$ 
+			\item $\geq$,
+		\end{enumerate}
+		а прямые ограничения:
+		\begin{enumerate}
+			\item $\geq$
+			\item $\leq$
+			\item $\leq$
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+Таким образом, \textbf{задача, двойственная к задаче $min$}  имеет вид:
+$$\phi_{\text{двойственная}} = 4y_1 -28y_2 + 3y_3 \rightarrow{} max$$
+
+Ограничения:\quad  $
+\begin{array}{l}
+\systeme{  -4y_2 + 3y_3 \leq 4, y_1 + 7y_2 + y_3 \leq 3}\\
+y_1 \leq 0,\ y_2 \geq 0, \ y_2 \geq 0
+\end{array}
+$
+
+А \textbf{задача, двойственная к задаче $max$}  имеет вид:
+$$\phi_{\text{двойственная}} = 4y_1 -28y_2 + 3y_3 \rightarrow{} min$$
+
+Ограничения:\quad  $
+\begin{array}{l}
+\systeme{  -4y_2 + 3y_3 \geq 4, y_1 + 7y_2 + y_3 \geq 3}\\
+y_1 \geq 0,\ y_2 \leq 0, \ y_2 \leq 0
+\end{array}
+$
+
+\textbf{Задание 3}. Решить симплекс-методом следующую задачу ЛП как на максимум, так и на минимум:
+
+Целевая функция:\quad   $\phi = 6x_1 + 2x_2 + 9x_3 + 2x_4 \rightarrow{} max$
+
+Ограничения:\quad $
+\begin{array}{l}
+\systeme{  -x_1 +3x_3 = 13, 2x_2 + 4x_3 + x_5 = 49, 
+5x_1 + 2x_4 = 42}\\
+1 \leq x_1 \leq 8,\ 2 \leq x_2 \leq 10, 1 \leq x_3 \leq 8,\\
+0 \leq x_4 \leq 6, 0 \leq x_5 \leq 7
+\end{array}
+$
+
+ \hfill
+
+Ответ:  $(8; 10; 7; 1; 1)$
+
+Построим  \textbf{двойственную задачу к канонической задаче}:
+
+Целевая функция:\quad   $$\psi(\lambda) = 13y_1 + 49y_2 + 42y_3 + 8w_1 + 10w_2 +
+8w_3 + 6w_4 + 7w_5  - v_1 - 2v_2 - v_3\rightarrow{} min$$
+
+Ограничения:  $
+\begin{array}{l}
+\syssubstitute{.,{a_1}{y_1}{a_2}{y_2}{a_3}{y_3}{b_1}{w_1}{b_2}{w_2}{b_3}{w_3}{b_4}{w_4}{b_5}{w_5}{c_1}{v_1}{c_2}{v_2}{c_3}{v_3}{c_4}{v_4}{c_5}{v_5}}
+\systeme{  
+-a_1 +5a_3 + b_1 - c_1 = 6,
+ 2a_2 + b_2 - c_2 = 2, 
+ 3a_1 + 4a_2  + b_3 - c_3= 9,  
+ 2a_3  + b_4 - c_4= 2,
+ a_2 + b_5 - c_5= 0}\\
+w_1 \geq 0, w_2 \geq 0, w_3 \geq 0, w_4 \geq 0, w_5 \geq 0,\\
+v_1 \geq 0, v_2 \geq 0, v_3 \geq 0, v_4 \geq 0, v_5 \geq 0
+\end{array}
+$
+Чтобы получить оптимальный базисный план $\lambda^o = (u^o, w^o, v^o)^T$ двойственной задачи, вспомним 
+вектор потенциалов и оценки из последней итерации симплекс-метода:
+
+$$
+u^o = 
+\begin{bmatrix}
+	3\\0\\1\\
+\end{bmatrix}
+$$
+$$
+\Delta_1^o = 4, \Delta_2^o = 2
+$$
+
+Из этого получаем, что:
+$$
+w^o = \begin{bmatrix}
+	4\\2\\0\\0\\0
+\end{bmatrix},\quad
+v^o = \begin{bmatrix}
+	0\\0\\0\\0\\0
+\end{bmatrix}
+$$
+\textbf{Ответ: } $\lambda^o = (u^o, w^o, v^o)^T =  (3, 0 , 1, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0)^T$
+\end{document}

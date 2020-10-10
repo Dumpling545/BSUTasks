@@ -81,6 +81,7 @@ public class StudentListFrame extends JFrame implements ActionListener, ChangeLi
 	}
 
 	public StudentListFrame() {
+		setTitle("Employee Tree");
 		xmlManager = new XmlManager();
 		
 		studentComparator = new StudentComparator();

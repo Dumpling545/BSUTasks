@@ -1,0 +1,75 @@
+\documentclass[fleqn]{article}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm,bindingoffset=0cm]{geometry}
+\usepackage{subfiles}
+\usepackage[bookmarks]{hyperref}
+
+
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{cmap}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{titling}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{esint}
+\usepackage{etoolbox}
+\usepackage{soul}
+\usepackage{cancel}
+\usepackage{centernot}
+\DeclareMathOperator\Ln{Ln}
+\DeclareMathOperator\Imaginary{Im}
+\DeclareMathOperator\Real{Re}
+\begin{document}
+
+Кордияко Ян, 2 курс, 1 группа
+
+Вариант 12
+
+\textbf {Задание 1}. Найти сопряжённый оператор $A^*$ к оператору $A : L_2[0,1] \rightarrow L_2[0,1]$,
+действующему по следующей формуле:
+\begin{equation*} 
+	Ax(t) = \int_{t^3}^1 t^2 x\left(s^{\frac13}\right)ds + \int_0^{t^2} t s x(s) ds
+\end{equation*}
+	По определению сопряжённого оператора имеем
+\begin{equation*} 
+	f(Ax) = (Ax, y)_{L_2[0,1]} = \int_0^1 Ax(t)y(t) dt =  \int_0^1 \left( \int_{t^3}^1 t^2 x\left(s^{\frac13}\right)ds + \int_0^{t^2} t s x(s) ds\right)y(t) dt = \int_0^1 \int_{t^3}^1 t^2 x\left(s^{\frac13}\right) y(t)  ds dt\   +
+\end{equation*}	
+\begin{equation*} 
+	 +
+	\int_0^1 \int_0^{t^2} t s x(s) y(t) ds dt =  \int_0^1 x\left(s^{\frac13}\right) \left(\int_{0}^{s^{\frac13}} t^2  y(t)  dt\right) ds + \int_0^1 x(s)\left(\int_{s^{\frac12}}^1 t s  y(t) dt\right) ds = [\text{замена в первом интеграле}] =
+\end{equation*}	
+\begin{equation*} 
+	=
+	\int_0^1 x(s) \left(\int_0^s 3s^2 t^2  y(t)  dt\right) ds + \int_0^1 x(s)\left(\int_{s^{\frac12}}^1 t s  y(t) dt\right) ds =
+	\int_0^1 x(s) \left(\int_0^s 3s^2 t^2  y(t)  dt  + \int_{s^{\frac12}}^1 t s  y(t) dt\right) ds = (x, A^*y).
+\end{equation*}	
+Откуда:
+\begin{equation*} 
+	A^*y(t) = \int_0^t 3t^2 s^2  y(s)  ds  + \int_{t^{\frac12}}^1 s t  y(s) ds.
+\end{equation*}
+\textbf {Задание 2}. Найти сопряжённый оператор $A^*$ к оператору $A : l_2 \rightarrow l_2$,
+действующему по следующей формуле:
+\begin{equation*} 
+	Ax = (x_2 + x_1, x_1 - x_2, x_4, x_3, x_5, x_6, ...), \quad x = (x_1, x_2, ...) \in l_2
+\end{equation*}
+По определению сопряжённого оператора имеем
+\begin{equation*} 
+	f(Ax) = (Ax, y)_{l_2} = \sum_{i = 1}^{\infty}{Ax_i\cdot{y_i}} = (x_2 + x_1)\cdot{y_1} + 
+	(x_1 - x_2)\cdot{y_2} + x_4\cdot{y_3} + x_3\cdot{y_4} + \sum_{i = 5}^{\infty}{x_i\cdot{y_i}} = 
+\end{equation*}
+\begin{equation*} 
+	= x_1\cdot{}(y_1 + y_2) +  x_2\cdot{}(y_1 - y_2) + x_3\cdot{}y_4 + x_4\cdot{}y_3 + \sum_{i = 5}^{\infty}{x_i\cdot{y_i}} = (x,A^*y)_{l_2}
+\end{equation*}
+Откуда:
+\begin{equation*} 
+	A^*y = (y_1 + y_2, y_1 - y_2, y_4, y_3, y_5, y_6, ...)
+\end{equation*}
+Таким образом оператор $A$ является самосопряжённым.
+\end{document}

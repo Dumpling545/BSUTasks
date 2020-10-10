@@ -1,0 +1,22 @@
+Task 1A: {u' = 3*u; u(0) = 1} with interval [0, 2] and iteration step h = 0.05
+    Error: 0.301883
+Task 1B: {u' = -3*u; u(0) = 1} with interval [0, 2] and iteration step h = 0.05
+    Error: 5.82715e-005
+Task 1C: {u' = -20*u; u(0) = 1} with interval [0, 3] and iteration step h = 0.1
+    Error: 0.468669
+Task 1D: {u' = -20*u; u(0) = 1} with interval [0, 3] and iteration step h = 0.06
+    Error: 0.0691942
+Task 1E: {u' = -20*u; u(0) = 1} with interval [0, 3] and iteration step h = 0.01
+    Error: 0.000143957
+Task 1F: {u' = -20*u; u(0) = 1} with interval [0, 3] and iteration step h = 0.001
+    Error: 1.24605e-007
+Task 2: {u' = v, v' = -u; u(0) = v(0) = 1} with interval [0, 3] and iteration step h = 0.01
+    Error: 1.50239e-007
+Task 3: {u' = 98u + 198v, v' = -99u-199v; u(0) = v(0) = 1} with interval [0, 3] and iteration step h = 0.01
+    Error: 0.103638
+Task 4: {u' = 1 + u*u*v - (B+1)*v, v' = B*u - u*u*v; u(0) = v(0) = 1} with interval [0, 1000] and iteration step h = 0.1
+Task 4A: B = 1
+Task 4B: B = 2
+Task 4C: B = 3
+Task 4D: B = 4
+Task 4E: B = 5

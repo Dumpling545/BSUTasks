@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="css/formStyle.css">
+</head>
+<body>
+<div class="section">
+    <div class="header">Форма:</div>
+    <form>
+        <input class="item" name="firstName" placeholder="Имя" type="text" required/><br/>
+        <input class="item" name="secondName" placeholder="Фамилия" type="text" required/><br/>
+		<div class="item" ><div class="item" > <label for="birthday">Дата рождения</label>
+			<input id="birthday" name="birthday" type="date" required/></br>
+        </div></br>
+        </div>
+		<div class="item" ><label for="cityOfLiving">Город проживания</label>
+            <input id="cityOfLiving" list="cities" name="city">
+				<datalist id="cities">
+					<option value="Барановичи">
+					<option value="Бобруйск">
+					<option value="Борисов">
+					<option value="Брест">
+					<option value="Витебск">
+					<option value="Гомель">
+					<option value="Гродно">
+					<option value="Лида">
+					<option value="Минск">
+					<option value="Могилёв">
+					<option value="Мозырь">
+					<option value="Пинск">
+					<option value="Солигорск">
+				</datalist></br>
+        </div>
+        <textarea class="item" name="about" placeholder="Расскажите о себе"></textarea><br/>
+		<div class="item" ><label for="specialty">Специальность</label>
+            <select id="specialty">
+                <option value="Прикладная математика">
+					Прикладная математика
+				</option>
+                <option value="Информатика">
+					Информатика
+				</option>
+				<option value="Экономическая кибернетика">
+					Экономическая кибернетика
+				</option>
+                <option value="Компьютерная безопасность">
+					Компьютерная безопасность
+				</option>
+                <option value="Прикладная информатика">
+					Прикладная информатика
+				</option>
+            </select></br>
+        </div>
+        <div class="item">
+            <label>Фотография профиля</label>
+            <input class="item" type="file" name="photo"><br/>
+        </div>
+        <div class="item">
+            <label>Необходимо ли общежитие?</label>
+            <input type="radio" name="type" value="1" required>Да</input>
+            <input type="radio" name="type" value="2" required>Нет</input><br/>
+        </div>
+		<div class="item">
+            <label for="email">Электронная почта</label>
+			<input id="email" name="email" type="email" required><br/>
+        </div>
+		<div class="item">
+            <label>Хотите получать рекламу на почту каждый день?</label>
+            <input id="spam" name="spam" value="Yes" type="checkbox"  required>
+			<label for="spam">Да</label><br>
+        </div>
+        <div class="item">
+            <button type="submit"><img class="send" src="images/submit.png"/></button>
+            <button type="reset"><img class="send" src="images/reset.png"/></button>
+        </div>
+    </form>
+</div>
+<a href="index.html">
+		Назад на главную
+</a>
+</body>
+</html>

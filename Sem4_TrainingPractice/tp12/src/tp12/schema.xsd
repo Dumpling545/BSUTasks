@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="employee" type="employeeType"/>
+	<xs:complexType name="employeeType" mixed="true">
+		<xs:sequence>    
+			<xs:element name="position">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:minLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element> 
+			<xs:element name="employmentForm">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="full-time"/>
+						<xs:enumeration value="part-time"/>
+						<xs:enumeration value="temporary"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element> 
+			<xs:element name="salary">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="15080"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element> 
+			<xs:element name="subordinates">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="employee" type="employeeType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="age" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:minInclusive value="18"/>
+					<xs:maxInclusive value="80"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute> 
+		<xs:attribute name="sex" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="male|female"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute> 
+		<xs:attribute name="unfireable" type="xs:boolean" use="required"/>
+	</xs:complexType>
+</xs:schema>

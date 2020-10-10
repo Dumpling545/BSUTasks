@@ -1,0 +1,151 @@
+\documentclass[fleqn]{article}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm,bindingoffset=0cm]{geometry}
+\usepackage{subfiles}
+\usepackage[bookmarks]{hyperref}
+
+
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{cmap}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{titling}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{esint}
+\usepackage{etoolbox}
+\usepackage{soul}
+\usepackage{cancel}
+\usepackage{centernot}
+\DeclareMathOperator\Ln{Ln}
+\DeclareMathOperator\Imaginary{Im}
+\DeclareMathOperator\Real{Re}
+\begin{document}
+
+Кордияко Ян, 2 курс, 1 группа
+
+Вариант 12
+
+\textbf {Задание 1}. Выяснить, задаёт ли следующая формула линейный ограниченный
+функционал. При положительном ответе вычислить норму $f$ для $x(t) \in L_1[-1, 1]$.
+\begin{equation*} 
+	f(x) = \int_{-1}^0 t^2 x(t^{1/3})dt - \int_0^1 t x(t^{1/2})dt
+\end{equation*}
+
+Очевидно, из свойств интеграла Римана, функционал является линейным. Покажем, что он ограничен.
+\begin{equation*} 
+	|f(x)| = \left|\int_{-1}^0 t^2 x(t^{1/3})dt - \int_0^1 t x(t^{1/2})dt\right| =
+	[ u = t^{1/3}|_{-1}^0, \  t = u^3,\  dt = 3u^2du;\quad  v = t^{1/2}|_0^1, \  t = v^2,\  
+	dt = 2vdv] = 
+\end{equation*}
+\begin{equation*} 
+	 = \left|3\int_{-1}^0 u^8 x(u)du - 2\int_0^1 v^3 x(v)dv\right| =
+	\left|\int_{-1}^1 (3t^8\chi_{[-1, 0]} - 2t^3\chi_{[0, 1]}) x(t)dt\right| \leq
+\end{equation*}
+\begin{equation*} 
+	 \leq \int_{-1}^1 \left|3t^8\chi_{[-1, 0]}-  2t^3\chi_{[0, 1]}\right|  \left|x(t)\right|dt \leq
+	 3  \int_{-1}^1 |x(t)|dt = 3||x||_{ L_1[-1, 1]}
+\end{equation*}
+
+Следовательно, функционал ограничен и $||f|| \leq 3$. С другой стороны, существует
+последовательность функций
+$x_n(t) \in L_1[-1, 1]$, которая задаётся формулой:
+\begin{equation*} 
+	 x_n(t) = \begin{cases} 
+				3^nt^{8n}, t \in [-1, 0], \\
+				-2^nt^{3n}, t \in [0, 1]
+			\end{cases},\quad x_n(t) \in L_1[-1, 1]
+\end{equation*}
+
+норма которой
+\begin{equation*} 
+	||x_n|| = \int_{-1}^0 3^n t^{8n} dt + \int_0^1 2^n t^{3n} dt = \frac{3^n}{8n + 1} + \frac{2^n}{3n + 1}
+\end{equation*}
+Вычислим норму $||f(x_n)||$:
+\begin{equation*} 
+	||f(x_n)|| = \int_{-1}^0 3^{n+1} t^{8n + 8} dt + \int_0^1 2^{n+1} t^{3n + 3} dt = \frac{3^{n+1}}{8n + 9} + \frac{2^{n+1}}{3n + 4}
+\end{equation*}
+Таким образом получаем:
+
+\begin{equation*} 
+	\frac{||f(x_n)||}{||x_n||} = \frac{\frac{3^{n+1}}{8n + 9} + \frac{2^{n+1}}{3n + 4}}{\frac{3^n}{8n + 1} + \frac{2^n}{3n + 1}} \xrightarrow[n \to \infty]{}3.
+\end{equation*}
+
+То есть норма функционала:
+\begin{equation*} 
+	||f|| = 3
+\end{equation*}
+\textbf {Задание 3}. Используя теорему об общем виде линейного 
+ограниченного функционала в гильбертовом
+пространстве, вычислить норму функционала в $ L_2[-1, 1]$.
+\begin{equation*} 
+	f(x) = \int_0^1 t^2 x(t)dt - 3\int_{-1}^0 t x(t^{1/3})dt
+\end{equation*}
+
+Приведём функционал к виду $f(x) = (x, y)_{L_2[-1, 1]}$:
+\begin{equation*} 
+	f(x) = \int_0^1 t^2 x(t)dt - 3\int_{-1}^0 t x(t^{1/3})dt =
+	[ u = t^{1/3}|_{-1}^0, \  t = u^3,\  dt = 3u^2du] = 
+\end{equation*}
+\begin{equation*} 
+ =  \int_0^1 t^2 x(t)dt - 9\int_{-1}^0  x(u)u^5du =
+	  \int_{-1}^1 x(t)(t^2\chi_{[0, 1]} - 9t^5\chi_{[-1, 0]})dt
+\end{equation*}
+Таким образом, получаем что
+\begin{equation*} 
+	 y(t) = \begin{cases} 
+				 - 9t^5, t \in [-1, 0], \\
+				t^2, t \in [0, 1]
+			\end{cases},\quad y(t) \in L_2[-1, 1]
+\end{equation*}
+Тогда норма функционала есть норма функции $y(t)$:
+\begin{equation*} 
+	||f|| = ||y||_{ L_2[-1, 1]} = \left(\int_0^1 t^4 dt + 81\int_{-1}^0 t^{10} dt\right)^{1/2} = 4 \sqrt{\frac{26}{55}}
+\end{equation*}
+Ответ:
+\begin{equation*} 
+	||f|| =  4 \sqrt{\frac{26}{55}}
+\end{equation*}
+\textbf {Задание 4}. Используя теорему об общем виде линейного 
+ограниченного функционала в гильбертовом
+пространстве, вычислить норму функционала в $ l_2$.
+\begin{equation*} 
+	f(x) = \sum_{k=1}^5\frac{x_k}{2^k} - \sum_{k=3}^{10}\frac{x_k}{k} + x_{10}
+\end{equation*}
+
+Для использования теоремы Рисса приведём функционал к виду $f(x) = (x, y)_{l_2}$. 
+\begin{equation*} 
+	f(x) = \sum_{k=1}^2x_k\frac1{2^k} + \sum_{k=3}^{5}x_k\left(\frac1{2^k} -\frac1k\right) + 
+	\sum_{k=6}^{9}x_k\left( -\frac1k\right) + x_{10}\cdot{}\left(1 - \frac1{10}\right)
+\end{equation*}
+Таким образом, получаем:
+\begin{equation*} 
+	 y = \begin{cases} 
+				 \frac1{2^k}, \  k =1, 2 \\
+				\frac1{2^k} -\frac1k , \  k = 3, 4, 5 \\
+				-\frac1k, \  k = 6, 7, 8, 9 \\
+				1 - \frac1{10}, \  k = 10 \\
+				0, \  k = 11, 12, ...
+			\end{cases},\quad y \in l_2
+\end{equation*}
+Тогда норма функционала есть норма  $y$:
+\begin{equation*} 
+	||f|| = ||y||_{l_2} = \left(\sum_{k=1}^{10} y_k^2\right)^{1/2} = 
+\end{equation*}
+\begin{equation*} 
+	= \left( \frac14 + \frac1{16} + \left(\frac18 - \frac13\right)^2 + 
+	\left(\frac1{16} - \frac14\right)^2  + \left(\frac1{32} - \frac15\right)^2
+	+ \frac1{36} + \frac1{49} + \frac1{64} + \frac1{81} +  \frac{81}{100} \right)^{1/2} =
+	\frac{\sqrt{129094585}}{10080}.
+\end{equation*}
+Ответ:
+\begin{equation*} 
+	||f|| =  \frac{\sqrt{129094585}}{10080}
+\end{equation*}
+\end{document}
