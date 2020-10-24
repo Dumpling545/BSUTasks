@@ -1,0 +1,4 @@
+java.lang.Math.cos double +2.5_0e-1_0  ---->  1.0
+java.lang.Math.sin double 2.5  ---->  0.5984721441039564
+java.lang.Math.tan double -2.5  ---->  0.7470222972386603
+java.lang.System.currentTimeMillis  ---->  1603066667076

@@ -1,8 +1,4 @@
 \documentclass[11pt]{article} 
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usepackage{fancyhdr}
-\usepackage{sectsty}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
@@ -12,18 +8,11 @@
 \usepackage[english,bulgarian,ukrainian,russian]{babel}
 \usepackage{cases}
 \usepackage{systeme}
-\usepackage{xcolor}
-\usepgfplotslibrary{fillbetween}
-\usetikzlibrary{patterns}
-\makeatletter
-\def\mathcolor#1#{\@mathcolor{#1}}
-\def\@mathcolor#1#2#3{%
-  \protect\leavevmode
-  \begingroup
-    \color#1{#2}#3%
-  \endgroup
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
 }
-\makeatother
 \begin{document}
 \textbf{Задание 1}. Решить графически следующую задачу ЛП как на максимум, так и на минимум:
 
@@ -94,24 +83,129 @@ $
 Таким образом, \textbf{задача, двойственная к задаче $min$}  имеет вид:
 $$\phi_{\text{двойственная}} = 4y_1 -28y_2 + 3y_3 \rightarrow{} max$$
 
-Ограничения:\quad  $
+$$
 \begin{array}{l}
 \systeme{  -4y_2 + 3y_3 \leq 4, y_1 + 7y_2 + y_3 \leq 3}\\
-y_1 \leq 0,\ y_2 \geq 0, \ y_2 \geq 0
+y_1 \leq 0,\ y_2 \geq 0, \ y_3 \geq 0
 \end{array}
-$
+$$
 
 А \textbf{задача, двойственная к задаче $max$}  имеет вид:
 $$\phi_{\text{двойственная}} = 4y_1 -28y_2 + 3y_3 \rightarrow{} min$$
 
-Ограничения:\quad  $
+$$
 \begin{array}{l}
 \systeme{  -4y_2 + 3y_3 \geq 4, y_1 + 7y_2 + y_3 \geq 3}\\
-y_1 \geq 0,\ y_2 \leq 0, \ y_2 \leq 0
+y_1 \geq 0,\ y_2 \leq 0, \ y_3 \leq 0
 \end{array}
-$
+$$
 
-\textbf{Задание 3}. Решить симплекс-методом следующую задачу ЛП как на максимум, так и на минимум:
+Для того, чтобы получить ответ двойственной задачи,
+приведём исходную задачу к каноническому виду:
+
+$$
+	\psi = -\phi(x) = - 4x_1 - 3x_2 \rightarrow \max{}
+	\left(\equiv \phi(x) \rightarrow \min{}\right)
+$$
+(для задачи на максимум $\phi = 4x_1 + 3x_2 
+\rightarrow \max{}$)
+$$
+\begin{array}{l}
+\systeme{  x_2 + x_3 = 4, 
+-4x_1 + 7x_2 - x_4 = - 28, 
+ 3x_1 + x_2 - x_5 = 3}\\
+M \geq x_1 \geq 0,\ M \geq x_2 \geq 0,\\
+M \geq x_3 \geq 0,\ M \geq x_4 \geq 0,\   
+M \geq x_5 \geq 0
+\end{array}
+$$
+
+Для получения ответа двойственной задачи к
+задаче на минимум
+построим вектор потенциалов $u$ оптимального
+базисного плана. Для построения оптимального
+найдём $x_3, x_4, x_5$:\  подставим в основные
+ограничения полученный графическим методом
+оптимальный план исходной задачи $(\ min = (1, 0)\ )$ :
+
+$$\begin{amatrix}{3}
+	1 &	0 & 0 & 4 \\
+	0 & -1 & 0 & -24 \\
+	0 & 0 & -1 & 0
+\end{amatrix}$$
+
+Таким образом, получаем план $x^* = (1, 0, 4, 24, 0)^T$. 
+Данный план будет базисным с базисом $J_{\text{Б}}=\{1, 3, 4\}$, 
+так 
+как соответствующая матрица невырождена, а $x_3, x_5$ лежат
+на нижней границе. Начинаем вторую фазу симплекс-метода:
+$$\begin{amatrix}{3}
+	0 &	-4 & 3 & -4 \\
+	1 & 0 & 0 & 0 \\
+	0 & -1 & 0 & 0
+\end{amatrix} \implies
+u_{min} = \begin{bmatrix}
+	0\\0\\-\frac43
+\end{bmatrix}
+$$
+$$
+\Delta_2 = -4 + \frac43 = -\frac{8}3 < 0, \quad
+\Delta_5 =  0 - \frac43 = -\frac43 < 0
+$$
+Следовательно базисный план оптимальный. В таком
+случае $y_{min} = -u_{min}$ -- решение задачи, 
+двойственной к задаче на минимум (меняем знак 
+в силу того, что исходная задача была на
+минимум). Проверим:
+$$
+	\phi(x^*) = -\psi(x^*) = 4\cdot{1} + 3\cdot{0} = 
+	4 = 4\cdot{0} - 28\cdot{0} + 
+	3\cdot{\frac43} =
+	\phi_{двойственная}(y_{min})
+$$
+
+Проведём аналогичные операции с задачей на максимум 
+(\ оптимальный план исходной задачи $max=(14, 4)$\ ):
+
+$$\begin{amatrix}{3}
+	1 &	0 & 0 & 0 \\
+	0 & -1 & 0 & 0 \\
+	0 & 0 & -1 & -43
+\end{amatrix}$$
+
+Таким образом, получаем план $x^{**} = (14, 4, 0, 0, 43)^T$. 
+Данный план будет базисным с базисом $J_{\text{Б}}=\{1, 2, 5\}$, 
+так 
+как соответствующая матрица невырождена, а $x_3, x_4$ лежат
+на нижней границе. Начинаем вторую фазу симплекс-метода:
+
+$$\begin{amatrix}{3}
+	0 &	-4 & 3 & 4 \\
+	1 & 7 & 1 & 3 \\
+	0 & 0 & -1 & 0
+\end{amatrix} \implies 
+u_{max} = \begin{bmatrix}
+	10 \\ -1 \\ 0
+\end{bmatrix}$$
+
+$$
+\Delta_3 =  0 - 10 = -10 < 0, \quad
+\Delta_4 =  0 - 1 = -1 < 0
+$$
+Следовательно базисный план оптимальный. В таком
+случае $y_{max} = u_{max}$ -- решение задачи, 
+двойственной к задаче на максимум. Проверим:
+$$
+\phi(x^{**}) = 4\cdot{14} + 3\cdot{4} = 68 =
+	4\cdot{10} - 28\cdot{(-1)} + 3\cdot{0} =
+	\phi_{двойственная}(y_{max})
+$$
+
+\textbf{Ответ: } 
+$\lambda^o_{min \rightarrow max} = (0, 0 , \frac43)^T,\  
+\lambda^o_{max \rightarrow min} = (10, -1 , 0)^T$
+
+\textbf{Задание 3}. Решить симплекс-методом следующую задачу ЛП:
 
 Целевая функция:\quad   $\phi = 6x_1 + 2x_2 + 9x_3 + 2x_4 \rightarrow{} max$
 
@@ -168,5 +262,7 @@ v^o = \begin{bmatrix}
 	0\\0\\0\\0\\0
 \end{bmatrix}
 $$
-\textbf{Ответ: } $\lambda^o = (u^o, w^o, v^o)^T =  (3, 0 , 1, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0)^T$
+\textbf{Ответ: } 
+$\lambda^o = (u^o, w^o, v^o)^T =  
+(3, 0 , 1, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0)^T$
 \end{document}

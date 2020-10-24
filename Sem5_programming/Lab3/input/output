@@ -1,0 +1,12 @@
+SomeClass.addAndPossiblyRound double 0xa double 0xA.C7AE147AE147AE147AE1p0 boolean false  ---->  20.78
+SomeClass.addAndPossiblyRound double 10 double 10.78 boolean true  ---->  21.0
+SomeClass.dSquare double -3.3_333_333e2d  ---->  111111.10888888889
+SomeClass.fSquare float 3.01f  ---->  9.0601
+SomeClass.iSquare int 0b11  ---->  9
+SomeClass.lSquare long 0XbB8  ---->  9000000
+SomeClass.toUpperCase String "Hello world!"  ---->  HELLO WORLD!
+SomeClass.toUpperCase String "\u0048\u0065\u006c\u006c\u006f\u0020\u0057\u006f\u0072\u006c\u0064\u0021"  ---->  HELLO WORLD!
+java.lang.Math.cos double +2.5_0e-1_0  ---->  1.0
+java.lang.Math.sin double 2.5  ---->  0.5984721441039564
+java.lang.Math.tan double -2.5  ---->  0.7470222972386603
+java.lang.System.currentTimeMillis  ---->  1603121839146

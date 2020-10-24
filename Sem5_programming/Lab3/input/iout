@@ -1,0 +1,2 @@
+SomeClass.iSquare double 2  ---->  4.0
+SomeClass.iSquare int 2  ---->  4
