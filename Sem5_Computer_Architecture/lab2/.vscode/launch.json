@@ -11,7 +11,7 @@
             "program": "/usr/bin/mpirun",
             "args": [
                 "-np",
-                "6",
+                "4",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "stopAtEntry": false,

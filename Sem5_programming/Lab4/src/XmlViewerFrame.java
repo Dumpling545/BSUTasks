@@ -20,17 +20,15 @@ public class XmlViewerFrame extends JFrame implements ActionListener {
     private final int DEFAULT_WIDTH = 1080;
     private final int DEFAULT_HEIGHT = 675;
     private final String TITLE = "Xml Viewer";
-    private final String INCORRECT_XML_DIALOG_MESSAGE =
-            "Xml file you trying to analyze is" + " incorrect. Try another one.";
+    private final String INCORRECT_XML_DIALOG_MESSAGE = "Xml file you trying to analyze is"
+            + " incorrect. Try another one.";
     private final String INCORRECT_XML_DIALOG_TITLE = "Incorrect xml";
-    private final String DEFAULT_DIRECTORY =
-            "/home/yan/Projects/git-repositories/BSUTasks" + "/BSUTasks/Sem5_programming/Lab4/xml/";
+    private final String DEFAULT_DIRECTORY = "/home/yan/Projects/git-repositories/BSUTasks"
+            + "/BSUTasks/Sem5_programming/Lab4/xml/";
     private JFileChooser fileOpener;
     private TagTableModel tagTableModel;
-    private final String TAG_PATTERN =
-            "(<(\\/)?([a-zA-Z_:][\\w:\\-\\.]*)( [a-zA-Z_:][\\w:\\-\\.]*=([\"\']).*\\5)*>)|"
-                    + "(<([a-zA-Z_:][\\w:\\-\\.]*)( [a-zA-Z_:][\\w:\\-\\.]*=([\"\']).*\\9)*\\/>)|"
-                    + "(\\R)";
+    private final String TAG_PATTERN = "(<(\\/)?([a-zA-Z_:][\\w:\\-\\.]*)( [a-zA-Z_:][\\w:\\-\\.]*=([\"\']).*\\5)*>)|"
+            + "(<([a-zA-Z_:][\\w:\\-\\.]*)( [a-zA-Z_:][\\w:\\-\\.]*=([\"\']).*\\9)*\\/>)|" + "(\\R)";
     private Stack<Tag> tagStack;
 
     public XmlViewerFrame() {
@@ -73,13 +71,10 @@ public class XmlViewerFrame extends JFrame implements ActionListener {
                         boolean isOpeningTagFound = matcher.group(2) == null;
                         if (isOpeningTagFound) {
                             tagStack.push(new Tag(matcher.group(3), line,
-                                    matcher.start() - previousLineLastCharacterPosition,
-                                    matcher.group()));
+                                    matcher.start() - previousLineLastCharacterPosition, matcher.group()));
                         } else {
-                            if (!tagStack.empty()
-                                    && tagStack.peek().isOpeningTagOf(matcher.group(3))) {
-                                tagStack.peek().close(line,
-                                        matcher.start() - previousLineLastCharacterPosition);
+                            if (!tagStack.empty() && tagStack.peek().isOpeningTagOf(matcher.group(3))) {
+                                tagStack.peek().close(line, matcher.start() - previousLineLastCharacterPosition);
                                 tagTableModel.addTag(tagStack.pop());
                             } else {
                                 tagStack.clear();
@@ -91,7 +86,7 @@ public class XmlViewerFrame extends JFrame implements ActionListener {
                         }
                     } else if (matcher.group(6) != null) {
                         int col = matcher.start() - previousLineLastCharacterPosition;
-                        tagTableModel.addTag(new Tag (line, col, line, col, matcher.group()));
+                        tagTableModel.addTag(new Tag(line, col, line, col, matcher.group()));
                     }
                 }
             } catch (IOException ex) {

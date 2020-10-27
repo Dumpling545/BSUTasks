@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[margin=1.5cm,portrait,a4paper]{geometry}
+\usepackage[thinc]{esdiff}
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{8cm}
+ 
+        \textbf{Отчет о проделанной работе (Вариант 2)}
+ 
+        \vspace{0.5cm}
+            Теория вероятностей и математическая статистика
+             
+        \vspace{1.5cm}
+ 
+        \textbf{Михаил Басанец, Ян Кордияко}
+ 
+        \vfill
+             
+             
+        \vspace{0.8cm}
+      
+        Белорусский Государственный Университет \\
+        Факультет Прикладной Математики и Информатики\\
+        2020
+             
+    \end{center}
+\end{titlepage}
+
+\section{Условия}
+
+Рассматриваются распределение Пуассона $\Pi(\lambda)$ 
+и выборки из него.
+
+$n = 60, \lambda = 4$ 
+
+\section{Теория: }
+
+Начальный момент распределения 1-го порядка:
+$$ \alpha_1(\lambda) = \lambda $$
+Начальный момент распределения 2-го порядка:
+$$ \alpha_2(\lambda) = \lambda^2 + \lambda $$
+
+\subsection{Метод моментов}
+
+Так как функция распределения Пуассона зависит лишь от одного параметра $\lambda$,
+то для получения оценки этого параметра по методу моментов  $\hat{\lambda} = T(X)$  достаточно решить уравнение:
+
+$$ \alpha_1(\lambda) = a_1,\quad a_1 = \frac1n \sum_{i=1}^n{x_i} $$
+
+Таким образом, оценка примет вид $\hat{\lambda} = \frac1n \sum_{i=1}^n{x_i}$.
+
+\subsection{Свойства оценки параметра по методу моментов}
+
+
+Учитывая, что $\alpha_1(\lambda) = \lambda$ -- взаимо-однозначная непрерывная функция,  
+найденная оценка $\hat{\lambda}$ будет \textbf{состоятельной}.
+В силу того, что:
+\begin{alignat*}{3}
+      \diff*{\alpha_1}{\lambda}{\lambda = 4}  = 1 \ne 0
+ \end{alignat*}
+найденная оценка  $\hat{\lambda}$ будет \textbf{асимптотически нормальной}.
+\section{Результаты работы программы}
+
+начальный момент 1 порядка:  4 \\
+начальный момент 2 порядка:  20
+
+
+\subsection{Выборка размером n:}
+значение оценки ММ $\hat{\lambda}$:  3.6166666666666667 \\
+
+\subsection{Выборка размером 3n:}
+значение оценки ММ $\hat{\lambda}$:  4.116666666666666 \\
+
+\subsection{Выборка размером 6n:}
+значение оценки ММ $\hat{\lambda}$:  3.977777777777778 \\
+
+\subsection{Выборка размером 12n:}
+значение оценки ММ $\hat{\lambda}$:  4.036111111111111 \\
+
+\section{Выводы}
+Можно заметить, что при увеличении размера выборки значение оценки ММ приближается к точному
+значению параметра $\lambda$, поэтому
+для более точных исследований необходимо использовать выборки большего объема.
+\section{Исходный код программы}
+
+\begin{lstlisting}
+import numpy as np
+n = 60
+l = 4
+print( l)
+print( l*l + l)
+for i in [1, 3, 6, 12]:  
+    sample = np.random.poisson(lam=l, size=i*n)
+    print("size = ",i,"n: ", sum(sample) / len(sample))
+\end{lstlisting}
+
+\end{document}
